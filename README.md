@@ -7,8 +7,8 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 ## Grupo {N}
 
 * **Santiago Biach** - [integrante1](https://github.com/santiagobiach)
-* **Tomás Bernardotti** - [integrante2](https://github.com/tomasbernardotti)
-* **Integrante 3** - [integrante3](https://github.com/integrante3)
+* **Giuliano Morganti** - [integrante2](https://github.com/funkypepe)
+* **Tomas Bernardotti** - [integrante3](https://github.com/tomasbernardotti)
 * **Integrante 4** - [integrante4](https://github.com/integrante4)
 
 Corrector: **{Corrector}**
