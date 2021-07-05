@@ -9,7 +9,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Santiago Biach** - [integrante1](https://github.com/santiagobiach)
 * **Giuliano Morganti** - [integrante2](https://github.com/funkypepe)
 * **Tomas Bernardotti** - [integrante3](https://github.com/tomasbernardotti)
-* **Integrante 4** - [integrante4](https://github.com/integrante4)
+* **Franco Papa** - [integrante4](https://github.com/F-Papa)
 
 Corrector: **{Corrector}**
 
