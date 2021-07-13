@@ -11,6 +11,7 @@ public class PaisTest {
 
         assertEquals("Argentina", pais.getNombre());
     }
+
     @Test
     public void DosPaisesCreadosNoSonLimitrofes(){
         Pais pais = new Pais("Argentina");
@@ -18,6 +19,7 @@ public class PaisTest {
 
         assertFalse(pais.esLimitrofe(otroPais));
     }
+
     @Test
     public void DosPaisesCreadosSonLimitrofesTrasIndicarlo(){
         Pais pais = new Pais("Argentina");
@@ -61,5 +63,49 @@ public class PaisTest {
         unPais.agregarTropas(3);
         assertTrue(unPais.tieneTropasSuficientes(2));
     }
+
+    @Test
+    public void UnNuevoPaisNoEstaDominadoPorNadie(){
+        Pais pais = new Pais("Argentina");
+        assertNull(pais.getJugador());
+    }
+
+    @Test
+    public void UnNuevoPaisEstaDominadoPorElJugadorIndicado(){
+        Pais pais = new Pais("Argentina");
+        Jugador unJugador = new Jugador("Santi");
+        pais.setJugador(unJugador);
+        assertEquals(pais.getJugador(), unJugador);
+    }
+
+    @Test
+    public void PaisNoPuedeAtacarConCeroTropas(){
+        Pais pais = new Pais("Argentina");
+        Pais otroPais = new Pais("Brasil");
+        pais.agregarPaisLimitrofe(otroPais);
+        pais.agregarTropas(10);
+
+        assertThrows(ExcepcionCantidadDeTropasInvalida.class, () -> {pais.atacarAPaisCon(otroPais, 0);});
+    }
+
+    @Test
+    public void PaisNoPuedeAtacarConCantidadNegativaDeTropas(){
+        Pais pais = new Pais("Argentina");
+        Pais otroPais = new Pais("Brasil");
+        pais.agregarPaisLimitrofe(otroPais);
+        pais.agregarTropas(10);
+
+        assertThrows(ExcepcionCantidadDeTropasInvalida.class, () -> {pais.atacarAPaisCon(otroPais, -1);});
+    }
+
+    @Test
+    public void PaisNoPuedeAtacarAOtroSiNoTieneTropasSuficientes(){
+        Pais pais = new Pais("Argentina");
+        Pais otroPais = new Pais("Brasil");
+        pais.agregarPaisLimitrofe(otroPais);
+
+        assertThrows(ExcepcionTropasInsuficientes.class, () -> {pais.atacarAPaisCon(otroPais, 1);});
+    }
+
 
 }
