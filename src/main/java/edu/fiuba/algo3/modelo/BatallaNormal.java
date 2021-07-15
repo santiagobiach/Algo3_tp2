@@ -46,7 +46,7 @@ public class BatallaNormal implements Batalla{
             tirosDefensor.remove(0);
         }
 
-        if(tirosAtacante.isEmpty())
+        if(defensor.tieneTropasSuficientes(0))
             atacante.vencioA(defensor);
     }
 
