@@ -32,7 +32,7 @@ public class Pais {
     }
 
     public void conquistadoPor(Jugador unJugador){
-        jugador = unJugador;
+        this.setJugador(unJugador);
         cantidadDeTropas +=1;
     }
 
