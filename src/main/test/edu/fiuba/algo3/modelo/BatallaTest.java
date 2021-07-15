@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
 
-import java.rmi.server.ExportException;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
