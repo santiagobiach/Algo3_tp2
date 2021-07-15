@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
 
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
