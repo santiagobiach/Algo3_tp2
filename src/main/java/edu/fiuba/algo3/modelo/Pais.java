@@ -28,12 +28,12 @@ public class Pais {
 
     public void vencioA(Pais paisDerrotado){
         paisDerrotado.conquistadoPor(this.jugador);
-        cantidadDeTropas -=1;
+        this.restarTropas(1);
     }
 
     public void conquistadoPor(Jugador unJugador){
         this.setJugador(unJugador);
-        cantidadDeTropas +=1;
+        this.agregarTropas(1);
     }
 
     public int getCantidadDeTropas(){
