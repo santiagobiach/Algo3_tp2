@@ -22,6 +22,20 @@ public class Pais {
         cantidadDeTropas += cantidad;
     }
 
+    public void restarTropas(int cantidad){
+        cantidadDeTropas -= cantidad;
+    }
+
+    public void vencioA(Pais paisDerrotado){
+        paisDerrotado.conquistadoPor(this.jugador);
+        cantidadDeTropas -=1;
+    }
+
+    public void conquistadoPor(Jugador unJugador){
+        jugador = unJugador;
+        cantidadDeTropas +=1;
+    }
+
     public int getCantidadDeTropas(){
         return cantidadDeTropas;
     }
@@ -59,12 +73,23 @@ public class Pais {
         return (jugador == otroPais.getJugador());
     }
 
-    public void atacarAPaisCon(Pais otroPais, int cantidad) throws Exception {
-        if (!this.tieneTropasSuficientes(cantidad))
+    public void atacarA(Pais otroPais, int cantidadDeTropas, Batalla batalla) throws Exception{
+        if (!this.tieneTropasSuficientes(cantidadDeTropas))
             throw new ExcepcionTropasInsuficientes("Tropas insuficientes");
-        else if(cantidad <= 0)
+
+        else if(this.jugador == null)
+            throw new ExcepcionBatallaInvalida("Pais Neutral");
+
+        else if(cantidadDeTropas <= 0)
             throw new ExcepcionCantidadDeTropasInvalida("Cantidad de Tropas Invalida");
-        else
-            (new Batalla(this, otroPais, cantidad)).combatir();
+
+        else if(!this.esLimitrofe(otroPais))
+            throw new ExcepcionBatallaInvalida("Paises no limítrofes");
+
+        else if(this.esAliado(otroPais))
+            throw new ExcepcionBatallaInvalida("Batalla entre paises aliados");
+
+        batalla.combatir(this, otroPais, cantidadDeTropas);
     }
+
 }
