@@ -36,7 +36,8 @@ public class CSVParserTest {
         ArrayList<String[]> paises = new ArrayList<>();
         paises = parser.readFromFile("src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Fronteras.csv");
         String[] pais = paises.get(0);
-        //Nombre de pais, Continente, Paises Limitrofes
+        //Nombre de pais, Continente, Paises Limitrofes(Notese que paises limitrofes es un String de paises
+        //separados por comas. Para separarlos habria que parsear, se podria hacer con string.split(",")
         assertEquals(3, pais.length);
 
     }

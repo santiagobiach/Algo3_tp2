@@ -45,13 +45,13 @@ public class CSVParser {
 
         StringBuilder field = new StringBuilder();// Va a ser el string qu
 
-        for (char c : line.toCharArray()) {
+        for (char c : line.toCharArray()) { //Convierte a la linea en un array de chars e itera sobre eso
             if (c == quoteChar) { //Si encuentra una comilla (")
                 inQuotes = !inQuotes;
             } else {
                 if (c == separator && !inQuotes) {  //Si encuentra una coma(,) y no esta entre comillas lo agrega
                     result.add(field.toString());
-                    field.setLength(0);             // Vacia field para que este preparado para el proximo valor
+                    field.setLength(0);             // Vacia field para que este preparado para el proximo campo
                 } else {
                     field.append(c);                // Si no, agrega el char a field.
                 }
