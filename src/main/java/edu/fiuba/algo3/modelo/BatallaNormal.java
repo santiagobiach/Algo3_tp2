@@ -1,53 +1,54 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class BatallaNormal implements Batalla{
 
-    private ArrayList<Integer> tirarDados(int cantidadDeTiros){
-        ArrayList<Integer> listaTiros = new ArrayList<Integer>();
+    private final int cantidadDeTropasAtacantes;
+    private final Pais atacante, defensor;
 
-        for(int i=0; i<cantidadDeTiros; i++) {
-            listaTiros.add((int)(Math.random()*5 + 1));
-            Collections.sort(listaTiros, Collections.reverseOrder());
-        }
+    public BatallaNormal(Pais unAtacante, Pais unDefensor, int unaCantidadDeTropasAtacantes) throws ExcepcionBatallaInvalida{
 
-        return listaTiros;
+        if (unaCantidadDeTropasAtacantes < 1)
+            throw new ExcepcionBatallaInvalida("Numero inválido de tropas");
+
+        else if (!unAtacante.tieneTropasSuficientes(unaCantidadDeTropasAtacantes))
+            throw new ExcepcionBatallaInvalida("Tropas insuficientes");
+
+        else if(unAtacante.esNeutral())
+            throw new ExcepcionBatallaInvalida("Atacante Neutral");
+
+        else if(unaCantidadDeTropasAtacantes <= 0)
+            throw new ExcepcionBatallaInvalida("Cantidad de Tropas Invalida");
+
+        else if(!unAtacante.esLimitrofeCon(unDefensor))
+            throw new ExcepcionBatallaInvalida("Paises no limítrofes");
+
+        else if(unAtacante.esAliado(unDefensor))
+            throw new ExcepcionBatallaInvalida("Batalla entre paises aliados");
+
+        cantidadDeTropasAtacantes = unaCantidadDeTropasAtacantes;
+        atacante = unAtacante;
+        defensor = unDefensor;
     }
 
-//    private void compararTiros(ArrayList<Integer> tirosAtacante, ArrayList<Integer> tirosDefensor){
-//        while(!tirosAtacante.isEmpty() && !tirosDefensor.isEmpty()){
-//
-//            if(tirosAtacante.get(0) > tirosDefensor.get(0)){
-//
-//            }
-//            tirosAtacante.remove(0);
-//            tirosDefensor.remove(0);
-//        }
-//    }
-
-    public void combatir(Pais atacante, Pais defensor, int cantidadDeTropasAtacantes) throws ExcepcionBatallaInvalida{
+    public void combatir() throws ExcepcionBatallaInvalida{
 
         int cantidadDadosAtacante = Math.min(3, cantidadDeTropasAtacantes);
-        int cantidadDadosDefensor = Math.min(3, defensor.getCantidadDeTropas());
-
-        ArrayList<Integer> tirosAtacante = this.tirarDados(cantidadDadosAtacante);
-        ArrayList<Integer> tirosDefensor = this.tirarDados(cantidadDadosDefensor);
+        ArrayList <Integer> tirosAtacante = atacante.tirarDados(cantidadDadosAtacante);
+        ArrayList <Integer> tirosDefensor = defensor.tirarDados(cantidadDadosAtacante);
 
         while(!tirosAtacante.isEmpty() && !tirosDefensor.isEmpty()){
-
-            if(tirosAtacante.get(0) > tirosDefensor.get(0)){
+            if(tirosAtacante.get(0) > tirosDefensor.get(0))
                 defensor.restarTropas(1);
-            } else {
+            else
                 atacante.restarTropas(1);
-            }
+
             tirosAtacante.remove(0);
             tirosDefensor.remove(0);
         }
+        defensor.defenderConquista(atacante);
 
-        if(defensor.tieneTropasSuficientes(0))
-            atacante.vencioA(defensor);
     }
 
 }

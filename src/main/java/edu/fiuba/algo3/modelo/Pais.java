@@ -1,39 +1,41 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Pais {
 
-    private String nombre;
-
+    private final String nombre;
+    private Jugador jugador;
+    private ArrayList <Pais> paisesLimitrofes = new ArrayList<>();
     private int cantidadDeTropas;
 
-    private Jugador jugador;
-
-    private ArrayList <Pais> paisesLimitrofes = new ArrayList<>();
-
-    public Pais(String nombre){
-        this.nombre = nombre;
+    public Pais(String unNombre){
+        this.nombre = unNombre;
         this.cantidadDeTropas = 0;
         this.jugador = null;
     }
 
-    public void agregarTropas(int cantidad){
-        cantidadDeTropas += cantidad;
+    public void agregarTropas(int unaCantidad){
+        if (unaCantidad>0)
+            cantidadDeTropas += unaCantidad;
     }
 
-    public void restarTropas(int cantidad){
-        cantidadDeTropas -= cantidad;
+    //chequear que atacante tenga tropas qsyo?
+    public void defenderConquista(Pais atacante){
+        if (cantidadDeTropas==0){
+            this.setJugador(atacante.getJugador());
+            this.cantidadDeTropas = 1;
+            atacante.restarTropas(1);
+        }
     }
 
-    public void vencioA(Pais paisDerrotado){
-        paisDerrotado.conquistadoPor(this.jugador);
-        this.restarTropas(1);
-    }
+    public void restarTropas(int unaCantidad){
+        if (unaCantidad>0)
+            cantidadDeTropas -= unaCantidad;
 
-    public void conquistadoPor(Jugador unJugador){
-        this.setJugador(unJugador);
-        this.agregarTropas(1);
+        if (cantidadDeTropas < 0)
+            cantidadDeTropas = 0;
     }
 
     public int getCantidadDeTropas(){
@@ -44,7 +46,11 @@ public class Pais {
         return nombre;
     }
 
-    public boolean esLimitrofe(Pais unPais){
+    public boolean esNeutral(){
+        return (jugador == null);
+    }
+
+    public boolean esLimitrofeCon(Pais unPais){
         return (paisesLimitrofes.contains(unPais));
     }
 
@@ -53,7 +59,7 @@ public class Pais {
     }
 
     public boolean tieneTropasSuficientes(int cantidad){
-        return (cantidadDeTropas >= (cantidad+1));
+        return (cantidadDeTropas > cantidad);
     }
 
     public void agregarPaisLimitrofe(Pais unPais){
@@ -73,23 +79,16 @@ public class Pais {
         return (jugador == otroPais.getJugador());
     }
 
-    public void atacarA(Pais otroPais, int cantidadDeTropas, Batalla batalla) throws Exception{
-        if (!this.tieneTropasSuficientes(cantidadDeTropas))
-            throw new ExcepcionTropasInsuficientes("Tropas insuficientes");
+    public ArrayList<Integer> tirarDados(int cantidadDeTiros){
+        ArrayList<Integer> listaTiros = new ArrayList<Integer>();
 
-        else if(this.jugador == null)
-            throw new ExcepcionBatallaInvalida("Pais Neutral");
+        for(int i=0; i<cantidadDeTiros; i++) {
+            listaTiros.add((int)(Math.random()*5 + 1));
+            Collections.sort(listaTiros, Collections.reverseOrder());
+        }
 
-        else if(cantidadDeTropas <= 0)
-            throw new ExcepcionCantidadDeTropasInvalida("Cantidad de Tropas Invalida");
-
-        else if(!this.esLimitrofe(otroPais))
-            throw new ExcepcionBatallaInvalida("Paises no limítrofes");
-
-        else if(this.esAliado(otroPais))
-            throw new ExcepcionBatallaInvalida("Batalla entre paises aliados");
-
-        batalla.combatir(this, otroPais, cantidadDeTropas);
+        return listaTiros;
     }
+
 
 }
