@@ -12,9 +12,7 @@ public class CSVParser {
     private final char DEFAULT_QUOTE_CHAR = DOUBLE_QUOTES;
     private final String NEW_LINE = "\n";
 
-    private boolean isMultiLine = false;
-    private String pendingField = "";
-    private String[] pendingFieldLine = new String[]{};
+
 
     public CSVParser(){
 
@@ -24,76 +22,47 @@ public class CSVParser {
         BufferedReader csvReader = new BufferedReader(new FileReader(path));
         //Me salteo la primera linea
         String row = csvReader.readLine();
-        ArrayList<String[]> algo = new ArrayList<>();
+        ArrayList<String[]> lineasParseadas = new ArrayList<>();
         while ((row = csvReader.readLine()) != null) {
 
 
             String[] data = parseLine(row,DEFAULT_SEPARATOR);
-            algo.add(data);
+            lineasParseadas.add(data);
         }
         csvReader.close();
-        return algo;
+        return lineasParseadas;
     }
-    private String[] parseLine(String line, char separator) throws Exception {
+    private String[] parseLine(String line, char separator){
         return parse(line, separator, DEFAULT_QUOTE_CHAR).toArray(String[]::new);
 
     }
-    private  List<String> parse(String line, char separator, char quoteChar)
-            throws Exception {
+    private  List<String> parse(String line, char separator, char quoteChar) {
 
         List<String> result = new ArrayList<>();
 
         boolean inQuotes = false;
-        boolean isFieldWithEmbeddedDoubleQuotes = false;
 
-        StringBuilder field = new StringBuilder();
+
+        StringBuilder field = new StringBuilder();// Va a ser el string qu
 
         for (char c : line.toCharArray()) {
-
-            if (c == DOUBLE_QUOTES) {               // handle embedded double quotes ""
-                if (isFieldWithEmbeddedDoubleQuotes) {
-
-                    if (field.length() > 0) {       // handle for empty field like "",""
-                        field.append(DOUBLE_QUOTES);
-                        isFieldWithEmbeddedDoubleQuotes = false;
-                    }
-
-                } else {
-                    isFieldWithEmbeddedDoubleQuotes = true;
-                }
-            } else {
-                isFieldWithEmbeddedDoubleQuotes = false;
-            }
-
-            if (isMultiLine) {                      // multiline, add pending from the previous field
-                field.append(pendingField).append(NEW_LINE);
-                pendingField = "";
-                inQuotes = true;
-                isMultiLine = false;
-            }
-
-            if (c == quoteChar) {
+            if (c == quoteChar) { //Si encuentra una comilla (")
                 inQuotes = !inQuotes;
             } else {
-                if (c == separator && !inQuotes) {  // if find separator and not in quotes, add field to the list
+                if (c == separator && !inQuotes) {  //Si encuentra una coma(,) y no esta entre comillas lo agrega
                     result.add(field.toString());
-                    field.setLength(0);             // empty the field and ready for the next
+                    field.setLength(0);             // Vacia field para que este preparado para el proximo valor
                 } else {
-                    field.append(c);                // else append the char into a field
+                    field.append(c);                // Si no, agrega el char a field.
                 }
             }
 
         }
+        result.add(field.toString());           // Deja de iterar, y agrega el ultimo field al resultado.
 
-        //line done, what to do next?
-        if (inQuotes) {
-            pendingField = field.toString();        // multiline
-            isMultiLine = true;
-        } else {
-            result.add(field.toString());           // this is the last field
-        }
 
         return result;
 
     }
 }
+

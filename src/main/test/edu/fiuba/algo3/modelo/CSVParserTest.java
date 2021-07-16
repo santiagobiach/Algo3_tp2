@@ -18,14 +18,14 @@ public class CSVParserTest {
     public void PuedeLeerCorrectamenteUnArchivoQueExiste() throws Exception{
         CSVParser parser = new CSVParser();
 
-        assertDoesNotThrow(() -> {parser.readFromFile("src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Cartas.csv");});
+        assertDoesNotThrow(() -> {parser.readFromFile("src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Fronteras.csv");});
 
     }
     @Test
     public void LeeLaCantidadCorrectaDePaises() throws Exception{
         CSVParser parser = new CSVParser();
         ArrayList<String[]> paises = new ArrayList<>();
-        paises = parser.readFromFile("src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Cartas.csv");
+        paises = parser.readFromFile("src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Fronteras.csv");
         assertEquals(50,paises.size());
 
     }
@@ -34,10 +34,10 @@ public class CSVParserTest {
     public void LaCantidadDeCamposEsCorrecta() throws Exception{
         CSVParser parser = new CSVParser();
         ArrayList<String[]> paises = new ArrayList<>();
-        paises = parser.readFromFile("src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Cartas.csv");
+        paises = parser.readFromFile("src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Fronteras.csv");
         String[] pais = paises.get(0);
-        //Nombre de pais, tipo de carta
-        assertEquals(2, pais.length);
+        //Nombre de pais, Continente, Paises Limitrofes
+        assertEquals(3, pais.length);
 
     }
 }
