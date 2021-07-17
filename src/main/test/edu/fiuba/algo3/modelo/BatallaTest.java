@@ -11,46 +11,10 @@ import static org.mockito.Mockito.when;
 
 public class BatallaTest {
 
-//    @Test
-//    public void NoPuedeHaberUnaBatallaDeUnPaisConsigoMismo(){
-//        Pais pais = new Pais("Argentina");
-//        pais.agregarTropas(2);
-//
-//        Batalla batalla = new BatallaNormal();
-//        assertThrows(ExcepcionBatallaInvalida.class, () -> {batalla.combatir(pais, pais, 1);});
-//    }
-//
-//    @Test
-//    public void PaisNoPuedeAtacarAOtroQueNoEsLimitrofe(){
-//        Pais pais = new Pais("Argentina");
-//        pais.agregarTropas(2);
-//        Pais otroPais = new Pais("Brasil");
-//
-//        Batalla batalla = new BatallaNormal();
-//        assertThrows(ExcepcionBatallaInvalida.class, () -> {batalla.combatir(pais, otroPais, 1);});
-//    }
-//
-//    @Test
-//    public void PaisNoPuedeAtacarAUnPaisAliado(){
-//        Jugador jugador = new Jugador("Pepe");
-//
-//        Pais pais = new Pais("Argentina");
-//        Pais otroPais = new Pais("Brasil");
-//        pais.agregarPaisLimitrofe(otroPais);
-//        pais.agregarTropas(10);
-//
-//        pais.setJugador(jugador);
-//        otroPais.setJugador(jugador);
-//
-//        Batalla batalla = new BatallaNormal();
-//
-//        assertThrows(ExcepcionBatallaInvalida.class, () -> {batalla.combatir(pais, otroPais, 1);});
-//    }
-
     @Test
     public void NoSePuedeCrearUnaBatallaNormalConCeroTropasAtacantes(){
-        Pais atacante = new Pais("Argentina");
-        Pais defensor = new Pais("Brasil");
+        Pais atacante = new Pais("Argentina", new Continente("América"));
+        Pais defensor = new Pais("Brasil", new Continente("América"));
         atacante.agregarPaisLimitrofe(defensor);
         atacante.agregarTropas(10);
         atacante.setJugador(new Jugador("Mario"));
@@ -62,8 +26,8 @@ public class BatallaTest {
 
     @Test
     public void NoSePuedeCrearUnaBatallaNormalConTropasAtacantesNegativas(){
-        Pais atacante = new Pais("Argentina");
-        Pais defensor = new Pais("Brasil");
+        Pais atacante = new Pais("Argentina", new Continente("América"));
+        Pais defensor = new Pais("Brasil", new Continente("América"));
         atacante.agregarPaisLimitrofe(defensor);
         atacante.agregarTropas(10);
         atacante.setJugador(new Jugador("Mario"));
@@ -76,8 +40,8 @@ public class BatallaTest {
     @Test
     public void PaisNoPuedeAtacarAUnPaisAliado(){
         Jugador jugador = new Jugador("Pepe");
-        Pais atacante = new Pais("Argentina");
-        Pais defensor = new Pais("Brasil");
+        Pais atacante = new Pais("Argentina", new Continente("América"));
+        Pais defensor = new Pais("Brasil", new Continente("América"));
         atacante.agregarPaisLimitrofe(defensor);
         atacante.agregarTropas(10);
         atacante.setJugador(jugador);
@@ -89,7 +53,7 @@ public class BatallaTest {
 
     @Test
     public void NoPuedeHaberUnaBatallaDeUnPaisConsigoMismo(){
-        Pais pais = new Pais("Argentina");
+        Pais pais = new Pais("Argentina", new Continente("América"));
         pais.agregarTropas(2);
 
         assertThrows(ExcepcionBatallaInvalida.class, ()
@@ -98,10 +62,10 @@ public class BatallaTest {
 
     @Test
     public void PaisNoPuedeAtacarAOtroQueNoEsLimitrofe(){
-        Pais pais = new Pais("Argentina");
+        Pais pais = new Pais("Argentina", new Continente("América"));
         pais.agregarTropas(2);
         pais.setJugador(new Jugador("Pepe"));
-        Pais otroPais = new Pais("Brasil");
+        Pais otroPais = new Pais("Brasil", new Continente("América"));
         otroPais.setJugador(new Jugador("Mario"));
 
         assertThrows(ExcepcionBatallaInvalida.class, () ->
@@ -110,8 +74,8 @@ public class BatallaTest {
 
     @Test
     public void atacanteOcupaADefensorCuandoLoVence() throws Exception {
-        Pais atacante = new Pais("Argentina");
-        Pais defensor = new Pais("Bolivia");
+        Pais atacante = new Pais("Argentina", new Continente("América"));
+        Pais defensor = new Pais("Bolivia", new Continente("América"));
         atacante.setJugador(new Jugador("Pepe"));
         atacante.agregarTropas(4);
         atacante.agregarPaisLimitrofe(defensor);
@@ -126,8 +90,8 @@ public class BatallaTest {
 
     @Test
     public void atacanteNoOcupaADefensorCuandoSiNoLoVence() throws Exception {
-        Pais atacante = new Pais("Argentina");
-        Pais defensor = new Pais("Bolivia");
+        Pais atacante = new Pais("Argentina", new Continente("América"));
+        Pais defensor = new Pais("Bolivia", new Continente("América"));
 
         atacante.setJugador(new Jugador("Pepe"));
         atacante.agregarTropas(4);
@@ -142,8 +106,8 @@ public class BatallaTest {
 
     @Test
     public void SeCreaLaBatallaExitosamente(){
-        Pais atacante = new Pais("Argentina");
-        Pais defensor = new Pais("Bolivia");
+        Pais atacante = new Pais("Argentina", new Continente("América"));
+        Pais defensor = new Pais("Bolivia", new Continente("América"));
 
         atacante.setJugador(new Jugador("Pepe"));
         atacante.agregarTropas(4);
@@ -157,8 +121,8 @@ public class BatallaTest {
     }
     @Test
     public void SeLograCombatirExitosamente() throws Exception {
-        Pais atacante = new Pais("Argentina");
-        Pais defensor = new Pais("Bolivia");
+        Pais atacante = new Pais("Argentina", new Continente("América"));
+        Pais defensor = new Pais("Bolivia", new Continente("América"));
 
         atacante.setJugador(new Jugador("Pepe"));
         atacante.agregarTropas(4);

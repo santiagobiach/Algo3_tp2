@@ -7,10 +7,11 @@ public class Pais {
 
     private final String nombre;
     private Jugador jugador;
+    private Continente continente;
     private ArrayList <Pais> paisesLimitrofes = new ArrayList<>();
     private int cantidadDeTropas;
 
-    public Pais(String unNombre){
+    public Pais(String unNombre, Continente continente){
         this.nombre = unNombre;
         this.cantidadDeTropas = 0;
         this.jugador = null;

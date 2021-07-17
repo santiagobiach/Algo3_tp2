@@ -25,7 +25,7 @@ public class ContinenteTest {
         Jugador jugador = new Jugador("Santi");
         Continente continente = new Continente("América");
 
-        Pais argentina = new Pais("Argentina");
+        Pais argentina = new Pais("Argentina", new Continente("América"));
         argentina.setJugador(jugador);
         continente.agregarPais(argentina);
 
@@ -37,8 +37,8 @@ public class ContinenteTest {
         Jugador jugador = new Jugador("Santi");
         Continente continente = new Continente("América");
 
-        Pais argentina = new Pais("Argentina");
-        Pais chile = new Pais("Chile");
+        Pais argentina = new Pais("Argentina", new Continente("América"));
+        Pais chile = new Pais("Chile", new Continente("América"));
         chile.setJugador(new Jugador("Mario"));
         argentina.setJugador(jugador);
         continente.agregarPais(argentina);
