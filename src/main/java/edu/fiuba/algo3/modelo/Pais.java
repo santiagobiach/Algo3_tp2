@@ -46,6 +46,10 @@ public class Pais {
         return nombre;
     }
 
+    public boolean dominadoPor(Jugador unJugador) {
+        return (this.jugador == unJugador);
+    }
+
     public boolean esNeutral(){
         return (jugador == null);
     }
@@ -77,17 +81,6 @@ public class Pais {
 
     public boolean esAliado(Pais otroPais){
         return (jugador == otroPais.getJugador());
-    }
-
-    public ArrayList<Integer> tirarDados(int cantidadDeTiros){
-        ArrayList<Integer> listaTiros = new ArrayList<Integer>();
-
-        for(int i=0; i<cantidadDeTiros; i++) {
-            listaTiros.add((int)(Math.random()*5 + 1));
-            Collections.sort(listaTiros, Collections.reverseOrder());
-        }
-
-        return listaTiros;
     }
 
 

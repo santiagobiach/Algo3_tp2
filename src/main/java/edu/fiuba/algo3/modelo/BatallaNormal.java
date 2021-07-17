@@ -32,8 +32,10 @@ public class BatallaNormal implements Batalla{
     public void combatir() throws ExcepcionBatallaInvalida{
 
         int cantidadDadosAtacante = Math.min(3, cantidadDeTropasAtacantes);
-        ArrayList <Integer> tirosAtacante = atacante.tirarDados(cantidadDadosAtacante);
-        ArrayList <Integer> tirosDefensor = defensor.tirarDados(cantidadDadosAtacante);
+        int cantidadDadosDefensor = Math.min(3, defensor.getCantidadDeTropas());
+
+        ArrayList <Integer> tirosAtacante = Dados.tirar(cantidadDadosAtacante);
+        ArrayList <Integer> tirosDefensor = Dados.tirar(cantidadDadosDefensor);
 
         while(!tirosAtacante.isEmpty() && !tirosDefensor.isEmpty()){
             if(tirosAtacante.get(0) > tirosDefensor.get(0))

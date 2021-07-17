@@ -32,6 +32,7 @@ public class CSVParser {
         csvReader.close();
         return lineasParseadas;
     }
+
     private String[] parseLine(String line, char separator){
         return parse(line, separator, DEFAULT_QUOTE_CHAR).toArray(String[]::new);
 
