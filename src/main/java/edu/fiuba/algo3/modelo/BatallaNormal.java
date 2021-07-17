@@ -18,9 +18,6 @@ public class BatallaNormal implements Batalla{
         else if(unAtacante.esNeutral())
             throw new ExcepcionBatallaInvalida("Atacante Neutral");
 
-        else if(unaCantidadDeTropasAtacantes <= 0)
-            throw new ExcepcionBatallaInvalida("Cantidad de Tropas Invalida");
-
         else if(!unAtacante.esLimitrofeCon(unDefensor))
             throw new ExcepcionBatallaInvalida("Paises no limítrofes");
 
