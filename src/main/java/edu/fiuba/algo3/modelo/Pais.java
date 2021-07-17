@@ -69,7 +69,7 @@ public class Pais {
 
     public void agregarPaisLimitrofe(Pais unPais){
         paisesLimitrofes.add(unPais);
-        unPais.agregarPaisLimitrofeAux(this);
+        //unPais.agregarPaisLimitrofeAux(this);
     }
 
     public void setJugador(Jugador unJugador){
