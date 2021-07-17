@@ -59,9 +59,9 @@ public class Pais {
         return (paisesLimitrofes.contains(unPais));
     }
 
-    private void agregarPaisLimitrofeAux(Pais unPais){
+    /*private void agregarPaisLimitrofeAux(Pais unPais){
         paisesLimitrofes.add(unPais);
-    }
+    }*/
 
     public boolean tieneTropasSuficientes(int cantidad){
         return (cantidadDeTropas > cantidad);
