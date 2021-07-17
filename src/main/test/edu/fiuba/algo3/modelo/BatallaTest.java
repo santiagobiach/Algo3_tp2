@@ -166,9 +166,10 @@ public class BatallaTest {
 
         defensor.agregarTropas(5);
         defensor.setJugador(new Jugador("Mario"));
-        BatallaNormal mock = mock(BatallaNormal.class);
-        mock.combatir();
-        verify(mock, times(1)).combatir();
+        Batalla batalla = new BatallaNormal(atacante, defensor, 1);
+        assertDoesNotThrow(() ->
+        {batalla.combatir();});
+
 
     }
 }
