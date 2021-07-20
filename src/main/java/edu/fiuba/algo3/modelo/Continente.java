@@ -15,6 +15,9 @@ public class Continente {
         this.paises = new ArrayList<Pais>();
     }
 
+    public String getNombre(){
+        return this.nombre;
+    }
     public boolean conquistadoPor(Jugador unJugador){
         boolean conquistado = true;
 

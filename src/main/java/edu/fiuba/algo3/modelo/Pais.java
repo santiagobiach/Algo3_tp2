@@ -15,6 +15,8 @@ public class Pais {
         this.nombre = unNombre;
         this.cantidadDeTropas = 0;
         this.jugador = null;
+        this.continente = continente;
+        continente.agregarPais(this);
     }
 
     public void agregarTropas(int unaCantidad){
