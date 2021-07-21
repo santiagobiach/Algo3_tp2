@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -17,6 +18,16 @@ public class Pais {
         this.jugador = null;
         this.continente = continente;
         continente.agregarPais(this);
+    }
+
+    public static Pais buscar(String unNombre, ArrayList<Pais> paises){
+        Pais paisBuscado = null;
+
+        for(Pais pais: paises){
+            if (pais.getNombre() == unNombre)
+                paisBuscado = pais;
+        }
+        return paisBuscado;
     }
 
     public void agregarTropas(int unaCantidad){
@@ -75,6 +86,10 @@ public class Pais {
     }
 
     public void setJugador(Jugador unJugador){
+        if(this.jugador != null)
+            jugador.perdioControlDe(this);
+
+        unJugador.conquistoA(this);
         jugador = unJugador;
     }
 
