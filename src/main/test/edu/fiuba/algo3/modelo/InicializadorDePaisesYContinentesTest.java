@@ -65,4 +65,23 @@ public class InicializadorDePaisesYContinentesTest {
         assertEquals("Oceania", continentes.get(5).getNombre());
 
     }
+
+    @Test
+    public void LaCantidadDeTarjetasEsLaCorrecta() throws Exception{
+        ArrayList<Continente> continentes= InicializadorDePaisesYContinentes.InicializarContinentes();
+        ArrayList<Pais> paises;
+        paises = InicializadorDePaisesYContinentes.inicializarPaisesDesdeArchivo("src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Fronteras.csv", continentes);
+        ArrayList<TarjetaDePais> tarjetas = InicializadorDePaisesYContinentes.inicializarCartasDesdeArchivo("src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Cartas.csv", paises);
+        assertEquals(50,tarjetas.size());
+
+    }
+    @Test
+    public void LaTarjetaTieneElNombreCorrecto() throws Exception{
+        ArrayList<Continente> continentes= InicializadorDePaisesYContinentes.InicializarContinentes();
+        ArrayList<Pais> paises;
+        paises = InicializadorDePaisesYContinentes.inicializarPaisesDesdeArchivo("src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Fronteras.csv", continentes);
+        ArrayList<TarjetaDePais> tarjetas = InicializadorDePaisesYContinentes.inicializarCartasDesdeArchivo("src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Cartas.csv", paises);
+        assertEquals("Francia",tarjetas.get(0).pais().getNombre());
+
+    }
 }

@@ -8,8 +8,8 @@ public class Tablero {
     private ArrayList<Pais> paises;
     private ArrayList<Continente> continentes;
 
-    private String csvCartas = "C:\\Users\\franc\\source\\repos\\Java\\Algo3TP\\src\\main\\java\\edu\\fiuba\\algo3\\archivoscsv\\Teg - Cartas.csv";
-    private String csvFronteras = "C:\\Users\\franc\\source\\repos\\Java\\Algo3TP\\src\\main\\java\\edu\\fiuba\\algo3\\archivoscsv\\Teg - Fronteras.csv";
+    private String csvCartas = "src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Cartas.csv";
+    private String csvFronteras = "src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Fronteras.csv";
 
     public Tablero() throws Exception{
         continentes = InicializadorDePaisesYContinentes.InicializarContinentes();

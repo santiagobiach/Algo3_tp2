@@ -101,9 +101,6 @@ public class TableroTest {
 
         assert(sumaCorrecta);
 
-
-
-
     }
 
     @Test

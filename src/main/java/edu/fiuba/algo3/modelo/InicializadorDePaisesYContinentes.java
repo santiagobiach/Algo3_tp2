@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -15,6 +16,18 @@ public class InicializadorDePaisesYContinentes {
         continentes.add(new Continente("America del Sur"));
         continentes.add(new Continente("Oceania"));
         return continentes;
+    }
+
+    public static ArrayList<TarjetaDePais> inicializarCartasDesdeArchivo(String path, ArrayList<Pais> paises)throws Exception{
+        CSVParser parser = new CSVParser();
+        ArrayList<String[]> listaDeTarjetas = parser.readFromFile(path);
+        ArrayList<TarjetaDePais> tarjetas = new ArrayList<>();
+
+        for(String[] tarjeta: listaDeTarjetas){
+            TarjetaDePais nuevaTarjeta = new TarjetaDePais(buscarPais(paises, tarjeta[0]), tarjeta[1]);
+            tarjetas.add(nuevaTarjeta);
+        }
+        return tarjetas;
     }
 
     public static ArrayList<Pais>  inicializarPaisesDesdeArchivo(String path, ArrayList<Continente> continentes) throws Exception{
