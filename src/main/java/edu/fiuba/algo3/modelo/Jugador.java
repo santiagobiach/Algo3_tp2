@@ -1,19 +1,46 @@
 package edu.fiuba.algo3.modelo;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Jugador {
     private String color;
+    private ArrayList<TarjetaDePais> tarjetasObtenidas;
     private String nombre;
+    private NumeroDeCanje numeroDeCanje;
 
     private ArrayList<Pais> paisesConquistados;
+
+    public void activarTarjeta(TarjetaDePais tarjeta){
+        tarjeta.activar(this);
+    }
+
+    public void obtuvoTarjeta(TarjetaDePais tarjeta){
+        tarjetasObtenidas.add(tarjeta);
+    }
+
+    public void perdioTarjeta(TarjetaDePais tarjeta){
+        if (tarjetasObtenidas.contains(tarjeta))
+            tarjetasObtenidas.remove(tarjeta);
+    }
+
+    public void canjearTarjetas(TarjetaDePais tarjeta1, TarjetaDePais tarjeta2, TarjetaDePais tarjeta3){
+        CanjeadorDeTarjetas.canjearTarjetas(tarjeta1, tarjeta2, tarjeta3, this);
+    }
+
+    public void canjeRealizado(){
+        colocarEjercitos(numeroDeCanje.tropasDisponibles());
+        this.numeroDeCanje = this.numeroDeCanje.siguiente();
+    }
 
     public Jugador(String nombre, String color){
         this.paisesConquistados = new ArrayList<>();
         this.nombre = nombre;
         this.color = color;
+        this.numeroDeCanje = new PrimerCanje();
+        this.tarjetasObtenidas = new ArrayList<>();
     }
     public void colocarEjercitos(int cantidad){
         Scanner input = new Scanner(System.in);
@@ -34,10 +61,6 @@ public class Jugador {
 
     public ArrayList<Pais> getPaisesConquistados(){
         return paisesConquistados;
-    }
-
-    public int calcularTropasDisponibles(){
-        return this.cantidadPaisesConquistados()/2;
     }
 
     public int cantidadPaisesConquistados(){

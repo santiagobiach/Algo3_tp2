@@ -2,9 +2,10 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
 
-public class Continente {
+public class Continente{
     private ArrayList<Pais> paises;
     private String nombre;
+    private int bonusPorConquista;
 
     public void agregarPais(Pais unPais){
         paises.add(unPais);
@@ -12,12 +13,26 @@ public class Continente {
 
     public Continente(String nombre){
         this.nombre = nombre;
+        this.bonusPorConquista = 0;
         this.paises = new ArrayList<Pais>();
+    }
+
+    public int bonusPorConquista(){
+        return this.bonusPorConquista;
+    }
+
+    public void setBonusPorConquista(int bonusPorConquista){
+        this.bonusPorConquista = bonusPorConquista;
     }
 
     public String getNombre(){
         return this.nombre;
     }
+
+    public ArrayList<Pais> getPaises(){
+        return this.paises;
+    }
+
     public boolean conquistadoPor(Jugador unJugador){
         boolean conquistado = true;
 

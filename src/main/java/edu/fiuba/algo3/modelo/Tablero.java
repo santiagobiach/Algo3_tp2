@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Tablero {
-    private ArrayList<Pais> paises;
-    private ArrayList<Continente> continentes;
+    protected ArrayList<Pais> paises;
+    protected ArrayList<Continente> continentes;
 
-    private String csvCartas = "src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Cartas.csv";
     private String csvFronteras = "src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Fronteras.csv";
+    private String csvCartas = "src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Cartas.csv";
 
     public Tablero() throws Exception{
         continentes = InicializadorDePaisesYContinentes.InicializarContinentes();
@@ -18,6 +18,32 @@ public class Tablero {
 
     public ArrayList<Pais> getPaises() {
         return paises;
+    }
+
+    public ArrayList<Continente> continentesConquistadosPorJugador(Jugador jugador){
+        ArrayList<Continente> continentesConquistados = new ArrayList<>();
+        for(Continente c: continentes){
+            if (c.conquistadoPor(jugador))
+                continentesConquistados.add(c);
+        }
+
+        return continentesConquistados;
+    }
+
+    public Continente buscarContiente(String nombre){
+        for(Continente c: continentes)
+            if (c.getNombre().equals(nombre))
+                return c;
+
+        return null;
+    }
+
+    public Pais getPais(String nombre){
+        for (Pais p: paises)
+            if (p.getNombre().equals(nombre))
+                return p;
+
+        return null;
     }
 
     public void distribuirPaises(ArrayList<Jugador> jugadores){

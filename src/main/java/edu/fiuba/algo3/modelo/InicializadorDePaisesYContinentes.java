@@ -9,12 +9,27 @@ public class InicializadorDePaisesYContinentes {
 
     public static ArrayList<Continente> InicializarContinentes(){
         ArrayList<Continente> continentes = new ArrayList<Continente>();
-        continentes.add(new Continente("Europa"));
-        continentes.add(new Continente("Asia"));
-        continentes.add(new Continente("Africa"));
-        continentes.add(new Continente("America del Norte"));
-        continentes.add(new Continente("America del Sur"));
-        continentes.add(new Continente("Oceania"));
+        Continente europa = new Continente("Europa");
+        Continente africa = new Continente("Africa");
+        Continente asia = new Continente("Asia");
+        Continente americaDelNorte = new Continente("America del Norte");
+        Continente americaDelSur = new Continente("America del Sur");
+        Continente oceania = new Continente("Oceania");
+
+        europa.setBonusPorConquista(5);
+        africa.setBonusPorConquista(3);
+        asia.setBonusPorConquista(7);
+        americaDelNorte.setBonusPorConquista(5);
+        americaDelSur.setBonusPorConquista(3);
+        oceania.setBonusPorConquista(2);
+
+        continentes.add(europa);
+        continentes.add(africa);
+        continentes.add(asia);
+        continentes.add(americaDelNorte);
+        continentes.add(americaDelSur);
+        continentes.add(oceania);
+
         return continentes;
     }
 
@@ -66,3 +81,4 @@ public class InicializadorDePaisesYContinentes {
         return null;
     }
 }
+

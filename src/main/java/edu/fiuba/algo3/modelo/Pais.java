@@ -4,7 +4,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Pais {
+public class Pais{
 
     private final String nombre;
     private Jugador jugador;
@@ -18,16 +18,6 @@ public class Pais {
         this.jugador = null;
         this.continente = continente;
         continente.agregarPais(this);
-    }
-
-    public static Pais buscar(String unNombre, ArrayList<Pais> paises){
-        Pais paisBuscado = null;
-
-        for(Pais pais: paises){
-            if (pais.getNombre() == unNombre)
-                paisBuscado = pais;
-        }
-        return paisBuscado;
     }
 
     public void agregarTropas(int unaCantidad){

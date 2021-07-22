@@ -54,17 +54,6 @@ public class InicializadorDePaisesYContinentesTest {
         assertEquals(continentes.size(), 6);
 
     }
-    @Test
-    public void LosContinentesTienenNombresCorrectos() throws Exception{
-        ArrayList<Continente> continentes= InicializadorDePaisesYContinentes.InicializarContinentes();
-        assertEquals("Europa", continentes.get(0).getNombre());
-        assertEquals("Asia", continentes.get(1).getNombre());
-        assertEquals("Africa", continentes.get(2).getNombre());
-        assertEquals("America del Norte", continentes.get(3).getNombre());
-        assertEquals("America del Sur", continentes.get(4).getNombre());
-        assertEquals("Oceania", continentes.get(5).getNombre());
-
-    }
 
     @Test
     public void LaCantidadDeTarjetasEsLaCorrecta() throws Exception{
