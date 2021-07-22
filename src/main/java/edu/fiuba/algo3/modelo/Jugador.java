@@ -8,18 +8,13 @@ public class Jugador {
     private String color;
     private String nombre;
 
-    private final static int cantidadMaxima = 6;
-    private static int cantidadDeJugadores = 0;
-    private final String[] colores = {"077bb","cc3311", "ee7733", "009988", "ee3377", "000000"};
     private ArrayList<Pais> paisesConquistados;
 
-    public Jugador(String nombre){
+    public Jugador(String nombre, String color){
         this.paisesConquistados = new ArrayList<>();
         this.nombre = nombre;
-        this.color = colores[cantidadDeJugadores];
-        cantidadDeJugadores ++;
+        this.color = color;
     }
-
     public void colocarEjercitos(int cantidad){
         Scanner input = new Scanner(System.in);
 

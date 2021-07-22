@@ -10,10 +10,10 @@ public class TableroTest {
     @Test
     public void ningunPaisQuedaSinControlarTrasDistribuirlos() throws Exception{
         ArrayList<Jugador> jugadores = new ArrayList<>();
-        jugadores.add(new Jugador("Mario"));
-        jugadores.add(new Jugador("Pedro"));
-        jugadores.add(new Jugador("Jose"));
-        jugadores.add(new Jugador("Maria"));
+        jugadores.add(new Jugador("Mario", "000000"));
+        jugadores.add(new Jugador("Pedro", "000000"));
+        jugadores.add(new Jugador("Jose", "000000"));
+        jugadores.add(new Jugador("Maria", "000000"));
         Tablero tablero =  new Tablero();
         tablero.distribuirPaises(jugadores);
 
@@ -28,10 +28,10 @@ public class TableroTest {
     @Test
     public void TodosLosJugadoresTienen5EjercitosMasDespuesDePedirlesQueColoquen5Ejercitos() throws Exception{
         ArrayList<Jugador> jugadores = new ArrayList<>();
-        jugadores.add(new Jugador("Mario"));
-        jugadores.add(new Jugador("Pedro"));
-        jugadores.add(new Jugador("Jose"));
-        jugadores.add(new Jugador("Maria"));
+        jugadores.add(new Jugador("Mario", "000000"));
+        jugadores.add(new Jugador("Pedro", "000000"));
+        jugadores.add(new Jugador("Jose", "000000"));
+        jugadores.add(new Jugador("Maria", "000000"));
         Tablero tablero = new Tablero();
         tablero.distribuirPaises(jugadores);
 
@@ -65,8 +65,8 @@ public class TableroTest {
     @Test
     public void RondaEntreDosJugadoresSinAtaqueAmbosPonenLaCantidadDeFicasCorrespondientes() throws Exception {
         ArrayList<Jugador> jugadores = new ArrayList<>();
-        jugadores.add(new Jugador("Mario"));
-        jugadores.add(new Jugador("Pedro"));
+        jugadores.add(new Jugador("Mario", "000000"));
+        jugadores.add(new Jugador("Pedro", "000000"));
         Tablero tablero = new Tablero();
         tablero.distribuirPaises(jugadores);
 
@@ -106,10 +106,10 @@ public class TableroTest {
     @Test
     public void uno() throws Exception{
         ArrayList<Jugador> jugadores = new ArrayList<>();
-        jugadores.add(new Jugador("Mario"));
-        jugadores.add(new Jugador("Pedro"));
-        jugadores.add(new Jugador("Jose"));
-        jugadores.add(new Jugador("Maria"));
+        jugadores.add(new Jugador("Mario", "000000"));
+        jugadores.add(new Jugador("Pedro", "000000"));
+        jugadores.add(new Jugador("Jose", "000000"));
+        jugadores.add(new Jugador("Maria", "000000"));
         Tablero tablero = new Tablero();
         tablero.distribuirPaises(jugadores);
     }

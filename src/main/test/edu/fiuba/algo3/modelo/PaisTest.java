@@ -73,7 +73,7 @@ public class PaisTest {
     @Test
     public void UnNuevoPaisEstaDominadoPorElJugadorIndicado(){
         Pais pais = new Pais("Argentina", new Continente("América"));
-        Jugador unJugador = new Jugador("Santi");
+        Jugador unJugador = new Jugador("Santi", "000000");
         pais.setJugador(unJugador);
         assertEquals(pais.getJugador(), unJugador);
     }
@@ -82,10 +82,10 @@ public class PaisTest {
     public void UnPaisSinTropasEsConquistadoCuandoIntentaDefenderUnaConquista() throws Exception{
         Pais atacante = new Pais("Argentina", new Continente("América"));
         atacante.agregarTropas(5);
-        atacante.setJugador(new Jugador("Mario"));
+        atacante.setJugador(new Jugador("Mario", "000000"));
         Pais defensor = new Pais("Brasil", new Continente("América"));
         atacante.agregarPaisLimitrofe(defensor);
-        defensor.setJugador(new Jugador("Luigi"));
+        defensor.setJugador(new Jugador("Luigi", "000000"));
 
         defensor.defenderConquista(atacante);
 
@@ -97,12 +97,12 @@ public class PaisTest {
     public void UnPaisConTropasNoEsConquistadoCuandoIntentaDefenderUnaConquista() throws Exception{
         Pais atacante = new Pais("Argentina", new Continente("América"));
         atacante.agregarTropas(5);
-        atacante.setJugador(new Jugador("Mario"));
+        atacante.setJugador(new Jugador("Mario", "000000"));
 
         Pais defensor = new Pais("Brasil", new Continente("América"));
         atacante.agregarPaisLimitrofe(defensor);
         defensor.agregarTropas(3);
-        defensor.setJugador(new Jugador("Luigi"));
+        defensor.setJugador(new Jugador("Luigi", "000000"));
 
         defensor.defenderConquista(atacante);
 

@@ -35,7 +35,6 @@ public class Pais {
             cantidadDeTropas += unaCantidad;
     }
 
-    //chequear que atacante tenga tropas qsyo?
     public void defenderConquista(Pais atacante){
         if (cantidadDeTropas==0){
             this.setJugador(atacante.getJugador());
