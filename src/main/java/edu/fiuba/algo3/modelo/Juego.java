@@ -35,8 +35,17 @@ public class Juego {
 
     public void comenzarPartida(){
         tablero.distribuirPaises(jugadores);
-        (new FaseDeColocacionInicial(5, tablero, jugadores)).empezar();
-        (new FaseDeColocacionInicial(3, tablero, jugadores)).empezar();
+
+        Fase faseColocacion5 = new FaseDeColocacionInicial(5, tablero, jugadores);
+        Fase faseColocacion3 = new FaseDeColocacionInicial(3, tablero, jugadores);
+
+        for (Jugador j: jugadores){
+            faseColocacion5.empezar(j);
+        }
+
+        for (Jugador j: jugadores){
+            faseColocacion3.empezar(j);
+        }
 
         Fase faseDeAtaque = new FaseDeAtaque(tablero, jugadores);
         Fase faseDeReagrupacion = new FaseDeReagrupacion(tablero, jugadores);
@@ -47,10 +56,12 @@ public class Juego {
         fases.add(faseDeReagrupacion);
         fases.add(faseDeColocacion);
 
-        int i = 0;
         while(this.ganador == null ){
-            fases.get(i).empezar();
-            i = (i+1)%3;
+            for(Jugador j: jugadores){
+                for (int i = 0; i < fases.size(); i++) {
+                    fases.get(i).empezar(j);
+                }
+            }
         }
     }
 

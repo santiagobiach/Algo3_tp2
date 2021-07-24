@@ -12,6 +12,6 @@ public class FaseDeColocacionInicial implements Fase {
         this.jugadores = jugadores;
     }
     @Override
-    public void empezar() {
+    public void empezar(Jugador jugador) {
     }
 }

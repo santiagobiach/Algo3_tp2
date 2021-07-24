@@ -13,7 +13,7 @@ public class FaseDeAtaque implements Fase {
 
     }
     @Override
-    public void empezar() {
+    public void empezar(Jugador jugador) {
         //foreach jugadores
             //while(!terminado)
                 //jugador.colocarTropasEn(cantidad, pais)

@@ -21,6 +21,6 @@ public class FaseDeColocacion implements Fase {
     }
 
     @Override
-    public void empezar() {
+    public void empezar(Jugador jugador) {
     }
 }
