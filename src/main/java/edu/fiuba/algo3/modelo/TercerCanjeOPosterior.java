@@ -13,6 +13,6 @@ public class TercerCanjeOPosterior implements NumeroDeCanje{
 
     @Override
     public NumeroDeCanje siguiente() {
-        return new TercerCanjeOPosterior(numeroDeCajes);
+        return new TercerCanjeOPosterior(numeroDeCajes+1);
     }
 }

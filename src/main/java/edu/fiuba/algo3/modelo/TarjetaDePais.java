@@ -20,17 +20,17 @@ public class TarjetaDePais {
 
     public void setDueño(Jugador jugador){
         if(this.dueño != null)
-            dueño.perdioTarjeta(this);
+            dueño.eliminarTarjeta(this);
 
         if(jugador!= null)
-            jugador.obtuvoTarjeta(this);
+            jugador.darTarjeta(this);
 
         this.dueño = jugador;
     }
     public void activar(Jugador jugador){
         if (pais.getJugador() == jugador){
             pais.agregarTropas(2);
-            jugador.perdioTarjeta(this);
+            jugador.eliminarTarjeta(this);
             this.dueño = (null);
         }
     }

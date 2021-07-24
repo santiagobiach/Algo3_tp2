@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Pais{
 
@@ -23,6 +21,13 @@ public class Pais{
     public void agregarTropas(int unaCantidad){
         if (unaCantidad>0)
             cantidadDeTropas += unaCantidad;
+    }
+
+    public void agregarTropasDe(int unaCantidad, Jugador unJugador){
+        if (this.dominadoPor(unJugador)){
+            this.agregarTropas(unaCantidad);
+            unJugador.restarTropasDisponibles(unaCantidad);
+        }
     }
 
     public void defenderConquista(Pais atacante){

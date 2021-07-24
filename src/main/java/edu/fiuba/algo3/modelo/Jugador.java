@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Jugador {
@@ -18,11 +16,11 @@ public class Jugador {
         tarjeta.activar(this);
     }
 
-    public void obtuvoTarjeta(TarjetaDePais tarjeta){
+    public void darTarjeta(TarjetaDePais tarjeta){
         tarjetasObtenidas.add(tarjeta);
     }
 
-    public void perdioTarjeta(TarjetaDePais tarjeta){
+    public void eliminarTarjeta(TarjetaDePais tarjeta){
         if (tarjetasObtenidas.contains(tarjeta))
             tarjetasObtenidas.remove(tarjeta);
     }
@@ -36,8 +34,12 @@ public class Jugador {
     public void agregarTropasDisponibles(int numero){
         this.tropasDisponibles += numero;
     }
+    public void restarTropasDisponibles(int numero){
+        this.tropasDisponibles -= numero;
+    }
     public void canjeRealizado(){
-       agregarTropasDisponibles(numeroDeCanje.tropasDisponibles());
+
+        agregarTropasDisponibles(numeroDeCanje.tropasDisponibles());
         this.numeroDeCanje = this.numeroDeCanje.siguiente();
     }
 
@@ -50,7 +52,7 @@ public class Jugador {
         this.tropasDisponibles = 0;
     }
     public void colocarEjercitos(int cantidad){
-        Scanner input = new Scanner(System.in);
+//        Scanner input = new Scanner(System.in);
 
 //        System.out.println("Paises Conquistados:");
 //        for(Pais p: paisesConquistados)
@@ -64,6 +66,11 @@ public class Jugador {
             else
                 System.out.printf("Ingrese el nombre de un pais controlado");
         }
+    }
+
+    public void colocarEjercitosEn(int cantidad, Pais pais){
+        if(tropasDisponibles >= cantidad)
+            pais.agregarTropasDe(cantidad, this);
     }
 
     public ArrayList<Pais> getPaisesConquistados(){

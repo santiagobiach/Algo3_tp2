@@ -4,10 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public class BatallaTest {
 
@@ -15,10 +12,11 @@ public class BatallaTest {
     public void NoSePuedeCrearUnaBatallaNormalConCeroTropasAtacantes(){
         Pais atacante = new Pais("Argentina", new Continente("América"));
         Pais defensor = new Pais("Brasil", new Continente("América"));
-        atacante.agregarPaisLimitrofe(defensor);
-        atacante.agregarTropas(10);
+
         atacante.setJugador(new Jugador("Mario", "000000"));
         defensor.setJugador(new Jugador("Luigi", "000000"));
+        atacante.agregarPaisLimitrofe(defensor);
+        atacante.agregarTropas(10);
 
         assertThrows(ExcepcionBatallaInvalida.class, () ->
             {Batalla batalla = new BatallaNormal(atacante, defensor, 10);});
