@@ -10,6 +10,7 @@ public class Jugador {
     private ArrayList<TarjetaDePais> tarjetasObtenidas;
     private String nombre;
     private NumeroDeCanje numeroDeCanje;
+    private int tropasDisponibles;
 
     private ArrayList<Pais> paisesConquistados;
 
@@ -29,9 +30,14 @@ public class Jugador {
     public void canjearTarjetas(TarjetaDePais tarjeta1, TarjetaDePais tarjeta2, TarjetaDePais tarjeta3){
         CanjeadorDeTarjetas.canjearTarjetas(tarjeta1, tarjeta2, tarjeta3, this);
     }
-
+    public int tropasDisponibles(){
+        return this.tropasDisponibles;
+    }
+    public void agregarTropasDisponibles(int numero){
+        this.tropasDisponibles += numero;
+    }
     public void canjeRealizado(){
-        colocarEjercitos(numeroDeCanje.tropasDisponibles());
+       agregarTropasDisponibles(numeroDeCanje.tropasDisponibles());
         this.numeroDeCanje = this.numeroDeCanje.siguiente();
     }
 
@@ -41,6 +47,7 @@ public class Jugador {
         this.color = color;
         this.numeroDeCanje = new PrimerCanje();
         this.tarjetasObtenidas = new ArrayList<>();
+        this.tropasDisponibles = 0;
     }
     public void colocarEjercitos(int cantidad){
         Scanner input = new Scanner(System.in);

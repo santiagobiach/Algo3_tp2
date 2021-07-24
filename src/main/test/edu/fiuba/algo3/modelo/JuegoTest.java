@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
@@ -56,12 +57,12 @@ public class JuegoTest {
         ArrayList<Jugador> jugadores = new ArrayList<>();
         jugadores.add(new Jugador("Mario", "000000"));
         jugadores.add(new Jugador("Pedro", "000000"));
-        Tablero tablero = new Tablero();
+        Tablero tablero = new TableroMockDosJugadores();
         tablero.distribuirPaises(jugadores);
 
         Juego juego = new Juego(tablero, crearCalculadores(), jugadores);
 
-        ArrayList<Integer> primerConteo = new ArrayList<>();
+        /*ArrayList<Integer> primerConteo = new ArrayList<>();
         for(Jugador j: jugadores){
             int contador = 0;
             for(Pais p: j.getPaisesConquistados())
@@ -88,9 +89,10 @@ public class JuegoTest {
             if(contador != primerConteo.get(i) + tropasDisponibles.get(i))
                 sumaCorrecta = false;
             i++;
-        }
+        }*/
 
-        assert(sumaCorrecta);
+        assertEquals(12, juego.calcularTropasParaElJugador(jugadores.get(0)));
+        assertEquals(12, juego.calcularTropasParaElJugador(jugadores.get(1)));
 
     }
 
@@ -120,141 +122,73 @@ public class JuegoTest {
 
     @Test
     public void unJugadorActivaUnaTarjetaDeUnPaisQueControlaYEsteTiene2TropasMas() throws Exception{
-        Tablero tablero = new Tablero();
-        ArrayList <Jugador> jugadores = new ArrayList<>();
-        jugadores.add(new Jugador("Pepe", "000000"));
-        jugadores.add(new Jugador("Pipo", "000000"));
 
-        Juego juego = new Juego(tablero, crearCalculadores(), jugadores);
-        tablero.distribuirPaises(jugadores);
-        Jugador jugador = jugadores.get(0);
+        Jugador jugador = new Jugador("Pepe", "000000");
+        Pais pais = new Pais("Argentina", new Continente("America"));
 
-        //damos tarjeta al jugador..
-        Pais pais = null;
-        for(Pais p: tablero.getPaises())
-            if (p.getJugador() == jugador)
-                pais = p;
-
-        TarjetaDePais tarjeta = juego.getTarjeta(pais);
+        TarjetaDePais tarjeta = new TarjetaDePais(pais, "Globo");
+        pais.setJugador(jugador);
         jugador.obtuvoTarjeta(tarjeta);
         int primerConteo = tarjeta.pais().getCantidadDeTropas();
         jugador.activarTarjeta(tarjeta);
         int segundoConteo = tarjeta.pais().getCantidadDeTropas();
 
         assert(primerConteo == segundoConteo-2);
-
-
     }
 
     @Test
     public void unJugadorCanjea3TarjetasDelMismoSimbolo() throws Exception{
-        Tablero tablero = new Tablero();
-        ArrayList <Jugador> jugadores = new ArrayList<>();
-        jugadores.add(new Jugador("Pepe", "000000"));
-        jugadores.add(new Jugador("Pipo", "000000"));
-        tablero.distribuirPaises(jugadores);
 
-        Juego juego = new Juego(tablero, crearCalculadores(), jugadores);
-
-        ArrayList<Pais> paises = tablero.getPaises();
-
-
+        Jugador jugador = new Jugador("Pepe", "000000");
 
         TarjetaDePais tarjeta1 = new TarjetaDePais(new Pais("Argentina", new Continente("America")), "cañon");
         TarjetaDePais tarjeta2 = new TarjetaDePais(new Pais("Brasil", new Continente("America")), "cañon");
         TarjetaDePais tarjeta3 = new TarjetaDePais(new Pais("Chile", new Continente("America")), "cañon");
 
-        Jugador jugador = jugadores.get(0);
         jugador.obtuvoTarjeta(tarjeta1);
         jugador.obtuvoTarjeta(tarjeta2);
         jugador.obtuvoTarjeta(tarjeta3);
 
-        int primerConteo = 0;
-
-        for(Pais p: jugador.getPaisesConquistados())
-            primerConteo += p.getCantidadDeTropas();
-
         jugador.canjearTarjetas(tarjeta1, tarjeta2, tarjeta3);
 
-        int segundoConteo = 0;
-        for(Pais p: jugador.getPaisesConquistados())
-            segundoConteo += p.getCantidadDeTropas();
-
-        assert(primerConteo == segundoConteo-4);
+        assertEquals(4, jugador.tropasDisponibles());
     }
 
     @Test
     public void unJugadorCanjea3TarjetasDeDistintoSimbolo() throws Exception{
-        Tablero tablero = new Tablero();
-        ArrayList <Jugador> jugadores = new ArrayList<>();
-        jugadores.add(new Jugador("Pepe", "000000"));
-        jugadores.add(new Jugador("Pipo", "000000"));
-        tablero.distribuirPaises(jugadores);
 
-        Juego juego = new Juego(tablero, crearCalculadores(), jugadores);
-
-        ArrayList<Pais> paises = tablero.getPaises();
-
-
-
+        Jugador jugador = new Jugador("Pepe", "000000");
         TarjetaDePais tarjeta1 = new TarjetaDePais(new Pais("Argentina", new Continente("America")), "cañon");
         TarjetaDePais tarjeta2 = new TarjetaDePais(new Pais("Brasil", new Continente("America")), "globo");
         TarjetaDePais tarjeta3 = new TarjetaDePais(new Pais("Chile", new Continente("America")), "barco");
 
-        Jugador jugador = jugadores.get(0);
         jugador.obtuvoTarjeta(tarjeta1);
         jugador.obtuvoTarjeta(tarjeta2);
         jugador.obtuvoTarjeta(tarjeta3);
 
-        int primerConteo = 0;
-
-        for(Pais p: jugador.getPaisesConquistados())
-            primerConteo += p.getCantidadDeTropas();
-
         jugador.canjearTarjetas(tarjeta1, tarjeta2, tarjeta3);
 
-        int segundoConteo = 0;
-        for(Pais p: jugador.getPaisesConquistados())
-            segundoConteo += p.getCantidadDeTropas();
-
-        assert(primerConteo == segundoConteo-4);
+        assertEquals(4, jugador.tropasDisponibles());
     }
 
     @Test
     public void unJugadorNoPuedeCanjear2TarjetasDelMismoSimboloYUnaDiferente() throws Exception{
-        Tablero tablero = new Tablero();
-        ArrayList <Jugador> jugadores = new ArrayList<>();
-        jugadores.add(new Jugador("Pepe", "000000"));
-        jugadores.add(new Jugador("Pipo", "000000"));
-        tablero.distribuirPaises(jugadores);
-
-        Juego juego = new Juego(tablero, crearCalculadores(), jugadores);
-
-        ArrayList<Pais> paises = tablero.getPaises();
 
 
-
+        Jugador jugador = new Jugador("Pepe", "000000");
         TarjetaDePais tarjeta1 = new TarjetaDePais(new Pais("Argentina", new Continente("America")), "cañon");
         TarjetaDePais tarjeta2 = new TarjetaDePais(new Pais("Brasil", new Continente("America")), "barco");
         TarjetaDePais tarjeta3 = new TarjetaDePais(new Pais("Chile", new Continente("America")), "cañon");
 
-        Jugador jugador = jugadores.get(0);
+
         jugador.obtuvoTarjeta(tarjeta1);
         jugador.obtuvoTarjeta(tarjeta2);
         jugador.obtuvoTarjeta(tarjeta3);
 
-        int primerConteo = 0;
-
-        for(Pais p: jugador.getPaisesConquistados())
-            primerConteo += p.getCantidadDeTropas();
 
         jugador.canjearTarjetas(tarjeta1, tarjeta2, tarjeta3);
 
-        int segundoConteo = 0;
-        for(Pais p: jugador.getPaisesConquistados())
-            segundoConteo += p.getCantidadDeTropas();
-
-        assert(primerConteo == segundoConteo);
+        assertEquals(0, jugador.tropasDisponibles());
     }
 
     @Test
@@ -275,7 +209,6 @@ public class JuegoTest {
 
         assert(argentina.getJugador() != brasil.getJugador() && argentina.getJugador() != chile.getJugador());
 
-        Juego juego = new Juego(tablero, crearCalculadores(), jugadores);
         (new BatallaMockGanaAtacante(argentina, brasil)).combatir();
         (new BatallaMockGanaAtacante(argentina, chile)).combatir();
 
