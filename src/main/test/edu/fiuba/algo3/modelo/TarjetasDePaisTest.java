@@ -9,7 +9,7 @@ public class TarjetasDePaisTest {
     @Test
     public void unJugadorCon0TropasActivaUnaTarjetaDeUnPaisQueControlaYTiene2Tropas() throws Exception{
 
-        Jugador jugador = new Jugador("Pepe", "000000");
+        Jugador jugador = new Jugador("Pepe");
         Pais pais = new Pais("Argentina", new Continente("America"));
 
         TarjetaDePais tarjeta = new TarjetaDePais(pais, "Globo");
@@ -24,7 +24,7 @@ public class TarjetasDePaisTest {
     @Test
     public void unJugadorCanjea3TarjetasDelMismoSimboloYObtiene4Tropas() throws Exception{
 
-        Jugador jugador = new Jugador("Pepe", "000000");
+        Jugador jugador = new Jugador("Pepe");
 
         TarjetaDePais tarjeta1 = new TarjetaDePais(new Pais("Argentina", new Continente("America")), "cañon");
         TarjetaDePais tarjeta2 = new TarjetaDePais(new Pais("Brasil", new Continente("America")), "cañon");
@@ -42,7 +42,7 @@ public class TarjetasDePaisTest {
     @Test
     public void unJugadorCanjea3TarjetasDeDistintoSimboloYObtiene4Tropas() throws Exception{
 
-        Jugador jugador = new Jugador("Pepe", "000000");
+        Jugador jugador = new Jugador("Pepe");
         TarjetaDePais tarjeta1 = new TarjetaDePais(new Pais("Argentina", new Continente("America")), "cañon");
         TarjetaDePais tarjeta2 = new TarjetaDePais(new Pais("Brasil", new Continente("America")), "globo");
         TarjetaDePais tarjeta3 = new TarjetaDePais(new Pais("Chile", new Continente("America")), "barco");
@@ -60,7 +60,7 @@ public class TarjetasDePaisTest {
     public void unJugadorNoPuedeCanjear2TarjetasDelMismoSimboloYUnaDiferente(){
 
 
-        Jugador jugador = new Jugador("Pepe", "000000");
+        Jugador jugador = new Jugador("Pepe");
         TarjetaDePais tarjeta1 = new TarjetaDePais(new Pais("Argentina", new Continente("America")), "cañon");
         TarjetaDePais tarjeta2 = new TarjetaDePais(new Pais("Brasil", new Continente("America")), "barco");
         TarjetaDePais tarjeta3 = new TarjetaDePais(new Pais("Chile", new Continente("America")), "cañon");
@@ -78,7 +78,7 @@ public class TarjetasDePaisTest {
 
     @Test
     public void unJugadorObtieneTresCuatroDiezYQuinceTropasEnCanjesSucesivos() {
-        Jugador jugador = new Jugador("Pepe", "000000");
+        Jugador jugador = new Jugador("Pepe");
         TarjetaDePais tarjeta1 = new TarjetaDePais(new Pais("Argentina", new Continente("America")), "cañon");
         TarjetaDePais tarjeta2 = new TarjetaDePais(new Pais("Brasil", new Continente("America")), "cañon");
         TarjetaDePais tarjeta3 = new TarjetaDePais(new Pais("Chile", new Continente("America")), "cañon");

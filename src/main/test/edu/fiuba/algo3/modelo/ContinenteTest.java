@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ContinenteTest {
     @Test
     public void unContinenteVacíoNoEstaConquistadoPorUnJugador(){
-        Jugador jugador = new Jugador("Santi", "000000");
+        Jugador jugador = new Jugador("Santi");
         Continente continente = new Continente("América");
 
         assertFalse(continente.conquistadoPor(jugador));
@@ -14,7 +14,7 @@ public class ContinenteTest {
 
     @Test
     public void unContinenteVacíoNoEstaConquistadoPorUnJugadorNulo(){
-        Jugador jugador = new Jugador("Santi", "000000");
+        Jugador jugador = new Jugador("Santi");
         Continente continente = new Continente("América");
 
         assertFalse(continente.conquistadoPor(null));
@@ -22,7 +22,7 @@ public class ContinenteTest {
 
     @Test
     public void unContinenteEstaConquistadoPorUnJugadorSiTodosSusPaisesLoEstan(){
-        Jugador jugador = new Jugador("Santi", "000000");
+        Jugador jugador = new Jugador("Santi");
         Continente continente = new Continente("América");
 
         Pais argentina = new Pais("Argentina", new Continente("América"));
@@ -34,12 +34,12 @@ public class ContinenteTest {
 
     @Test
     public void unContinenteEstaConquistadoPorUnJugadorSiSiUnoDeSusPaisesNoLoEsta(){
-        Jugador jugador = new Jugador("Santi", "000000");
+        Jugador jugador = new Jugador("Santi");
         Continente continente = new Continente("América");
 
         Pais argentina = new Pais("Argentina", new Continente("América"));
         Pais chile = new Pais("Chile", new Continente("América"));
-        chile.setJugador(new Jugador("Mario", "000000"));
+        chile.setJugador(new Jugador("Mario"));
         argentina.setJugador(jugador);
         continente.agregarPais(argentina);
         continente.agregarPais(chile);

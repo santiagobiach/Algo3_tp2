@@ -15,7 +15,7 @@ public class JuegoTest {
 
     @Test
     public void UnJugadorCon2TropasDesplegadasTiene5TrasDecirleQueColoque3() throws Exception{
-        Jugador jugador = new Jugador("Mario", "000000");
+        Jugador jugador = new Jugador("Mario");
         Pais argentina = new Pais("Argentina", new Continente("America"));
         argentina.agregarTropas(2);
         argentina.setJugador(jugador);
@@ -30,8 +30,8 @@ public class JuegoTest {
     @Test
     public void RondaEntreDosJugadoresSinAtaqueAmbosPonenLaCantidadDeFicasCorrespondientes() throws Exception {
         ArrayList<Jugador> jugadores = new ArrayList<>();
-        jugadores.add(new Jugador("Mario", "000000"));
-        jugadores.add(new Jugador("Pedro", "000000"));
+        jugadores.add(new Jugador("Mario"));
+        jugadores.add(new Jugador("Pedro"));
         Tablero tablero = new TableroMockDosJugadores();
         tablero.distribuirPaises(jugadores);
 
@@ -76,9 +76,9 @@ public class JuegoTest {
         Tablero tablero = new TableroMockTodoAsiaParaJugadorUno();
 
         ArrayList <Jugador> jugadores = new ArrayList<>();
-        jugadores.add(new Jugador("Pepe", "000000"));
-        jugadores.add(new Jugador("Pipo", "000000"));
-        jugadores.add(new Jugador("Martin", "000000"));
+        jugadores.add(new Jugador("Pepe"));
+        jugadores.add(new Jugador("Pipo"));
+        jugadores.add(new Jugador("Martin"));
 
         tablero.distribuirPaises(jugadores);
 
@@ -93,8 +93,8 @@ public class JuegoTest {
         Tablero tablero = new TableroMockJ1ArgentinaCon10TropasYJ2BrasilYChile();
         ArrayList <Jugador> jugadores = new ArrayList<>();
 
-        Jugador atacante = new Jugador("Pepe", "000000");
-        Jugador defensor = new Jugador("Pipo", "000000");
+        Jugador atacante = new Jugador("Pepe");
+        Jugador defensor = new Jugador("Pipo");
 
         jugadores.add(atacante);
         jugadores.add(defensor);

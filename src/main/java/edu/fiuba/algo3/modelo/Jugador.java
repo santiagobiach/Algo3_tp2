@@ -1,10 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Jugador {
-    private String color;
     private ArrayList<TarjetaDePais> tarjetasObtenidas;
     private String nombre;
     private NumeroDeCanje numeroDeCanje;
@@ -43,10 +41,9 @@ public class Jugador {
         this.numeroDeCanje = this.numeroDeCanje.siguiente();
     }
 
-    public Jugador(String nombre, String color){
+    public Jugador(String nombre){
         this.paisesConquistados = new ArrayList<>();
         this.nombre = nombre;
-        this.color = color;
         this.numeroDeCanje = new PrimerCanje();
         this.tarjetasObtenidas = new ArrayList<>();
         this.tropasDisponibles = 0;
