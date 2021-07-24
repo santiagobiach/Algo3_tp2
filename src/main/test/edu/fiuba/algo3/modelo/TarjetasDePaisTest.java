@@ -82,29 +82,27 @@ public class TarjetasDePaisTest {
         TarjetaDePais tarjeta1 = new TarjetaDePais(new Pais("Argentina", new Continente("America")), "cañon");
         TarjetaDePais tarjeta2 = new TarjetaDePais(new Pais("Brasil", new Continente("America")), "cañon");
         TarjetaDePais tarjeta3 = new TarjetaDePais(new Pais("Chile", new Continente("America")), "cañon");
-        Pais argentina = new Pais("Argentina", new Continente("America"));
-        argentina.setJugador(jugador);
 
         jugador.darTarjeta(tarjeta1);
         jugador.darTarjeta(tarjeta2);
         jugador.darTarjeta(tarjeta3);
         jugador.canjearTarjetas(tarjeta1, tarjeta2, tarjeta3);
         assertEquals(4, jugador.tropasDisponibles());
-        jugador.colocarEjercitosEn(4, argentina);
+        jugador.restarTropasDisponibles(4);
 
         jugador.darTarjeta(tarjeta1);
         jugador.darTarjeta(tarjeta2);
         jugador.darTarjeta(tarjeta3);
         jugador.canjearTarjetas(tarjeta1, tarjeta2, tarjeta3);
         assertEquals(7, jugador.tropasDisponibles());
-        jugador.colocarEjercitosEn(7, argentina);
+        jugador.restarTropasDisponibles(7);
 
         jugador.darTarjeta(tarjeta1);
         jugador.darTarjeta(tarjeta2);
         jugador.darTarjeta(tarjeta3);
         jugador.canjearTarjetas(tarjeta1, tarjeta2, tarjeta3);
         assertEquals(10, jugador.tropasDisponibles());
-        jugador.colocarEjercitosEn(10, argentina);
+        jugador.restarTropasDisponibles(10);
 
         jugador.darTarjeta(tarjeta1);
         jugador.darTarjeta(tarjeta2);
