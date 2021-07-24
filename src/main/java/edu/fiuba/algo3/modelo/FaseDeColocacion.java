@@ -4,16 +4,23 @@ import java.util.ArrayList;
 
 public class FaseDeColocacion implements Fase {
     private ArrayList<CalculadorTropasDisponibles> calculadoresDeTropasDisponibles;
+    private Tablero tablero;
+    private ArrayList<Jugador> jugadores;
 
-    public FaseDeColocacion(ArrayList<CalculadorTropasDisponibles> calculadores){
-        this.calculadoresDeTropasDisponibles = new ArrayList<>(calculadores);
+    public FaseDeColocacion(ArrayList<CalculadorTropasDisponibles> calculadores,
+                            Tablero tablero, ArrayList<Jugador> jugadores){
+
+        this.calculadoresDeTropasDisponibles = calculadores;
+        this.jugadores = jugadores;
+        this.tablero = tablero;
     }
+
+    public void calcularTropasParaElJugador(Jugador jugador){
+        for(CalculadorTropasDisponibles calc: calculadoresDeTropasDisponibles)
+            jugador.agregarTropasDisponibles(calc.calcularTropasParaJugador(jugador));
+    }
+
     @Override
-    public void simular(ArrayList<Jugador> jugadores, Tablero tablero) {
-        //foreach jugadores
-            //foreach calculadores
-                //calculador.calcular(jugador)
-            //while(jugador.tropasDisponibles() > 0)
-                //jugador.colocarTropasEn(cantidad, pais)
+    public void empezar() {
     }
 }

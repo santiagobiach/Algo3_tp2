@@ -6,12 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 
 public class JuegoTest {
-    private ArrayList<CalculadorTropasDisponibles> crearCalculadores(){
-        ArrayList<CalculadorTropasDisponibles> calculadores = new ArrayList<>();
-        calculadores.add(new CalculadorTropasPorPaisesConquistados());
-        calculadores.add(new CalculadorTropasPorContinentesConquistados());
-        return calculadores;
-    }
 
     @Test
     public void UnJugadorCon2TropasDesplegadasTiene5TrasDecirleQueColoque3() throws Exception{
@@ -30,45 +24,34 @@ public class JuegoTest {
     @Test
     public void RondaEntreDosJugadoresSinAtaqueAmbosPonenLaCantidadDeFicasCorrespondientes() throws Exception {
         ArrayList<Jugador> jugadores = new ArrayList<>();
-        jugadores.add(new Jugador("Mario"));
-        jugadores.add(new Jugador("Pedro"));
+        Jugador jugador1 = new Jugador("Mario");
+        Jugador jugador2 = new Jugador("Pedro");
+        jugadores.add(jugador1);
+        jugadores.add(jugador2);
+
         Tablero tablero = new TableroMockDosJugadores();
         tablero.distribuirPaises(jugadores);
 
-        Juego juego = new Juego(tablero, crearCalculadores(), jugadores);
+        ArrayList<CalculadorTropasDisponibles> calculadores = new ArrayList<>();
+        calculadores.add(new CalculadorTropasPorPaisesConquistados());
+        calculadores.add(new CalculadorTropasPorContinentesConquistados(tablero));
 
-        /*ArrayList<Integer> primerConteo = new ArrayList<>();
-        for(Jugador j: jugadores){
-            int contador = 0;
-            for(Pais p: j.getPaiasesConquistados())
-                contador += p.getCantidadDeTropas();
-
-            primerConteo.add(contador);
+        for (CalculadorTropasDisponibles cal: calculadores) {
+            jugador1.agregarTropasDisponibles(cal.calcularTropasParaJugador(jugador1));
+            jugador2.agregarTropasDisponibles(cal.calcularTropasParaJugador(jugador1));
         }
 
-        ArrayList<Integer> tropasDisponibles = new ArrayList();
-        boolean sumaCorrecta = true;
+        assertEquals(12, jugador1.tropasDisponibles());
+        assertEquals(12, jugador2.tropasDisponibles());
 
-        int i=0;
-        for(Jugador j: jugadores){
-            tropasDisponibles.add(juego.calcularTropasParaElJugador(j));
-            j.colocarEjercitos(tropasDisponibles.get(i));
-            i++;
-        }
+        Pais francia = tablero.getPais("Francia");
+        Pais alemania = tablero.getPais("Alemania");
 
-        i=0;
-        for(Jugador j: jugadores){
-            int contador = 0;
-            for(Pais p: j.getPaisesConquistados())
-                contador += p.getCantidadDeTropas();
-            if(contador != primerConteo.get(i) + tropasDisponibles.get(i))
-                sumaCorrecta = false;
-            i++;
-        }*/
+        jugador1.colocarEjercitosEn(12, francia);
+        jugador2.colocarEjercitosEn(12, alemania);
 
-        assertEquals(12, juego.calcularTropasParaElJugador(jugadores.get(0)));
-        assertEquals(12, juego.calcularTropasParaElJugador(jugadores.get(1)));
-
+        assertEquals(0, jugador1.tropasDisponibles());
+        assertEquals(0, jugador2.tropasDisponibles());
     }
 
     @Test
@@ -82,9 +65,9 @@ public class JuegoTest {
 
         tablero.distribuirPaises(jugadores);
 
-        CalculadorTropasDisponibles calculador = new CalculadorTropasPorContinentesConquistados();
+        CalculadorTropasDisponibles calculador = new CalculadorTropasPorContinentesConquistados(tablero);
         assert(tablero.buscarContiente("Asia").conquistadoPor(jugadores.get(1)));
-        assert(calculador.calcular(jugadores.get(1), tablero) == 7);
+        assert(calculador.calcularTropasParaJugador(jugadores.get(1)) == 7);
 
     }
 

@@ -6,6 +6,7 @@ public class Juego {
     private ArrayList<Jugador> jugadores;
     private ArrayList<TarjetaDePais> mazo;
     private Tablero tablero;
+    private Jugador ganador;
     private ArrayList<CalculadorTropasDisponibles> calculadores;
 
 //    fase_inicial (distribucion)
@@ -16,6 +17,7 @@ public class Juego {
     public Juego(Tablero tablero, ArrayList<CalculadorTropasDisponibles> calculadores,
                  ArrayList<Jugador> jugadores) throws Exception{
 
+        this.ganador = null;
         this.tablero = tablero;
         this.mazo = InicializadorDePaisesYContinentes.inicializarCartasDesdeArchivo("src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Cartas.csv",
                 tablero.getPaises());
@@ -33,16 +35,23 @@ public class Juego {
 
     public void comenzarPartida(){
         tablero.distribuirPaises(jugadores);
-        for(Jugador jugador: jugadores)
-            jugador.colocarEjercitos(5);
-        for(Jugador jugador: jugadores)
-            jugador.colocarEjercitos(3);
+        (new FaseDeColocacionInicial(5, tablero, jugadores)).empezar();
+        (new FaseDeColocacionInicial(3, tablero, jugadores)).empezar();
+
+        Fase faseDeAtaque = new FaseDeAtaque(tablero, jugadores);
+        Fase faseDeReagrupacion = new FaseDeReagrupacion(tablero, jugadores);
+        Fase faseDeColocacion = new FaseDeColocacion(calculadores, tablero, jugadores);
+
+        ArrayList<Fase> fases = new ArrayList<>();
+        fases.add(faseDeAtaque);
+        fases.add(faseDeReagrupacion);
+        fases.add(faseDeColocacion);
+
+        int i = 0;
+        while(this.ganador == null ){
+            fases.get(i).empezar();
+            i = (i+1)%3;
+        }
     }
 
-    public int calcularTropasParaElJugador(Jugador jugador){
-        int cantidad=0;
-        for(CalculadorTropasDisponibles calc: calculadores)
-            cantidad += calc.calcular(jugador, this.tablero);
-        return cantidad;
-    }
 }
