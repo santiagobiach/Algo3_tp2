@@ -2,17 +2,12 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
 
-public class Juego {
+public class Juego{
     private ArrayList<Jugador> jugadores;
     private ArrayList<TarjetaDePais> mazo;
     private Tablero tablero;
     private Jugador ganador;
     private ArrayList<CalculadorTropasDisponibles> calculadores;
-
-//    fase_inicial (distribucion)
-//    fase_ataque (ataques entre paises limitrofes)
-//    fase_reagrupacion (mover ejercitos entre p. limitrofes)
-//    fase_colocacion (sacar tarjeta + nuevos ejercitos + canjear tarjetas)
 
     public Juego(Tablero tablero, ArrayList<CalculadorTropasDisponibles> calculadores,
                  ArrayList<Jugador> jugadores) throws Exception{
@@ -33,7 +28,7 @@ public class Juego {
         return null;
     }
 
-    public void comenzarPartida(){
+    protected void faseInicial(ArrayList<Jugador> jugadores, Tablero tablero){
         tablero.distribuirPaises(jugadores);
 
         Fase faseColocacion5 = new FaseDeColocacionInicial(5, tablero, jugadores);
@@ -46,6 +41,10 @@ public class Juego {
         for (Jugador j: jugadores){
             faseColocacion3.empezar(j);
         }
+    }
+
+    public void comenzarPartida(){
+        this.faseInicial(jugadores, tablero);
 
         Fase faseDeAtaque = new FaseDeAtaque(tablero, jugadores);
         Fase faseDeReagrupacion = new FaseDeReagrupacion(tablero, jugadores);
@@ -58,9 +57,9 @@ public class Juego {
 
         while(this.ganador == null ){
             for(Jugador j: jugadores){
-                for (int i = 0; i < fases.size(); i++) {
-                    fases.get(i).empezar(j);
-                }
+                for(Fase f: fases)
+                    f.empezar(j);
+//                    chequearVictoria(j);
             }
         }
     }
