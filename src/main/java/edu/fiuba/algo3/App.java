@@ -28,7 +28,7 @@ public class App extends Application {
 
         var scene = new Scene(new VistaMenu(), 640, 480);
 
-        stage.setTitle("AL-TEGO");
+        stage.setTitle("A.L.T.E.G.O");
         stage.setScene(scene);
 
         stage.show();

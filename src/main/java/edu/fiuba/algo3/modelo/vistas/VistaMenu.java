@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.vistas;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -41,7 +43,12 @@ public class VistaMenu extends StackPane{
         btn_iniciarPartida.setPrefWidth(200);
         btn_reglas.setPrefWidth(200);
         btn_salir.setPrefWidth(200);
-
+        btn_iniciarPartida.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                System.out.println("Juego Empezado");
+            }
+        });
         this.getChildren().addAll(grupo);
         Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/Portada_img.jpg");
         BackgroundImage fondoImagen = new BackgroundImage(imagen,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
