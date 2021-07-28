@@ -16,10 +16,8 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 
-public class VistaMenu extends StackPane{
-    VistaJuego escenaJuego;
+public class VistaJuego extends StackPane{
     Stage stage;
-    VistaComoJugar escenaInstrucciones;
     private void inicio(){
         Group grupo = new Group();
 
@@ -29,8 +27,8 @@ public class VistaMenu extends StackPane{
 
         grupo.getChildren().addAll(btn_iniciarPartida, btn_reglas, btn_salir);
 
-        btn_iniciarPartida.setText("INICIAR PARTIDA");
-        btn_reglas.setText("CÓMO JUGAR");
+        btn_iniciarPartida.setText("atacar");
+        btn_reglas.setText("reagrupar");
         btn_salir.setText("SALIR");
 
         btn_iniciarPartida.setLayoutX(0);
@@ -45,34 +43,14 @@ public class VistaMenu extends StackPane{
         btn_iniciarPartida.setPrefWidth(200);
         btn_reglas.setPrefWidth(200);
         btn_salir.setPrefWidth(200);
-        btn_iniciarPartida.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                var scene = new Scene(escenaJuego, 840, 680);
-                stage.setScene(scene);
-                stage.show();
-            }
-        });
-        btn_reglas.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                var scene = new Scene(escenaInstrucciones, 880, 700);
-                stage.setScene(scene);
-                stage.show();
-            }
-        });
         this.getChildren().addAll(grupo);
-        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/Portada_img.jpg");
+        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/tableroteg.png");
         BackgroundImage fondoImagen = new BackgroundImage(imagen,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         Background fondo = new Background(fondoImagen);
         super.setBackground(fondo);
     }
 
-    public VistaMenu(Stage stage, VistaJuego escenaJuego, VistaComoJugar escenainstrucciones) {
-       this.stage = stage;
-       this.escenaJuego = escenaJuego;
-       this.escenaInstrucciones = escenainstrucciones;
-       this.inicio();
+    public VistaJuego() {
+        this.inicio();
     }
 }
-
