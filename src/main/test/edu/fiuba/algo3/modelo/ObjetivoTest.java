@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ObjetivoTest {
     @Test
     public void seCreaAlObjetivoCorrectamente(){
-        Objetivo objetivo = new ObjetivoDeConquista();
-        Objetivo otroObjetivo = new ObjetivoDeDestruccion();
+        Objetivo objetivo = new ObjetivoDeConquista("Obj");
+        Objetivo otroObjetivo = new ObjetivoDeDestruccion("Obj");
         Objetivo otroObjetivoMas = new ObjetivoGeneral();
 
         assertNotNull(objetivo);
@@ -51,7 +51,7 @@ public class ObjetivoTest {
 
 
 
-        ObjetivoDeConquista objetivo = new ObjetivoDeConquista();
+        ObjetivoDeConquista objetivo = new ObjetivoDeConquista("Obj");
 
         objetivo.agregarContinenteAConquistar(continente,-1);
 
@@ -72,7 +72,7 @@ public class ObjetivoTest {
 
 
 
-        ObjetivoDeConquista objetivo = new ObjetivoDeConquista();
+        ObjetivoDeConquista objetivo = new ObjetivoDeConquista("Obj");
 
         objetivo.agregarContinenteAConquistar(continente,-1);
 
@@ -92,7 +92,7 @@ public class ObjetivoTest {
 
 
 
-        ObjetivoDeConquista objetivo = new ObjetivoDeConquista();
+        ObjetivoDeConquista objetivo = new ObjetivoDeConquista("Obj");
 
         objetivo.agregarContinenteAConquistar(continente,1);
 
@@ -114,7 +114,7 @@ public class ObjetivoTest {
 
 
 
-        ObjetivoDeConquista objetivo = new ObjetivoDeConquista();
+        ObjetivoDeConquista objetivo = new ObjetivoDeConquista("Obj");
 
         objetivo.agregarContinenteAConquistar(continente,1);
         objetivo.agregarContinenteAConquistar(otroContinente,2);
@@ -127,7 +127,7 @@ public class ObjetivoTest {
         Jugador jugador = new Jugador("Jose");
         Jugador otroJugador = new Jugador("Pepe");
 
-        ObjetivoDeDestruccion objetivo = new ObjetivoDeDestruccion();
+        ObjetivoDeDestruccion objetivo = new ObjetivoDeDestruccion("Obj");
         objetivo.agregarJugadorADestruir(otroJugador);
         assertTrue(objetivo.estaCumplido(jugador));
     }
@@ -138,7 +138,7 @@ public class ObjetivoTest {
         Continente continente = new Continente("Continente");
         Pais unPais = new Pais("unPais", continente);
         unPais.setJugador(otroJugador);
-        ObjetivoDeDestruccion objetivo = new ObjetivoDeDestruccion();
+        ObjetivoDeDestruccion objetivo = new ObjetivoDeDestruccion("Obj");
         objetivo.agregarJugadorADestruir(otroJugador);
         assertFalse(objetivo.estaCumplido(jugador));
     }
@@ -159,7 +159,7 @@ public class ObjetivoTest {
         otroPais.agregarTropas(5);
         (new BatallaMockGanaAtacante(unPais, otroPais)).combatir();
 
-        ObjetivoDeDestruccion objetivo = new ObjetivoDeDestruccion();
+        ObjetivoDeDestruccion objetivo = new ObjetivoDeDestruccion("Obj");
         objetivo.agregarJugadorADestruir(otroJugador);
         assertTrue(objetivo.estaCumplido(jugador));
     }

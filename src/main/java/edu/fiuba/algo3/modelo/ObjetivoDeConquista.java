@@ -7,10 +7,12 @@ public class ObjetivoDeConquista implements Objetivo{
 
     private ArrayList<Continente> continentesAConquistar;
     private ArrayList<Integer> numeroDePaisesAConquistar;
+    private String descripcion;
 
-    public ObjetivoDeConquista(){
+    public ObjetivoDeConquista(String descripcion){
         continentesAConquistar = new ArrayList<>();
         numeroDePaisesAConquistar = new ArrayList<>();
+        this.descripcion = descripcion;
 
     }
     public boolean estaCumplido(Jugador jugador){

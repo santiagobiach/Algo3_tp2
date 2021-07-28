@@ -44,7 +44,30 @@ public class InicializadorDePaisesYContinentes {
         }
         return tarjetas;
     }
+    public static ArrayList<Objetivo> inicializarObjetivosDesdeArchivo(String path,ArrayList<Continente> continentes) throws Exception{
+        CSVParser parser = new CSVParser();
+        ArrayList<String[]> listaDeObjetivos = parser.readFromFile(path);
+        ArrayList<Objetivo> objetivos = new ArrayList<>();
 
+        for(String[] objetivo: listaDeObjetivos){
+            if(objetivo[0].equals("Conquista")){
+                ObjetivoDeConquista nuevoObj = new ObjetivoDeConquista(objetivo[1]);
+                String[] continentesAConq = objetivo[2].split(",");
+                for(String conti: continentesAConq){
+
+                    String[] aux = conti.split(":");
+
+
+                    nuevoObj.agregarContinenteAConquistar(buscarContinente(continentes, aux[0].trim()), Integer.parseInt(aux[1]));
+
+                }
+                objetivos.add(nuevoObj);
+            }else if(objetivo[0].equals("Destruccion")){
+
+            }
+        }
+        return objetivos;
+    }
     public static ArrayList<Pais>  inicializarPaisesDesdeArchivo(String path, ArrayList<Continente> continentes) throws Exception{
         CSVParser parser = new CSVParser();
         ArrayList<String[]> listaDePaises = parser.readFromFile(path);

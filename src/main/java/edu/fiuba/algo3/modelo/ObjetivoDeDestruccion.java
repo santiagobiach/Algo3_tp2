@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 public class ObjetivoDeDestruccion implements Objetivo{
     private ArrayList<Jugador> jugadoresADestruir;
-    public ObjetivoDeDestruccion(){
+    private String descripcion;
+    public ObjetivoDeDestruccion(String desc){
         jugadoresADestruir = new ArrayList<>();
+        this.descripcion = desc;
     }
 
     public boolean estaCumplido(Jugador jugador) {
