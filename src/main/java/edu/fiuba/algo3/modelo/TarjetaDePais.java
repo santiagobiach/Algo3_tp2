@@ -35,7 +35,4 @@ public class TarjetaDePais {
         }
     }
 
-    public void fueCanjeada(){
-
-    }
 }

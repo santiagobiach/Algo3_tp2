@@ -47,4 +47,18 @@ public class Continente{
 
         return conquistado;
     }
+    public boolean jugadorControlaXProvincias(Jugador unJugador, int x){
+        boolean conquistado = true;
+        int numeroDePronviciasControladas = 0;
+        if(unJugador == null || paises.isEmpty()){
+            conquistado=false;
+        }
+
+        for(Pais pais: paises){
+            if (pais.dominadoPor(unJugador))
+                numeroDePronviciasControladas += 1;
+        }
+
+        return (numeroDePronviciasControladas >= x);
+    }
 }
