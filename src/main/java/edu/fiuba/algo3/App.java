@@ -28,11 +28,11 @@ public class App extends Application {
         stage.setTitle("A.L.T.E.G.O");
         ControladorMenu.setEscenario(stage);
         ControladorJuego.setEscenario(stage);
-        ArrayList<String> jugadores = new ArrayList<>();
-        jugadores.add("Franco");
-        jugadores.add("Santi");
-        jugadores.add("Martin");
-        ControladorJuego.empezarPartida(jugadores);
+//        ArrayList<String> jugadores = new ArrayList<>();
+//        jugadores.add("Franco");
+//        jugadores.add("Santi");
+//        jugadores.add("Martin");
+        ControladorMenu.mostrarMenu();
     }
 
 
