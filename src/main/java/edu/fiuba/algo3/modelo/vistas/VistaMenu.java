@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.vistas;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -22,13 +23,17 @@ public class VistaMenu extends Vista{
     VistaComoJugar escenaInstrucciones;
 
     public Scene crearEscena(Hashtable data) {
-        Group grupo = new Group();
 
+        VBox contenedorPrincipal = new VBox();
+        contenedorPrincipal.setSpacing(20);
+        contenedorPrincipal.setPadding(new Insets(20));
         Button btn_iniciarPartida = new Button();
         Button btn_reglas = new Button();
         Button btn_salir = new Button();
 
-        grupo.getChildren().addAll(btn_iniciarPartida, btn_reglas, btn_salir);
+        contenedorPrincipal.getChildren().addAll(btn_iniciarPartida, btn_reglas, btn_salir);
+        contenedorPrincipal.setAlignment(Pos.CENTER);
+
 
         btn_iniciarPartida.setText("INICIAR PARTIDA");
         btn_iniciarPartida.setLayoutY(30);
@@ -44,8 +49,8 @@ public class VistaMenu extends Vista{
 
         this.setAlignment(Pos.CENTER);
 
-        this.getChildren().addAll(grupo);
-        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/colorliso.png");
+        this.getChildren().addAll(contenedorPrincipal);
+        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/Portada_img.jpg");
         BackgroundImage fondoImagen = new BackgroundImage(imagen,BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         Background fondo = new Background(fondoImagen);
 

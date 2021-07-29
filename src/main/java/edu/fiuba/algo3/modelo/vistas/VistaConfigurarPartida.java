@@ -98,7 +98,7 @@ public class VistaConfigurarPartida extends Vista{
         mostrarCamposYBotones(nombres, botones);
 
         Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/Portada_img.jpg");
-        BackgroundImage fondoImagen = new BackgroundImage(imagen,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
+        BackgroundImage fondoImagen = new BackgroundImage(imagen,BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         Background fondo = new Background(fondoImagen);
         super.setBackground(fondo);
 
