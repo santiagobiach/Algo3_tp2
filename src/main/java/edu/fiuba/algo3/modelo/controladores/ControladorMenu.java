@@ -50,6 +50,7 @@ public class ControladorMenu {
             mostrarConfigurarPartida(nuevaData);
         } else {
             ControladorJuego.empezarPartida(nombres);
+
         }
 
 

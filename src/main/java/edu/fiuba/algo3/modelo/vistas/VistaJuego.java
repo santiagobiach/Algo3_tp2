@@ -54,6 +54,6 @@ public class VistaJuego extends Vista{
         Background fondo = new Background(fondoImagen);
         super.setBackground(fondo);
 
-        return new Scene(this, 740, 580);
+        return new Scene(this, 1280, 720);
     }
 }

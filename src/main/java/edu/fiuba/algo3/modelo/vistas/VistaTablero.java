@@ -14,6 +14,6 @@ public class VistaTablero extends Vista{
         BackgroundImage fondoImagen = new BackgroundImage(imagen, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         Background fondo = new Background(fondoImagen);
         super.setBackground(fondo);
-        return new Scene(this, 740, 580);
+        return new Scene(this, 1280, 720);
     }
 }

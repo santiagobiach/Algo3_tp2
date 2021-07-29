@@ -49,6 +49,6 @@ public class VistaComoJugar extends Vista{
             }
         });
 
-        return new Scene(this, 740, 580);
+        return new Scene(this, 1280, 720);
     }
 }

@@ -1,10 +1,12 @@
 package edu.fiuba.algo3.modelo.controladores;
 
+import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.vistas.VistaComoJugar;
-import edu.fiuba.algo3.modelo.vistas.VistaConfigurarPartida;
+import edu.fiuba.algo3.modelo.Tablero;
+import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasDisponibles;
+import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasPorContinentesConquistados;
+import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasPorPaisesConquistados;
 import edu.fiuba.algo3.modelo.vistas.VistaJuego;
-import edu.fiuba.algo3.modelo.vistas.VistaMenu;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -12,33 +14,44 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class ControladorJuego {
-    private static Stage stage;
+    private static Stage escenario;
+    private static Juego juego;
 
     public static void setEscenario(Stage escenario){
-       stage = escenario;
+       ControladorJuego.escenario = escenario;
     }
 
     public static void empezarPartida(ArrayList<String> nombres){
-        //DEBUG
-        System.out.println("Comenzando partida con "+nombres.size()+" jugadores");
-        for(String n: nombres){
-            System.out.println(n);
+        Tablero tablero = null;
+        try{
+             tablero = new Tablero();
+        } catch (Exception e){
+            System.out.printf("Excepcion creando tablero");
+            System.exit(-1);
         }
-        //END-DEBUG
+
+        ArrayList<CalculadorTropasDisponibles> calculadores = new ArrayList<>();
+        calculadores.add(new CalculadorTropasPorContinentesConquistados(tablero));
+        calculadores.add(new CalculadorTropasPorPaisesConquistados());
 
         ArrayList<Jugador> jugadores = new ArrayList<>();
         for(String n: nombres){
             jugadores.add(new Jugador(n));
         }
 
-        Hashtable data = new Hashtable();
-        Scene escena = (new VistaJuego()).crearEscena(data);
-        stage.setScene(escena);
-        stage.show();
+        try{
+            juego = new Juego(tablero, calculadores, jugadores);
+        } catch (Exception e){
+            System.out.printf("Excepcion creando juego");
+            System.exit(-1);
+        }
 
+        mostrarTableroInicial();
+    }
 
-
-
-
+    public static void mostrarTableroInicial(){
+        Scene escena = (new VistaJuego()).crearEscena(new Hashtable<>());
+        escenario.setScene(escena);
+        escenario.show();
     }
 }
