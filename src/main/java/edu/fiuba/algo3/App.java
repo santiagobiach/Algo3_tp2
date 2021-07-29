@@ -26,8 +26,8 @@ public class App extends Application {
         ControladorMenu.setEscenario(stage);
         ControladorJuego.setEscenario(stage);
         ArrayList<String> jugadores = new ArrayList<>();
-        jugadores.add("Franco");
-        jugadores.add("Santi");
+        //jugadores.add("Franco");
+        //jugadores.add("Santi");
 //        jugadores.add("Martin");
         ControladorMenu.mostrarMenu();
     }

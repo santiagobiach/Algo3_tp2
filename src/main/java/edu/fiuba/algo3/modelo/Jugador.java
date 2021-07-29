@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.canjes.Canje;
 import edu.fiuba.algo3.modelo.canjes.CanjeadorDeTarjetas;
 import edu.fiuba.algo3.modelo.canjes.PrimerCanje;
 import edu.fiuba.algo3.modelo.canjes.TarjetaDePais;
+import edu.fiuba.algo3.modelo.objetivos.Objetivo;
 
 import java.util.ArrayList;
 
@@ -12,6 +13,7 @@ public class Jugador {
     private String nombre;
     private Canje numeroDeCanje;
     private int tropasDisponibles;
+    private ArrayList<Objetivo> objetivos;
 
     private ArrayList<Pais> paisesConquistados;
 
@@ -51,6 +53,7 @@ public class Jugador {
         this.nombre = nombre;
         this.numeroDeCanje = new PrimerCanje();
         this.tarjetasObtenidas = new ArrayList<>();
+        this.objetivos = new ArrayList<>();
         this.tropasDisponibles = 0;
     }
     public void colocarEjercitos(int cantidad){
@@ -93,5 +96,20 @@ public class Jugador {
 
     public String getNombre(){
         return this.nombre;
+    }
+
+    public void agregarObjetivo(Objetivo objetivo){
+        objetivos.add(objetivo);
+    }
+    public boolean cumplioObjetivos(){
+        for(Objetivo obj: objetivos){
+            if(obj.estaCumplido(this)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public ArrayList<Objetivo> getObjetivos(){
+        return objetivos;
     }
 }

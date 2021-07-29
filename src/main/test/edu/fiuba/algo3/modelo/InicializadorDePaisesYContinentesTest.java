@@ -88,4 +88,15 @@ public class InicializadorDePaisesYContinentesTest {
         assertTrue(objetivos.get(1).estaCumplido(j));
 
     }
+
+    @Test
+    public void SeInicializaLosObjetivosCorrectamente2() throws Exception{
+        ArrayList<Continente> continentes= InicializadorDePaisesYContinentes.InicializarContinentes();
+        ArrayList<Objetivo> objetivos;
+
+        objetivos = InicializadorDePaisesYContinentes.inicializarObjetivosDesdeArchivo("src/main/java/edu/fiuba/algo3/archivoscsv/Teg- Objetivos.csv", continentes);
+        assertEquals(7,objetivos.size());
+
+
+    }
 }

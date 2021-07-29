@@ -17,6 +17,7 @@ public class ObjetivoDeConquista implements Objetivo{
         this.descripcion = descripcion;
 
     }
+
     public boolean estaCumplido(Jugador jugador){
         int numeroDePaisesAConquistarAux;
         for(int i = 0; i < continentesAConquistar.size(); i++){
@@ -32,6 +33,12 @@ public class ObjetivoDeConquista implements Objetivo{
         }
         return true;
     }
+
+    @Override
+    public String getDescripcion() {
+        return descripcion;
+    }
+
     public void agregarContinenteAConquistar(Continente continente, int numeroDeProvinciasAConquistar){
         continentesAConquistar.add(continente);
         numeroDePaisesAConquistar.add(numeroDeProvinciasAConquistar);

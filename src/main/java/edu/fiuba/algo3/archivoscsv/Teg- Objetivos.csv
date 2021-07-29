@@ -1,0 +1,8 @@
+TipoObjetivos, Descripcion, Requerimientos
+Conquista, "Ocupar África, 5 países de América del Norte y 4 países de Europa", "Africa:-1, America del Norte:5, Europa:4"
+Conquista, "Ocupar Asia y 2 países de América del Sur", "Asia:-1, America del Sur:2"
+Conquista, "Ocupar Europa, 4 países de Asia y 2 países de América de Sur", "Europa:-1, Asia:4, America del Sur:2"
+Conquista, "Ocupar América del Norte, 2 países de Oceanía y 4 de Asia", "America del Norte:-1, Oceania:2, Asia:4"
+Conquista, "Ocupar 2 países de Oceanía, 2 países de África, 2 países de América del Sur, 3 países de Europa, 4 de América del Norte y 3 de Asia", "Oceania:2, Africa:2, America del Sur:2, Europa:3, America del Norte:4, Asia:3"
+Conquista, "Ocupar Oceanía, América del Norte y 2 países de Europa", "Oceania:-1, America del Norte:-1, Europa:2"
+Conquista, "Ocupar América del Sur, África y 5 países de América del Norte","America del Sur:-1, Africa:-1, America del Norte:5"

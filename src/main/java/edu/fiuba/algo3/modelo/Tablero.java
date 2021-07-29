@@ -38,8 +38,11 @@ public class Tablero {
 
         return null;
     }
-
+    public ArrayList<Continente> getContinentes() {
+        return continentes;
+    }
     public Pais getPais(String nombre){
+
         for (Pais p: paises)
             if (p.getNombre().equals(nombre))
                 return p;
