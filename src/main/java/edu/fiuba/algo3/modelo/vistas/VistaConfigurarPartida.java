@@ -15,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -97,7 +96,7 @@ public class VistaConfigurarPartida extends Vista{
         this.getChildren().addAll(mensaje, nombres, botones, btn_empezar);
         mostrarCamposYBotones(nombres, botones);
 
-        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/Portada_img.jpg");
+        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/Portada.jpeg");
         BackgroundImage fondoImagen = new BackgroundImage(imagen,BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         Background fondo = new Background(fondoImagen);
         super.setBackground(fondo);

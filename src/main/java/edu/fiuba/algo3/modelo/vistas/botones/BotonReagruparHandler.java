@@ -7,20 +7,21 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 
 public class BotonReagruparHandler implements EventHandler<ActionEvent> {
     private Juego juego;
     private MenuFaseDeReagrupación menu;
-    private TextField TFTropas;
+    private Spinner SPTropas;
     private Label tropasPaisDeOrigen;
     private Label tropasPaisDeDestino;
     private ComboBox<String> CBPaisDeOrigen;
     private ComboBox<String> CBPaisDeDestino;
 
     public BotonReagruparHandler(ComboBox<String> CBPaisDeOrigen, ComboBox CBPaisDeDestino,
-                                 TextField TFTropas, Label tropasPaisDeOrigen, Label tropasPaisDeDestino, Juego juego){
-        this.TFTropas = TFTropas;
+                                 Spinner SPTropas, Label tropasPaisDeOrigen, Label tropasPaisDeDestino, Juego juego){
+        this.SPTropas = SPTropas;
         this.menu = menu;
         this.juego = juego;
         this.tropasPaisDeDestino = tropasPaisDeDestino;
@@ -41,7 +42,7 @@ public class BotonReagruparHandler implements EventHandler<ActionEvent> {
 
         Integer cantidad = 0;
         try{
-            cantidad = Integer.parseInt(TFTropas.getText());
+            cantidad = (Integer)SPTropas.getValue();
         } catch (Exception e){};
 
         if(paisDeDestino != null && paisDeOrigen != null){

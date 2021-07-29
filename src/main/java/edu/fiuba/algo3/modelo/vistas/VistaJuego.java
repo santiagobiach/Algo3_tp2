@@ -16,11 +16,7 @@ public class VistaJuego extends Vista{
         this.juego = juego;
     }
     public Scene crearEscena(Hashtable data){
-
-
-        MenuFaseDeAtaque menu = new MenuFaseDeAtaque(juego);
-        MenuFaseDeReagrupación menuReagrupación = new MenuFaseDeReagrupación(juego);
-
+        VBox menu = ((VBox)data.get("menu"));
         this.getChildren().addAll(menu);
 
         Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/tableroteg.png");

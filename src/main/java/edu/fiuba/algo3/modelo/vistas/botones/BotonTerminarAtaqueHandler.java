@@ -10,20 +10,18 @@ import javafx.stage.Stage;
 
 import java.util.Hashtable;
 
-public class BotonAvanzarTurnoHandler implements EventHandler<ActionEvent> {
+public class BotonTerminarAtaqueHandler implements EventHandler<ActionEvent> {
     private Juego juego;
     private Stage stage;
-    public BotonAvanzarTurnoHandler(Juego juego, Stage stage){
+    public BotonTerminarAtaqueHandler(Juego juego, Stage stage){
         this.juego = juego;
         this.stage = stage;
     }
+
     @Override
     public void handle(ActionEvent actionEvent) {
-        juego.proximoTurno();
         Hashtable data = new Hashtable();
-        data.put("menu", new MenuFaseDeAtaque(juego, stage));
+        data.put("menu", new MenuFaseDeReagrupación(juego, stage));
         stage.setScene(new VistaJuego(juego).crearEscena(data));
-
-
     }
 }

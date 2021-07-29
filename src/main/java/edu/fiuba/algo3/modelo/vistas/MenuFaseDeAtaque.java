@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Pais;
 import edu.fiuba.algo3.modelo.vistas.botones.BotonAtacarHandler;
 import edu.fiuba.algo3.modelo.vistas.botones.BotonAvanzarTurnoHandler;
 import edu.fiuba.algo3.modelo.vistas.botones.BotonMostrarObjetivoHandler;
+import edu.fiuba.algo3.modelo.vistas.botones.BotonTerminarAtaqueHandler;
 import edu.fiuba.algo3.modelo.vistas.comboBox.ComboBoxPaisesConquistadosHandler;
 import edu.fiuba.algo3.modelo.vistas.comboBox.ComboBoxPaisesLimitrofesHandler;
 import javafx.collections.FXCollections;
@@ -17,63 +18,86 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class MenuFaseDeAtaque extends VBox {
     private Juego juego;
     private Label turno;
-    private ComboBox<String> cb;
+    private ComboBox<String> CBPaisAtacante;
     private Label tropasAtacante;
-    private ComboBox<String> cb2;
+    private ComboBox<String> CBPaisDefensor;
     private Label tropasDefensor;
-    private Button btn_atacar;
-    private Button btn_siguienteFase;
-    private Button btn_Objetivo;
-    private Spinner tropas;
+    private Button BTAtacar;
+    private Button BTContinuar;
+    private Button BTObjetivos;
+    private Spinner SPTropas;
 
-    public MenuFaseDeAtaque(Juego juego){
-        this.juego = juego;
-        this.turno = new Label();
-        this.cb = new ComboBox<>();
-        this.tropasAtacante = new Label();
-        this.cb2 = new ComboBox<>();
-        this.tropasDefensor = new Label();
-        this.btn_atacar = new Button();
-        this.tropas = new Spinner(1,3,1);
-        this.btn_siguienteFase = new Button();
-        this.btn_Objetivo = new Button();
-
-        HBox hBoxAtacar = new HBox();
-        hBoxAtacar.setSpacing(10);
-        HBox hBoxPaisesConquistados = new HBox();
-        hBoxPaisesConquistados.setSpacing(10);
-
-        HBox hBoxPaisesLimitrofes = new HBox();
-        hBoxPaisesLimitrofes.setSpacing(10);
-
-        ComboBoxPaisesConquistadosHandler cbxHandler = new ComboBoxPaisesConquistadosHandler(cb, cb2,
-                tropasAtacante, juego);
-        cb.setOnAction(cbxHandler);
-        ComboBoxPaisesLimitrofesHandler cb2Handler = new ComboBoxPaisesLimitrofesHandler(cb2, tropasDefensor, juego);
-        cb2.setOnAction(cb2Handler);
+    public MenuFaseDeAtaque(Juego juego, Stage stage){
         this.setSpacing(10);
         this.setPadding(new Insets(20));
-        btn_atacar.setText("atacar");
-        BotonAtacarHandler botonAtacarHandler = new BotonAtacarHandler(juego, cb, cb2, tropas, this);
-        btn_atacar.setOnAction(botonAtacarHandler);
-        btn_Objetivo.setText("Objetivos");
-        BotonMostrarObjetivoHandler botonObjetivoHandler = new BotonMostrarObjetivoHandler(juego);
-        btn_Objetivo.setOnAction(botonObjetivoHandler);
-        btn_siguienteFase.setText("Fase siguiente");
-        BotonAvanzarTurnoHandler botonAvanzarTurnoHandler = new BotonAvanzarTurnoHandler(juego, new MenuFaseDeReagrupación(juego));
-        btn_siguienteFase.setOnAction(botonAvanzarTurnoHandler);
-        btn_atacar.setPrefWidth(100);
-        tropas.setPrefWidth(60);
-        btn_siguienteFase.setPrefWidth(110);
-        hBoxPaisesConquistados.getChildren().addAll(cb, tropasAtacante);
-        hBoxPaisesLimitrofes.getChildren().addAll(cb2, tropasDefensor);
-        hBoxAtacar.getChildren().addAll(btn_atacar, tropas);
-        this.getChildren().addAll(turno, hBoxAtacar,hBoxPaisesConquistados,hBoxPaisesLimitrofes, btn_Objetivo, btn_siguienteFase);
+
+        this.juego = juego;
+        this.turno = new Label();
+        this.CBPaisAtacante = new ComboBox<>();
+        CBPaisAtacante.setPrefWidth(170);
+
+        this.CBPaisDefensor = new ComboBox<>();
+        CBPaisDefensor.setPrefWidth(170);
+
+        this.tropasAtacante = new Label();
+        this.tropasDefensor = new Label();
+
+        this.BTAtacar = new Button();
+        BTAtacar.setText("Atacar");
+        BTAtacar.setPrefWidth(100);
+
+        this.SPTropas = new Spinner(1,3,1);
+        SPTropas.setPrefWidth(60);
+
+        this.BTContinuar = new Button();
+        BTContinuar.setText("Continuar");
+        BTContinuar.setPrefWidth(80);
+
+        this.BTObjetivos = new Button();
+        BTObjetivos.setText("Objetivos");
+        BTObjetivos.setPrefWidth(80);
+
+        HBox contenedorControlesAtaque = new HBox();
+        contenedorControlesAtaque.setSpacing(10);
+        contenedorControlesAtaque.getChildren().addAll(BTAtacar, SPTropas);
+
+        HBox contenedorPaisAtacante = new HBox();
+        contenedorPaisAtacante.setSpacing(10);
+        contenedorPaisAtacante.getChildren().addAll(CBPaisAtacante, tropasAtacante);
+
+        HBox contenedorPaisDefensor = new HBox();
+        contenedorPaisDefensor.setSpacing(10);
+        contenedorPaisDefensor.getChildren().addAll(CBPaisDefensor, tropasDefensor);
+
+        HBox contenedorInferior = new HBox();
+        contenedorInferior.setSpacing(10);
+        contenedorInferior.getChildren().addAll(BTObjetivos, BTContinuar);
+
+
+        this.getChildren().addAll(turno, contenedorControlesAtaque,contenedorPaisAtacante,contenedorPaisDefensor, contenedorInferior);
         actualizar();
+
+        //Handlers
+        ComboBoxPaisesConquistadosHandler handlerPaisAtacante = new ComboBoxPaisesConquistadosHandler(CBPaisAtacante, CBPaisDefensor,
+                tropasAtacante, juego);
+        CBPaisAtacante.setOnAction(handlerPaisAtacante);
+
+        ComboBoxPaisesLimitrofesHandler handlerPaisDefensor = new ComboBoxPaisesLimitrofesHandler(CBPaisDefensor, tropasDefensor, juego);
+        CBPaisDefensor.setOnAction(handlerPaisDefensor);
+
+        BotonAtacarHandler handlearBotonAtacar = new BotonAtacarHandler(juego, CBPaisAtacante, CBPaisDefensor, SPTropas, this);
+        BTAtacar.setOnAction(handlearBotonAtacar);
+
+        BotonMostrarObjetivoHandler handlearBotonObjetivo = new BotonMostrarObjetivoHandler(juego);
+        BTObjetivos.setOnAction(handlearBotonObjetivo);
+
+        BotonTerminarAtaqueHandler botonTerminarAtaqueHandler = new BotonTerminarAtaqueHandler(juego, stage);
+        BTContinuar.setOnAction(botonTerminarAtaqueHandler);
     }
 
     private ObservableList<String> conseguirNombrePaisesDeJugador(Jugador jugador){
@@ -86,9 +110,11 @@ public class MenuFaseDeAtaque extends VBox {
 
     public void actualizar(){
         //this.getChildren().removeAll();
-        this.turno.setText("Turno:" + juego.getJugadorActual().getNombre());
-        cb.getItems().clear();
-        cb2.getItems().clear();
-        cb.getItems().addAll(conseguirNombrePaisesDeJugador(juego.getJugadorActual()));
+        tropasAtacante.setText("");
+        tropasDefensor.setText("");
+        this.turno.setText("Turno: " + juego.getJugadorActual().getNombre());
+        CBPaisAtacante.getItems().clear();
+        CBPaisDefensor.getItems().clear();
+        CBPaisAtacante.getItems().addAll(conseguirNombrePaisesDeJugador(juego.getJugadorActual()));
     }
 }

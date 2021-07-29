@@ -4,8 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
@@ -50,7 +48,7 @@ public class VistaMenu extends Vista{
         this.setAlignment(Pos.CENTER);
 
         this.getChildren().addAll(contenedorPrincipal);
-        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/Portada_img.jpg");
+        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/Portada.jpeg");
         BackgroundImage fondoImagen = new BackgroundImage(imagen,BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         Background fondo = new Background(fondoImagen);
 

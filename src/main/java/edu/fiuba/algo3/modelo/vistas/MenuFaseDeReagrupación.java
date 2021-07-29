@@ -9,12 +9,11 @@ import edu.fiuba.algo3.modelo.vistas.comboBox.PaisesConquistadosReagrupacionHand
 import edu.fiuba.algo3.modelo.vistas.comboBox.PaisesLimitrofesReagrupacionHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.geometry.Insets;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class MenuFaseDeReagrupación extends VBox {
     private Juego juego;
@@ -24,16 +23,17 @@ public class MenuFaseDeReagrupación extends VBox {
     private HBox contenedorReagrupar;
     private ComboBox CBPaisDeOrigen;
     private ComboBox CBPaisDeDestino;
-    private TextField TFTropas;
+    private Spinner SPTropas;
     private Button BTTropas;
     private Button BTTerminarTurno;
     private Label tropasPaisDeOrigen;
     private Label tropasPaisDeDestino;
 
-    public MenuFaseDeReagrupación(Juego juego) {
+    public MenuFaseDeReagrupación(Juego juego, Stage stage) {
         this.juego = juego;
         this.turno = new Label();
-        this.setSpacing(5);
+        this.setSpacing(10);
+        this.setPadding(new Insets(20));
 
         this.CBPaisDeOrigen = new ComboBox();
         CBPaisDeOrigen.setPrefWidth(150);
@@ -43,9 +43,12 @@ public class MenuFaseDeReagrupación extends VBox {
         CBPaisDeDestino.setPrefWidth(150);
         this.tropasPaisDeDestino = new Label();
 
-        this.TFTropas = new TextField();
+        this.SPTropas = new Spinner(1, 100, 1);
+        SPTropas.setPrefWidth(80);
         this.BTTropas = new Button();
         BTTropas.setText("Mover");
+        BTTropas.setPrefWidth(65);
+
 
         this.contenedorPaisDeOrigen = new HBox();
         contenedorPaisDeOrigen.setSpacing(5);
@@ -58,11 +61,11 @@ public class MenuFaseDeReagrupación extends VBox {
         this.contenedorReagrupar = new HBox();
         contenedorReagrupar.setSpacing(5);
         contenedorReagrupar.setPrefWidth(150);
-        contenedorReagrupar.getChildren().addAll(TFTropas, BTTropas);
+        contenedorReagrupar.getChildren().addAll(SPTropas, BTTropas);
 
         BTTerminarTurno = new Button();
-        BTTerminarTurno.setPrefWidth(205);
-        BTTerminarTurno.setText("TERMINAR TURNO");
+        BTTerminarTurno.setPrefWidth(150);
+        BTTerminarTurno.setText("Terminar turno");
 
         this.getChildren().addAll(turno, contenedorPaisDeOrigen, contenedorPaisDeDestino, contenedorReagrupar, BTTerminarTurno);
 
@@ -77,12 +80,12 @@ public class MenuFaseDeReagrupación extends VBox {
 
         CBPaisDeDestino.setOnAction(handlerCBPaisDeDestino);
 
-        BotonReagruparHandler handlerBotonReagrupar = new BotonReagruparHandler(CBPaisDeOrigen, CBPaisDeDestino, TFTropas,
+        BotonReagruparHandler handlerBotonReagrupar = new BotonReagruparHandler(CBPaisDeOrigen, CBPaisDeDestino, SPTropas,
                 tropasPaisDeOrigen, tropasPaisDeDestino, juego);
 
         BTTropas.setOnAction(handlerBotonReagrupar);
 
-        BotonAvanzarTurnoHandler botonAvanzarTurnoHandler = new BotonAvanzarTurnoHandler(juego, this);
+        BotonAvanzarTurnoHandler botonAvanzarTurnoHandler = new BotonAvanzarTurnoHandler(juego, stage);
         BTTerminarTurno.setOnAction(botonAvanzarTurnoHandler);
 
         actualizar();
