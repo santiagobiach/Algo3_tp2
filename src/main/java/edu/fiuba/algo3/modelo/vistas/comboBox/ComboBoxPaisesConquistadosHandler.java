@@ -28,7 +28,8 @@ public class ComboBoxPaisesConquistadosHandler implements EventHandler<ActionEve
             cbxPaisesLimitrofes.getItems().clear();
             tropasAtacante.setText("Tropas: " + String.valueOf(pais.getCantidadDeTropas()));
             for (Pais p : pais.getPaisesLimitrofes()) {
-                cbxPaisesLimitrofes.getItems().add(p.getNombre());
+                if(!p.dominadoPor(juego.getJugadorActual()))
+                    cbxPaisesLimitrofes.getItems().add(p.getNombre());
             }
             //cbxPaisesLimitrofes.getSelectionModel().selectFirst();
         }
