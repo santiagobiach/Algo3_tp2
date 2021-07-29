@@ -83,7 +83,7 @@ public class InicializadorDePaisesYContinentesTest {
         Jugador j = new Jugador("a");
         Pais p = new Pais("Prueba", continentes.get(0));
         p.setJugador(j);
-        objetivos = InicializadorDePaisesYContinentes.inicializarObjetivosDesdeArchivo("src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Objetivos.csv", continentes);
+        objetivos = InicializadorDePaisesYContinentes.inicializarObjetivosDesdeArchivo("src/main/java/edu/fiuba/algo3/archivoscsv/Teg - ObjetivosTest.csv", continentes);
         assertEquals(2,objetivos.size());
         assertTrue(objetivos.get(1).estaCumplido(j));
 

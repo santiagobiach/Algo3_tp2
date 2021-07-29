@@ -59,11 +59,17 @@ public class VistaConfigurarPartida extends Vista{
         Group nombres = new Group();
 
         TextField nombre1 = new TextField();
+        nombre1.setPromptText("Ingrese el nombre del jugador 1");
         TextField nombre2 = new TextField();
+        nombre2.setPromptText("Ingrese el nombre del jugador 2");
         TextField nombre3 = new TextField();
+        nombre3.setPromptText("Ingrese el nombre del jugador 3");
         TextField nombre4 = new TextField();
+        nombre4.setPromptText("Ingrese el nombre del jugador 4");
         TextField nombre5 = new TextField();
+        nombre5.setPromptText("Ingrese el nombre del jugador 5");
         TextField nombre6 = new TextField();
+        nombre6.setPromptText("Ingrese el nombre del jugador 6");
 
         nombres.getChildren().addAll(nombre1, nombre2, nombre3, nombre4, nombre5, nombre6);
 

@@ -1,8 +1,16 @@
 package edu.fiuba.algo3.modelo.vistas;
 
+import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.modelo.vistas.botones.BotonAtacarHandler;
+import edu.fiuba.algo3.modelo.vistas.botones.MenuFaseDeAtaque;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
@@ -20,34 +28,16 @@ import java.util.Hashtable;
 
 public class VistaJuego extends Vista{
     Stage stage;
-
+    private Juego juego;
+    public VistaJuego(Juego juego){
+        this.juego = juego;
+    }
     public Scene crearEscena(Hashtable data){
-        Group grupo = new Group();
 
-        Button btn_iniciarPartida = new Button();
-        Button btn_reglas = new Button();
-        Button btn_salir = new Button();
 
-        grupo.getChildren().addAll(btn_iniciarPartida, btn_reglas, btn_salir);
+        MenuFaseDeAtaque menu = new MenuFaseDeAtaque(juego);
 
-        btn_iniciarPartida.setText("atacar");
-        btn_reglas.setText("reagrupar");
-        btn_salir.setText("SALIR");
-
-        btn_iniciarPartida.setLayoutX(0);
-        btn_iniciarPartida.setLayoutY(30);
-
-        btn_reglas.setLayoutX(0);
-        btn_reglas.setLayoutY(60);
-
-        btn_salir.setLayoutX(0);
-        btn_salir.setLayoutY(90);
-
-        btn_iniciarPartida.setPrefWidth(200);
-        btn_reglas.setPrefWidth(200);
-        btn_salir.setPrefWidth(200);
-
-        this.getChildren().addAll(grupo);
+        this.getChildren().addAll(menu);
 
         Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/tableroteg.png");
         BackgroundImage fondoImagen = new BackgroundImage(imagen,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);

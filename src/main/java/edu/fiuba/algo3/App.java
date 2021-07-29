@@ -19,9 +19,6 @@ import java.util.Hashtable;
  */
 public class App extends Application {
 
-    private void vistaAgregarJugadores(){
-
-    }
 
     @Override
     public void start(Stage stage) throws  Exception{

@@ -69,7 +69,9 @@ public class Pais{
     /*private void agregarPaisLimitrofeAux(Pais unPais){
         paisesLimitrofes.add(unPais);
     }*/
-
+    public ArrayList<Pais> getPaisesLimitrofes(){
+        return this.paisesLimitrofes;
+    }
     public boolean tieneTropasSuficientes(int cantidad){
         return (cantidadDeTropas > cantidad);
     }

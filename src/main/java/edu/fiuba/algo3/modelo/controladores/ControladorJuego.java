@@ -45,12 +45,12 @@ public class ControladorJuego {
             System.out.printf("Excepcion creando juego");
             System.exit(-1);
         }
-
+        juego.inicializar();
         mostrarTableroInicial();
     }
 
     public static void mostrarTableroInicial(){
-        Scene escena = (new VistaJuego()).crearEscena(new Hashtable<>());
+        Scene escena = (new VistaJuego(juego)).crearEscena(new Hashtable<>());
         escenario.setScene(escena);
         escenario.show();
     }
