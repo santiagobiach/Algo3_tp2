@@ -13,6 +13,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -24,8 +25,9 @@ public class MenuFaseDeAtaque extends VBox {
     private ComboBox<String> cb2;
     private Label tropasDefensor;
     private Button btn_atacar;
-    private Button btn_reagrupar;
-    private Button btn_avanzarTurno;
+    private Button btn_siguienteFase;
+    private Spinner tropas;
+
     public MenuFaseDeAtaque(Juego juego){
         this.juego = juego;
         this.turno = new Label();
@@ -34,13 +36,17 @@ public class MenuFaseDeAtaque extends VBox {
         this.cb2 = new ComboBox<>();
         this.tropasDefensor = new Label();
         this.btn_atacar = new Button();
-        this.btn_reagrupar = new Button();
-        this.btn_avanzarTurno = new Button();
-        HBox hBox = new HBox();
-        hBox.setSpacing(10);
+        this.tropas = new Spinner(1,3,1);
+        this.btn_siguienteFase = new Button();
 
-        HBox hBox2 = new HBox();
-        hBox2.setSpacing(10);
+        HBox hBoxAtacar = new HBox();
+        hBoxAtacar.setSpacing(10);
+        HBox hBoxPaisesConquistados = new HBox();
+        hBoxPaisesConquistados.setSpacing(10);
+
+        HBox hBoxPaisesLimitrofes = new HBox();
+        hBoxPaisesLimitrofes.setSpacing(10);
+
         ComboBoxPaisesConquistadosHandler cbxHandler = new ComboBoxPaisesConquistadosHandler(cb, cb2,
                 tropasAtacante, juego);
         cb.setOnAction(cbxHandler);
@@ -49,19 +55,20 @@ public class MenuFaseDeAtaque extends VBox {
         this.setSpacing(10);
         this.setPadding(new Insets(20));
         btn_atacar.setText("atacar");
-        BotonAtacarHandler botonAtacarHandler = new BotonAtacarHandler(turno);
+        BotonAtacarHandler botonAtacarHandler = new BotonAtacarHandler(juego, cb, cb2, tropas, this);
         btn_atacar.setOnAction(botonAtacarHandler);
 
-        btn_reagrupar.setText("reagrupar");
-        btn_avanzarTurno.setText("Terminar turno");
+
+        btn_siguienteFase.setText("Fase siguiente");
         BotonAvanzarTurnoHandler botonAvanzarTurnoHandler = new BotonAvanzarTurnoHandler(juego, this);
-        btn_avanzarTurno.setOnAction(botonAvanzarTurnoHandler);
-        btn_atacar.setPrefWidth(170);
-        btn_reagrupar.setPrefWidth(170);
-        btn_avanzarTurno.setPrefWidth(170);
-        hBox.getChildren().addAll(cb, tropasAtacante);
-        hBox2.getChildren().addAll(cb2, tropasDefensor);
-        this.getChildren().addAll(turno, btn_atacar,hBox,hBox2, btn_reagrupar, btn_avanzarTurno);
+        btn_siguienteFase.setOnAction(botonAvanzarTurnoHandler);
+        btn_atacar.setPrefWidth(100);
+        tropas.setPrefWidth(60);
+        btn_siguienteFase.setPrefWidth(170);
+        hBoxPaisesConquistados.getChildren().addAll(cb, tropasAtacante);
+        hBoxPaisesLimitrofes.getChildren().addAll(cb2, tropasDefensor);
+        hBoxAtacar.getChildren().addAll(btn_atacar, tropas);
+        this.getChildren().addAll(turno, hBoxAtacar,hBoxPaisesConquistados,hBoxPaisesLimitrofes, btn_siguienteFase);
         actualizar();
     }
 

@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.batallas.BatallaNormal;
 import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasDisponibles;
 import edu.fiuba.algo3.modelo.canjes.TarjetaDePais;
+import edu.fiuba.algo3.modelo.excepciones.ExcepcionBatallaInvalida;
 import edu.fiuba.algo3.modelo.inicializadores.InicializadorDePaisesYContinentes;
 
 import java.util.ArrayList;
@@ -51,6 +53,15 @@ public class Juego{
             jugadorActual = jugadores.get(indiceTurno);
         }else{
             jugadorActual = jugadores.get(indiceTurno + 1);
+        }
+    }
+
+    public void crearBatalla(Pais atacante, Pais defensor, int tropasAtacantes){
+        try{
+            BatallaNormal batalla = new BatallaNormal(atacante,defensor, tropasAtacantes);
+            batalla.combatir();
+        }catch(ExcepcionBatallaInvalida e){
+            System.out.println("La batalla es invalida");
         }
     }
 }
