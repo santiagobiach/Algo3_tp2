@@ -29,7 +29,7 @@ public class App extends Application {
         jugadores.add("Franco");
         jugadores.add("Santi");
 //        jugadores.add("Martin");
-        ControladorJuego.empezarPartida(jugadores);
+        ControladorMenu.mostrarMenu();
     }
 
 
