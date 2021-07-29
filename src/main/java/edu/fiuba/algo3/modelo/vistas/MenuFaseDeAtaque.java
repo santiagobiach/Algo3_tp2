@@ -1,8 +1,10 @@
-package edu.fiuba.algo3.modelo.vistas.botones;
+package edu.fiuba.algo3.modelo.vistas;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Pais;
+import edu.fiuba.algo3.modelo.vistas.botones.BotonAtacarHandler;
+import edu.fiuba.algo3.modelo.vistas.botones.BotonAvanzarTurnoHandler;
 import edu.fiuba.algo3.modelo.vistas.comboBox.ComboBoxPaisesConquistadosHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

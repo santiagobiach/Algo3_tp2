@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo.vistas.botones;
 
 import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.modelo.vistas.MenuFaseDeAtaque;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.layout.VBox;
 
 public class BotonAvanzarTurnoHandler implements EventHandler<ActionEvent> {
     private Juego juego;

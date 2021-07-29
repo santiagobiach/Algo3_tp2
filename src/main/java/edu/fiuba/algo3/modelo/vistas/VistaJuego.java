@@ -1,26 +1,9 @@
 package edu.fiuba.algo3.modelo.vistas;
 
 import edu.fiuba.algo3.modelo.Juego;
-import edu.fiuba.algo3.modelo.vistas.botones.BotonAtacarHandler;
-import edu.fiuba.algo3.modelo.vistas.botones.MenuFaseDeAtaque;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.scene.Group;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.control.Button;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.geometry.Pos;
-import javafx.scene.image.Image;
-import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.util.Hashtable;
