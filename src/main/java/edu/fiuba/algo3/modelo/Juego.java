@@ -1,5 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasDisponibles;
+import edu.fiuba.algo3.modelo.canjes.TarjetaDePais;
+import edu.fiuba.algo3.modelo.inicializadores.InicializadorDePaisesYContinentes;
+
 import java.util.ArrayList;
 
 public class Juego{
@@ -26,42 +30,6 @@ public class Juego{
                 return t;
         }
         return null;
-    }
-
-    protected void faseInicial(ArrayList<Jugador> jugadores, Tablero tablero){
-        tablero.distribuirPaises(jugadores);
-
-        Fase faseColocacion5 = new FaseDeColocacionInicial(5, tablero, jugadores);
-        Fase faseColocacion3 = new FaseDeColocacionInicial(3, tablero, jugadores);
-
-        for (Jugador j: jugadores){
-            faseColocacion5.empezar(j);
-        }
-
-        for (Jugador j: jugadores){
-            faseColocacion3.empezar(j);
-        }
-    }
-
-    public void comenzarPartida(){
-        this.faseInicial(jugadores, tablero);
-
-        Fase faseDeAtaque = new FaseDeAtaque(tablero, jugadores);
-        Fase faseDeReagrupacion = new FaseDeReagrupacion(tablero, jugadores);
-        Fase faseDeColocacion = new FaseDeColocacion(calculadores, tablero, jugadores);
-
-        ArrayList<Fase> fases = new ArrayList<>();
-        fases.add(faseDeAtaque);
-        fases.add(faseDeReagrupacion);
-        fases.add(faseDeColocacion);
-
-        while(this.ganador == null ){
-            for(Jugador j: jugadores){
-                for(Fase f: fases)
-                    f.empezar(j);
-//                    chequearVictoria(j);
-            }
-        }
     }
 
 }

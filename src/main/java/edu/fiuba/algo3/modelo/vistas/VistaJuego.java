@@ -15,10 +15,13 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.util.Hashtable;
 
-public class VistaJuego extends StackPane{
+
+public class VistaJuego extends Vista{
     Stage stage;
-    private void inicio(){
+
+    public Scene crearEscena(Hashtable data){
         Group grupo = new Group();
 
         Button btn_iniciarPartida = new Button();
@@ -43,14 +46,14 @@ public class VistaJuego extends StackPane{
         btn_iniciarPartida.setPrefWidth(200);
         btn_reglas.setPrefWidth(200);
         btn_salir.setPrefWidth(200);
+
         this.getChildren().addAll(grupo);
+
         Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/tableroteg.png");
         BackgroundImage fondoImagen = new BackgroundImage(imagen,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         Background fondo = new Background(fondoImagen);
         super.setBackground(fondo);
-    }
 
-    public VistaJuego() {
-        this.inicio();
+        return new Scene(this, 740, 580);
     }
 }

@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.inicializadores.InicializadorDePaisesYContinentes;
+
 import java.util.ArrayList;
 import java.util.Random;
 

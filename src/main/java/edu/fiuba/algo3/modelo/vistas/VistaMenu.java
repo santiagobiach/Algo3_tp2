@@ -2,25 +2,25 @@ package edu.fiuba.algo3.modelo.vistas;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
-import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.control.Button;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.geometry.Pos;
-import javafx.scene.image.Image;
-import javafx.scene.layout.*;
-import javafx.stage.Stage;
+import edu.fiuba.algo3.modelo.controladores.*;
 
 
-public class VistaMenu extends StackPane{
+import java.util.Hashtable;
+
+
+public class VistaMenu extends Vista{
     VistaJuego escenaJuego;
     Stage stage;
     VistaComoJugar escenaInstrucciones;
-    private void inicio(){
+
+    public Scene crearEscena(Hashtable data) {
         Group grupo = new Group();
 
         Button btn_iniciarPartida = new Button();
@@ -30,49 +30,40 @@ public class VistaMenu extends StackPane{
         grupo.getChildren().addAll(btn_iniciarPartida, btn_reglas, btn_salir);
 
         btn_iniciarPartida.setText("INICIAR PARTIDA");
-        btn_reglas.setText("CÓMO JUGAR");
-        btn_salir.setText("SALIR");
-
-        btn_iniciarPartida.setLayoutX(0);
         btn_iniciarPartida.setLayoutY(30);
-
-        btn_reglas.setLayoutX(0);
-        btn_reglas.setLayoutY(60);
-
-        btn_salir.setLayoutX(0);
-        btn_salir.setLayoutY(90);
-
         btn_iniciarPartida.setPrefWidth(200);
+
+        btn_reglas.setText("CÓMO JUGAR");
+        btn_reglas.setLayoutY(60);
         btn_reglas.setPrefWidth(200);
+
+        btn_salir.setText("SALIR");
+        btn_salir.setLayoutY(90);
         btn_salir.setPrefWidth(200);
-        btn_iniciarPartida.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                var scene = new Scene(escenaJuego, 840, 680);
-                stage.setScene(scene);
-                stage.show();
-            }
-        });
-        btn_reglas.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                var scene = new Scene(escenaInstrucciones, 880, 700);
-                stage.setScene(scene);
-                stage.show();
-            }
-        });
+
+        this.setAlignment(Pos.CENTER);
+
         this.getChildren().addAll(grupo);
         Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/Portada_img.jpg");
         BackgroundImage fondoImagen = new BackgroundImage(imagen,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         Background fondo = new Background(fondoImagen);
         super.setBackground(fondo);
+
+        btn_iniciarPartida.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                ControladorMenu.mostrarConfigurarPartida(new Hashtable());
+            }
+        });
+        btn_reglas.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                ControladorMenu.mostrarComoJugar();
+            }
+        });
+
+        return new Scene(this, 740, 580);
     }
 
-    public VistaMenu(Stage stage, VistaJuego escenaJuego, VistaComoJugar escenainstrucciones) {
-       this.stage = stage;
-       this.escenaJuego = escenaJuego;
-       this.escenaInstrucciones = escenainstrucciones;
-       this.inicio();
-    }
 }
 

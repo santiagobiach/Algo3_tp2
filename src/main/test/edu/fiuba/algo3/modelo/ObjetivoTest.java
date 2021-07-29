@@ -1,8 +1,12 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.mocks.BatallaMockGanaAtacante;
+import edu.fiuba.algo3.modelo.excepciones.ExcepcionBatallaInvalida;
+import edu.fiuba.algo3.modelo.objetivos.Objetivo;
+import edu.fiuba.algo3.modelo.objetivos.ObjetivoDeConquista;
+import edu.fiuba.algo3.modelo.objetivos.ObjetivoDeDestruccion;
+import edu.fiuba.algo3.modelo.objetivos.ObjetivoGeneral;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 

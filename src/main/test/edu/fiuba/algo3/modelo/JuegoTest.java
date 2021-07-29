@@ -1,5 +1,12 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.mocks.TableroMockDosJugadores;
+import edu.fiuba.algo3.mocks.TableroMockJ1ArgentinaCon10TropasYJ2BrasilYChile;
+import edu.fiuba.algo3.mocks.TableroMockTodoAsiaParaJugadorUno;
+import edu.fiuba.algo3.mocks.BatallaMockGanaAtacante;
+import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasDisponibles;
+import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasPorContinentesConquistados;
+import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasPorPaisesConquistados;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

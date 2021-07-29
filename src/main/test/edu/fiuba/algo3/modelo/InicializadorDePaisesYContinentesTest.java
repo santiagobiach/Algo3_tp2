@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.canjes.TarjetaDePais;
+import edu.fiuba.algo3.modelo.inicializadores.InicializadorDePaisesYContinentes;
+import edu.fiuba.algo3.modelo.objetivos.Objetivo;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;

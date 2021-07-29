@@ -1,5 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.batallas.Batalla;
+import edu.fiuba.algo3.mocks.BatallaMockGanaAtacante;
+import edu.fiuba.algo3.mocks.BatallaMockGanaDefensor;
+import edu.fiuba.algo3.modelo.batallas.BatallaNormal;
+import edu.fiuba.algo3.modelo.excepciones.ExcepcionBatallaInvalida;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,7 +24,8 @@ public class BatallaTest {
         atacante.agregarTropas(10);
 
         assertThrows(ExcepcionBatallaInvalida.class, () ->
-            {Batalla batalla = new BatallaNormal(atacante, defensor, 10);});
+            {
+                Batalla batalla = new BatallaNormal(atacante, defensor, 10);});
     }
 
     @Test

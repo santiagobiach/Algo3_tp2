@@ -1,11 +1,16 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.canjes.Canje;
+import edu.fiuba.algo3.modelo.canjes.CanjeadorDeTarjetas;
+import edu.fiuba.algo3.modelo.canjes.PrimerCanje;
+import edu.fiuba.algo3.modelo.canjes.TarjetaDePais;
+
 import java.util.ArrayList;
 
 public class Jugador {
     private ArrayList<TarjetaDePais> tarjetasObtenidas;
     private String nombre;
-    private NumeroDeCanje numeroDeCanje;
+    private Canje numeroDeCanje;
     private int tropasDisponibles;
 
     private ArrayList<Pais> paisesConquistados;

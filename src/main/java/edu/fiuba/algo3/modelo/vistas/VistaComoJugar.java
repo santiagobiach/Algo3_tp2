@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.vistas;
 
+import edu.fiuba.algo3.modelo.controladores.ControladorMenu;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -16,10 +17,14 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import javax.net.ssl.SSLEngineResult;
+import java.util.Hashtable;
 
-public class VistaComoJugar extends StackPane{
+
+public class VistaComoJugar extends Vista{
     Stage stage;
-    private void inicio(){
+
+    public Scene crearEscena(Hashtable data){
         Group grupo = new Group();
         Button btn_salir = new Button();
         grupo.getChildren().addAll(btn_salir);
@@ -29,13 +34,21 @@ public class VistaComoJugar extends StackPane{
         btn_salir.setLayoutY(90);
         btn_salir.setPrefWidth(200);
 
+        this.setAlignment(Pos.CENTER);
+
         this.getChildren().addAll(grupo);
         Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/instrucciones.png");
         BackgroundImage fondoImagen = new BackgroundImage(imagen,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         Background fondo = new Background(fondoImagen);
         super.setBackground(fondo);
-    }
-    public VistaComoJugar() {
-        this.inicio();
+
+        btn_salir.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                ControladorMenu.mostrarMenu();
+            }
+        });
+
+        return new Scene(this, 740, 580);
     }
 }
