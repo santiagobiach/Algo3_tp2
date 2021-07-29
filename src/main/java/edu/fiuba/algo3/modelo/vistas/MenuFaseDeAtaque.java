@@ -60,7 +60,7 @@ public class MenuFaseDeAtaque extends VBox {
 
 
         btn_siguienteFase.setText("Fase siguiente");
-        BotonAvanzarTurnoHandler botonAvanzarTurnoHandler = new BotonAvanzarTurnoHandler(juego, this);
+        BotonAvanzarTurnoHandler botonAvanzarTurnoHandler = new BotonAvanzarTurnoHandler(juego, new MenuFaseDeReagrupación(juego));
         btn_siguienteFase.setOnAction(botonAvanzarTurnoHandler);
         btn_atacar.setPrefWidth(100);
         tropas.setPrefWidth(60);
@@ -79,14 +79,12 @@ public class MenuFaseDeAtaque extends VBox {
         }
         return items;
     }
+
     public void actualizar(){
         //this.getChildren().removeAll();
         this.turno.setText("Turno:" + juego.getJugadorActual().getNombre());
         cb.getItems().clear();
         cb2.getItems().clear();
         cb.getItems().addAll(conseguirNombrePaisesDeJugador(juego.getJugadorActual()));
-
-
-
     }
 }

@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.controladores;
 
+import edu.fiuba.algo3.mocks.TableroMock20TropasPorPais;
+import edu.fiuba.algo3.mocks.TableroMockTodoAsiaParaJugadorUno;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Tablero;
@@ -24,7 +26,7 @@ public class ControladorJuego {
     public static void empezarPartida(ArrayList<String> nombres){
         Tablero tablero = null;
         try{
-             tablero = new Tablero();
+             tablero = new TableroMock20TropasPorPais();
         } catch (Exception e){
             System.out.printf("Excepcion creando tablero");
             System.exit(-1);

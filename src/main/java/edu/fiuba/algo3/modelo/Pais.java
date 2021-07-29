@@ -46,6 +46,18 @@ public class Pais{
             cantidadDeTropas = 0;
     }
 
+    public void recibirTropasDe(Pais paisDeOrigen, Integer cantidad){
+        if (paisDeOrigen.dominadoPor(this.jugador)){
+            this.agregarTropas(cantidad);
+            paisDeOrigen.restarTropas(cantidad);
+        }
+    }
+
+    public void moverTropasA(Pais paisDeDestino, Integer cantidad){
+        if (this.cantidadDeTropas>cantidad)
+            paisDeDestino.recibirTropasDe(this, cantidad);
+    }
+
     public int getCantidadDeTropas(){
         return cantidadDeTropas;
     }

@@ -19,8 +19,9 @@ public class VistaJuego extends Vista{
 
 
         MenuFaseDeAtaque menu = new MenuFaseDeAtaque(juego);
+        MenuFaseDeReagrupación menuReagrupación = new MenuFaseDeReagrupación(juego);
 
-        this.getChildren().addAll(menu);
+        this.getChildren().addAll(menuReagrupación);
 
         Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/tableroteg.png");
         BackgroundImage fondoImagen = new BackgroundImage(imagen,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
