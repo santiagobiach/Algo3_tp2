@@ -37,6 +37,7 @@ public class ControladorJuego {
         colores.add(Color.rgb(204, 51, 17));
         colores.add(Color.rgb(238, 119, 51));
         colores.add(Color.rgb(0, 153, 136));
+        colores.add(Color.rgb(238, 51, 119));
         colores.add(Color.rgb(0, 0, 0));
 
         Random generadorRandom = new Random();
