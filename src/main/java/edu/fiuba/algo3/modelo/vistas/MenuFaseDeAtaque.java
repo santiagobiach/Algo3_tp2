@@ -16,8 +16,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class MenuFaseDeAtaque extends VBox {
@@ -31,10 +31,20 @@ public class MenuFaseDeAtaque extends VBox {
     private Button BTContinuar;
     private Button BTObjetivos;
     private Spinner SPTropas;
+    private Label LBpaisAtacante;
+    private Label LBpaisDefensor;
 
     public MenuFaseDeAtaque(Juego juego, Stage stage){
         this.setSpacing(10);
         this.setPadding(new Insets(20));
+
+//        BorderStroke trazoBorde = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT);
+//        this.setBorder(new Border(trazoBorde));
+
+        this.setPrefHeight(1200);
+        this.setMinWidth(200);
+        BackgroundFill colorFondo = new BackgroundFill(Color.LIGHTGREY, null, null);
+        this.setBackground(new Background(colorFondo));
 
         this.juego = juego;
         this.turno = new Label();
@@ -62,24 +72,29 @@ public class MenuFaseDeAtaque extends VBox {
         BTObjetivos.setText("Objetivos");
         BTObjetivos.setPrefWidth(80);
 
-        HBox contenedorControlesAtaque = new HBox();
-        contenedorControlesAtaque.setSpacing(10);
-        contenedorControlesAtaque.getChildren().addAll(BTAtacar, SPTropas);
+        HBox contenedorSuperior = new HBox();
+        contenedorSuperior.setSpacing(10);
+        contenedorSuperior.getChildren().addAll(BTObjetivos, BTContinuar);
 
-        HBox contenedorPaisAtacante = new HBox();
+        this.LBpaisAtacante = new Label();
+        LBpaisAtacante.setText("Seleccionar Pais Atacante");
+
+        VBox contenedorPaisAtacante = new VBox();
         contenedorPaisAtacante.setSpacing(10);
         contenedorPaisAtacante.getChildren().addAll(CBPaisAtacante, tropasAtacante);
 
-        HBox contenedorPaisDefensor = new HBox();
+        this.LBpaisDefensor = new Label();
+        LBpaisDefensor.setText("Seleccionar Pais para Atacar");
+
+        VBox contenedorPaisDefensor = new VBox();
         contenedorPaisDefensor.setSpacing(10);
         contenedorPaisDefensor.getChildren().addAll(CBPaisDefensor, tropasDefensor);
 
-        HBox contenedorInferior = new HBox();
-        contenedorInferior.setSpacing(10);
-        contenedorInferior.getChildren().addAll(BTObjetivos, BTContinuar);
+        HBox contenedorControlesAtaque = new HBox();
+        contenedorControlesAtaque.setSpacing(10);
+        contenedorControlesAtaque.getChildren().addAll(SPTropas, BTAtacar);
 
-
-        this.getChildren().addAll(turno, contenedorControlesAtaque,contenedorPaisAtacante,contenedorPaisDefensor, contenedorInferior);
+        this.getChildren().addAll(turno, contenedorSuperior, LBpaisAtacante, contenedorPaisAtacante, LBpaisDefensor, contenedorPaisDefensor, contenedorControlesAtaque);
         actualizar();
 
         //Handlers

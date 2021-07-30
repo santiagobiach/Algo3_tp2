@@ -14,7 +14,7 @@ public class BotonMostrarObjetivoHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText("Objetivos(Solo se debe cumplir uno para ganar)");
+        alert.setHeaderText("Objetivos (Solo se debe cumplir uno para ganar)");
         alert.setTitle("Objetivos");
         String descripciones= "";
         for(Objetivo obj: juego.getJugadorActual().getObjetivos()){

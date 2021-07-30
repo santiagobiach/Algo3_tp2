@@ -52,8 +52,6 @@ public class VistaMenu extends Vista{
         BackgroundImage fondoImagen = new BackgroundImage(imagen,BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         Background fondo = new Background(fondoImagen);
 
-
-
         super.setBackground(fondo);
 
         btn_iniciarPartida.setOnAction(new EventHandler<ActionEvent>() {
