@@ -24,13 +24,14 @@ import javafx.stage.Stage;
 public class MenuFaseDeReagrupación extends VBox {
     private Juego juego;
     private Label turno;
-    private HBox contenedorPaisDeOrigen;
-    private HBox contenedorPaisDeDestino;
+    private VBox contenedorPaisDeOrigen;
+    private VBox contenedorPaisDeDestino;
     private HBox contenedorReagrupar;
     private ComboBox CBPaisDeOrigen;
     private ComboBox CBPaisDeDestino;
     private Spinner SPTropas;
     private Button BTTropas;
+    private Button BTObjetivos;
     private Button BTTerminarTurno;
     private Label tropasPaisDeOrigen;
     private Label tropasPaisDeDestino;
@@ -48,35 +49,48 @@ public class MenuFaseDeReagrupación extends VBox {
         BackgroundFill colorFondo = new BackgroundFill(Color.LIGHTGREY, null, null);
         this.setBackground(new Background(colorFondo));
 
+        this.BTObjetivos = new Button();
+        BTObjetivos.setText("Objetivos");
+        BTObjetivos.setPrefWidth(80);
+
+        BTTerminarTurno = new Button();
+        BTTerminarTurno.setText("Terminar");
+        BTTerminarTurno.setPrefWidth(80);
+
+        HBox contenedorSuperior = new HBox();
+        contenedorSuperior.setSpacing(10);
+        contenedorSuperior.getChildren().addAll(BTObjetivos, BTTerminarTurno);
+
         this.paisDeOrigen = new Label();
         paisDeOrigen.setText("Pais de Origen");
 
         this.CBPaisDeOrigen = new ComboBox();
-        CBPaisDeOrigen.setPrefWidth(150);
+        CBPaisDeOrigen.setPrefWidth(170);
         this.tropasPaisDeOrigen = new Label();
+        this.tropasPaisDeOrigen.setText("Tropas:");
 
         this.paisDeDestino = new Label();
         paisDeDestino.setText("Pais de Destino");
 
         this.CBPaisDeDestino = new ComboBox();
-        CBPaisDeDestino.setPrefWidth(150);
+        CBPaisDeDestino.setPrefWidth(170);
         this.tropasPaisDeDestino = new Label();
+        this.tropasPaisDeDestino.setText("Tropas:");
 
         this.cantidadDeTropas = new Label();
         cantidadDeTropas.setText("Cantidad de Tropas");
 
         this.SPTropas = new Spinner(1, 100, 1);
-        SPTropas.setPrefWidth(80);
+        SPTropas.setPrefWidth(60);
         this.BTTropas = new Button();
         BTTropas.setText("Mover");
-        BTTropas.setPrefWidth(65);
+        BTTropas.setPrefWidth(100);
 
-
-        this.contenedorPaisDeOrigen = new HBox();
+        this.contenedorPaisDeOrigen = new VBox();
         contenedorPaisDeOrigen.setSpacing(5);
         contenedorPaisDeOrigen.getChildren().addAll(CBPaisDeOrigen, tropasPaisDeOrigen);
 
-        this.contenedorPaisDeDestino = new HBox();
+        this.contenedorPaisDeDestino = new VBox();
         contenedorPaisDeDestino.setSpacing(5);
         contenedorPaisDeDestino.getChildren().addAll(CBPaisDeDestino, tropasPaisDeDestino);
 
@@ -85,13 +99,10 @@ public class MenuFaseDeReagrupación extends VBox {
         contenedorReagrupar.setPrefWidth(150);
         contenedorReagrupar.getChildren().addAll(SPTropas, BTTropas);
 
-        BTTerminarTurno = new Button();
-        BTTerminarTurno.setPrefWidth(150);
-        BTTerminarTurno.setText("Terminar turno");
 
-        this.getChildren().addAll(turno, paisDeOrigen, contenedorPaisDeOrigen, paisDeDestino,
-                contenedorPaisDeDestino,cantidadDeTropas, contenedorReagrupar, BTTerminarTurno);
 
+        this.getChildren().addAll(turno, contenedorSuperior, paisDeOrigen, contenedorPaisDeOrigen, paisDeDestino,
+                contenedorPaisDeDestino,cantidadDeTropas, contenedorReagrupar);
 
         PaisesConquistadosReagrupacionHandler handlerCBPaisDeOrigen =
                 new PaisesConquistadosReagrupacionHandler(CBPaisDeOrigen,CBPaisDeDestino, tropasPaisDeOrigen,

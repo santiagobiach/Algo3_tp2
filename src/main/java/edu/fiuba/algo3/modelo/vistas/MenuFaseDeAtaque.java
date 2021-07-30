@@ -34,6 +34,7 @@ public class MenuFaseDeAtaque extends VBox {
     private Button BTObjetivos;
     private Spinner SPTropas;
     private Label LBpaisAtacante;
+    private Label cantidadDeTropas;
     private Label LBpaisDefensor;
 
     public MenuFaseDeAtaque(Juego juego, Stage stage){
@@ -92,11 +93,15 @@ public class MenuFaseDeAtaque extends VBox {
         contenedorPaisDefensor.setSpacing(10);
         contenedorPaisDefensor.getChildren().addAll(CBPaisDefensor, tropasDefensor);
 
+        this.cantidadDeTropas = new Label();
+        cantidadDeTropas.setText("Cantidad de Tropas");
+
         HBox contenedorControlesAtaque = new HBox();
         contenedorControlesAtaque.setSpacing(10);
         contenedorControlesAtaque.getChildren().addAll(SPTropas, BTAtacar);
 
-        this.getChildren().addAll(turno, contenedorSuperior, LBpaisAtacante, contenedorPaisAtacante, LBpaisDefensor, contenedorPaisDefensor, contenedorControlesAtaque);
+        this.getChildren().addAll(turno, contenedorSuperior, LBpaisAtacante, contenedorPaisAtacante,
+                LBpaisDefensor, contenedorPaisDefensor, cantidadDeTropas, contenedorControlesAtaque);
         actualizar();
 
         //Handlers
