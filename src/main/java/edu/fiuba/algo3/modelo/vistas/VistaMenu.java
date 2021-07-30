@@ -16,9 +16,6 @@ import java.util.Hashtable;
 
 
 public class VistaMenu extends Vista{
-    VistaJuego escenaJuego;
-    Stage stage;
-    VistaComoJugar escenaInstrucciones;
 
     public Scene crearEscena(Hashtable data) {
 

@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.vistas;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Pais;
+import edu.fiuba.algo3.modelo.controladores.ControladorJuego;
 import edu.fiuba.algo3.modelo.vistas.botones.BotonAtacarHandler;
 import edu.fiuba.algo3.modelo.vistas.botones.BotonAvanzarTurnoHandler;
 import edu.fiuba.algo3.modelo.vistas.botones.BotonMostrarObjetivoHandler;
@@ -18,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 public class MenuFaseDeAtaque extends VBox {
@@ -125,11 +127,13 @@ public class MenuFaseDeAtaque extends VBox {
 
     public void actualizar(){
         //this.getChildren().removeAll();
-        tropasAtacante.setText("");
-        tropasDefensor.setText("");
-        this.turno.setText("Turno: " + juego.getJugadorActual().getNombre());
+        Jugador jugadorActual = juego.getJugadorActual();
+        tropasAtacante.setText("Tropas:");
+        tropasDefensor.setText("Tropas:");
+        this.turno.setText("Turno: " + jugadorActual.getNombre());
+        this.turno.setTextFill(ControladorJuego.getColorJugador(jugadorActual));
         CBPaisAtacante.getItems().clear();
         CBPaisDefensor.getItems().clear();
-        CBPaisAtacante.getItems().addAll(conseguirNombrePaisesDeJugador(juego.getJugadorActual()));
+        CBPaisAtacante.getItems().addAll(conseguirNombrePaisesDeJugador(jugadorActual));
     }
 }

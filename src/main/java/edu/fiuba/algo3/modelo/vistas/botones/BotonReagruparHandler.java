@@ -43,6 +43,7 @@ public class BotonReagruparHandler implements EventHandler<ActionEvent> {
         Integer cantidad = 0;
         try{
             cantidad = (Integer)SPTropas.getValue();
+
         } catch (Exception e){};
 
         if(paisDeDestino != null && paisDeOrigen != null){

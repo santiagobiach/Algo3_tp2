@@ -11,21 +11,48 @@ import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasPorPaisesConquistados
 import edu.fiuba.algo3.modelo.vistas.MenuFaseDeAtaque;
 import edu.fiuba.algo3.modelo.vistas.VistaJuego;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Random;
 
 public class ControladorJuego {
     private static Stage escenario;
     private static Juego juego;
+    private static Hashtable<String, Color> coloresJugadores;
 
     public static void setEscenario(Stage escenario){
        ControladorJuego.escenario = escenario;
     }
 
+    public static Color getColorJugador(Jugador jugador){
+        return coloresJugadores.get(jugador.getNombre());
+    }
+
+    private static Hashtable<String, Color> asignarColoresRandomAJugadores(ArrayList<Jugador> jugadores){
+        ArrayList<Color> colores = new ArrayList<>();
+        colores.add(Color.rgb(0, 119, 119));
+        colores.add(Color.rgb(204, 51, 17));
+        colores.add(Color.rgb(238, 119, 51));
+        colores.add(Color.rgb(0, 153, 136));
+        colores.add(Color.rgb(0, 0, 0));
+
+        Random generadorRandom = new Random();
+        Hashtable<String, Color> coloresJugadores = new Hashtable<>();
+
+        for (Jugador j: jugadores){
+            int indice = Math.abs(generadorRandom.nextInt() % colores.size());
+            coloresJugadores.put(j.getNombre(), colores.get(indice));
+            colores.remove(indice);
+        }
+        return coloresJugadores;
+    }
+
     public static void empezarPartida(ArrayList<String> nombres){
         Tablero tablero = null;
+
         try{
              tablero = new TableroMock20TropasPorPais();
         } catch (Exception e){
@@ -41,6 +68,8 @@ public class ControladorJuego {
         for(String n: nombres){
             jugadores.add(new Jugador(n));
         }
+
+        ControladorJuego.coloresJugadores = ControladorJuego.asignarColoresRandomAJugadores(jugadores);
 
         try{
             juego = new Juego(tablero, calculadores, jugadores);
