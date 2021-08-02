@@ -4,6 +4,8 @@ import edu.fiuba.algo3.modelo.batallas.BatallaNormal;
 import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasDisponibles;
 import edu.fiuba.algo3.modelo.canjes.TarjetaDePais;
 import edu.fiuba.algo3.modelo.excepciones.ExcepcionBatallaInvalida;
+import edu.fiuba.algo3.modelo.fases.Fase;
+import edu.fiuba.algo3.modelo.fases.FaseColocacionInicial;
 import edu.fiuba.algo3.modelo.inicializadores.InicializadorDePaisesYContinentes;
 import edu.fiuba.algo3.modelo.objetivos.Objetivo;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoGeneral;
@@ -17,7 +19,8 @@ public class Juego{
     private Tablero tablero;
     private Jugador ganador;
     private ArrayList<Objetivo> objetivos;
-    private Jugador jugadorActual;
+    private Fase fase;
+    //private Jugador jugadorActual;
     private ArrayList<CalculadorTropasDisponibles> calculadores;
 
     public Juego(Tablero tablero, ArrayList<CalculadorTropasDisponibles> calculadores,
@@ -47,10 +50,13 @@ public class Juego{
         Random generadorRandom = new Random();
         int numeroRandom = generadorRandom.nextInt(jugadores.size());
         repartirObjetivos(jugadores);
-        this.jugadorActual = jugadores.get(numeroRandom);
+        this.jugadores = ordenarJugadores(jugadores, numeroRandom);
+        this.calculadores = calculadores;
+        this.fase = new FaseColocacionInicial(jugadores, 5, 3, calculadores);
+        //this.jugadorActual = jugadores.get(numeroRandom);
     }
     public Jugador getJugadorActual(){
-        return jugadorActual;
+        return fase.getJugadorActual();
     }
     public TarjetaDePais getTarjeta(Pais pais){
         for (TarjetaDePais t: mazo){
@@ -63,13 +69,11 @@ public class Juego{
         return this.tablero;
     }
     public void proximoTurno(){
-        int indiceTurno = jugadores.indexOf(jugadorActual);
-        if(indiceTurno == (jugadores.size() - 1)){
-            indiceTurno = 0;
-            jugadorActual = jugadores.get(indiceTurno);
-        }else{
-            jugadorActual = jugadores.get(indiceTurno + 1);
-        }
+        this.fase = fase.proximoTurno();
+    }
+
+    public Fase getFase() {
+        return fase;
     }
 
     public void crearBatalla(Pais atacante, Pais defensor, int tropasAtacantes){
@@ -79,5 +83,18 @@ public class Juego{
         }catch(ExcepcionBatallaInvalida e){
             System.out.println("La batalla es invalida");
         }
+    }
+
+    private ArrayList<Jugador> ordenarJugadores(ArrayList<Jugador> jugadores, int indiceJugadorInicial){
+        ArrayList<Jugador> jugadoresOrdenados = new ArrayList<>();
+
+        for(int i = 0; i < jugadores.size(); i++){
+            int aux = i + indiceJugadorInicial;
+            if(aux >=jugadores.size())
+                jugadoresOrdenados.add(jugadores.get(aux-jugadores.size()));
+            else
+                jugadoresOrdenados.add(jugadores.get(aux));
+        }
+        return jugadoresOrdenados;
     }
 }

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.vistas.botones;
 
 import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.modelo.controladores.ControladorJuego;
 import edu.fiuba.algo3.modelo.vistas.MenuFaseDeAtaque;
 import edu.fiuba.algo3.modelo.vistas.MenuFaseDeReagrupación;
 import edu.fiuba.algo3.modelo.vistas.VistaJuego;
@@ -20,10 +21,7 @@ public class BotonAvanzarTurnoHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         juego.proximoTurno();
-        Hashtable data = new Hashtable();
-        data.put("menu", new MenuFaseDeAtaque(juego, stage));
-        stage.setScene(new VistaJuego(juego).crearEscena(data));
-
+        ControladorJuego.mostrarTableroSegunFase();
 
     }
 }

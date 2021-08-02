@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo.vistas.botones;
 
 import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.modelo.controladores.ControladorJuego;
 import edu.fiuba.algo3.modelo.vistas.MenuFaseDeColocacion;
 import edu.fiuba.algo3.modelo.vistas.MenuFaseDeReagrupación;
 import edu.fiuba.algo3.modelo.vistas.VistaJuego;
@@ -20,8 +21,7 @@ public class BotonTerminarReagrupacionHandler implements EventHandler<ActionEven
     }
     @Override
     public void handle(ActionEvent actionEvent) {
-        Hashtable data = new Hashtable();
-        data.put("menu", new MenuFaseDeColocacion(juego, stage));
-        stage.setScene(new VistaJuego(juego).crearEscena(data));
+        juego.proximoTurno();
+        ControladorJuego.mostrarTableroSegunFase();
     }
 }
