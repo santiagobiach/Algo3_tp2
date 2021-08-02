@@ -34,7 +34,8 @@ public class PaisesConquistadosReagrupacionHandler implements EventHandler<Actio
             CBPaisDeDestino.getItems().clear();
             tropasPaisDeOrigen.setText("Tropas: " + String.valueOf(pais.getCantidadDeTropas()));
             for (Pais p : pais.getPaisesLimitrofes()) {
-                CBPaisDeDestino.getItems().add(p.getNombre());
+                if(p.dominadoPor(juego.getJugadorActual()))
+                    CBPaisDeDestino.getItems().add(p.getNombre());
             }
         }
 //        menu.actualizar();

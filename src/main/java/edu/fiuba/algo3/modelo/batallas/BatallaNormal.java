@@ -50,6 +50,7 @@ public class BatallaNormal implements Batalla{
             tirosAtacante.remove(0);
             tirosDefensor.remove(0);
         }
+
         defensor.defenderConquista(atacante);
 
     }

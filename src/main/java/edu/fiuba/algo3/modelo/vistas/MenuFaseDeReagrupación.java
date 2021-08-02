@@ -6,6 +6,7 @@ import edu.fiuba.algo3.modelo.Pais;
 import edu.fiuba.algo3.modelo.controladores.ControladorJuego;
 import edu.fiuba.algo3.modelo.controladores.ControladorMenu;
 import edu.fiuba.algo3.modelo.vistas.botones.BotonAvanzarTurnoHandler;
+import edu.fiuba.algo3.modelo.vistas.botones.BotonMostrarObjetivoHandler;
 import edu.fiuba.algo3.modelo.vistas.botones.BotonReagruparHandler;
 import edu.fiuba.algo3.modelo.vistas.comboBox.PaisesConquistadosReagrupacionHandler;
 import edu.fiuba.algo3.modelo.vistas.comboBox.PaisesLimitrofesReagrupacionHandler;
@@ -119,6 +120,8 @@ public class MenuFaseDeReagrupación extends VBox {
                 tropasPaisDeOrigen, tropasPaisDeDestino, juego);
 
         BTTropas.setOnAction(handlerBotonReagrupar);
+        BotonMostrarObjetivoHandler handlerBotonObjetivo = new BotonMostrarObjetivoHandler(juego);
+        BTObjetivos.setOnAction(handlerBotonObjetivo);
 
         BotonAvanzarTurnoHandler botonAvanzarTurnoHandler = new BotonAvanzarTurnoHandler(juego, stage);
         BTTerminarTurno.setOnAction(botonAvanzarTurnoHandler);
