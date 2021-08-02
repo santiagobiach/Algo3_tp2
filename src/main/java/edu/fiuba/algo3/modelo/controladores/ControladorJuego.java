@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasDisponibles;
 import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasPorContinentesConquistados;
 import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasPorPaisesConquistados;
 import edu.fiuba.algo3.modelo.vistas.MenuFaseDeAtaque;
+import edu.fiuba.algo3.modelo.vistas.MenuFaseDeColocacion;
 import edu.fiuba.algo3.modelo.vistas.VistaJuego;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -80,12 +81,21 @@ public class ControladorJuego {
         }
         juego.inicializar();
         mostrarTableroInicial();
+        //mostrarFaseColocacion();
     }
 
     public static void mostrarTableroInicial(){
 
         Hashtable data = new Hashtable();
         data.put("menu", new MenuFaseDeAtaque(juego, escenario));
+        Scene escena = (new VistaJuego(juego)).crearEscena(data);
+        escenario.setScene(escena);
+        escenario.show();
+    }
+
+    public static void mostrarFaseColocacion(){
+        Hashtable data = new Hashtable();
+        data.put("menu", new MenuFaseDeColocacion(juego, escenario));
         Scene escena = (new VistaJuego(juego)).crearEscena(data);
         escenario.setScene(escena);
         escenario.show();

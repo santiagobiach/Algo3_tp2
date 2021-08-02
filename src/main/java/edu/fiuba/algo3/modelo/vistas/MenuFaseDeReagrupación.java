@@ -8,6 +8,7 @@ import edu.fiuba.algo3.modelo.controladores.ControladorMenu;
 import edu.fiuba.algo3.modelo.vistas.botones.BotonAvanzarTurnoHandler;
 import edu.fiuba.algo3.modelo.vistas.botones.BotonMostrarObjetivoHandler;
 import edu.fiuba.algo3.modelo.vistas.botones.BotonReagruparHandler;
+import edu.fiuba.algo3.modelo.vistas.botones.BotonTerminarReagrupacionHandler;
 import edu.fiuba.algo3.modelo.vistas.comboBox.PaisesConquistadosReagrupacionHandler;
 import edu.fiuba.algo3.modelo.vistas.comboBox.PaisesLimitrofesReagrupacionHandler;
 import javafx.event.ActionEvent;
@@ -123,8 +124,8 @@ public class MenuFaseDeReagrupación extends VBox {
         BotonMostrarObjetivoHandler handlerBotonObjetivo = new BotonMostrarObjetivoHandler(juego);
         BTObjetivos.setOnAction(handlerBotonObjetivo);
 
-        BotonAvanzarTurnoHandler botonAvanzarTurnoHandler = new BotonAvanzarTurnoHandler(juego, stage);
-        BTTerminarTurno.setOnAction(botonAvanzarTurnoHandler);
+        BotonTerminarReagrupacionHandler handlerBotonTerminar = new BotonTerminarReagrupacionHandler(juego, stage);
+        BTTerminarTurno.setOnAction(handlerBotonTerminar);
 
         actualizar();
 
