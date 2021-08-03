@@ -1,7 +1,11 @@
 package edu.fiuba.algo3.modelo.fases;
 
+import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasDisponibles;
+import edu.fiuba.algo3.modelo.vistas.MenuFaseDeColocacion;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -15,6 +19,10 @@ public class SegundaFaseColocacionInicial extends Fase{
         this.jugadorActual.agregarTropasDisponibles(tropasAOtorgar);
         this.calculador = calculador;
 
+    }
+    @Override
+    public VBox crearMenu(Juego juego, Stage escenario) {
+        return new MenuFaseDeColocacion(juego, escenario);
     }
 
     @Override

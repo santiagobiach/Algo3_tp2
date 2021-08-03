@@ -83,35 +83,13 @@ public class ControladorJuego {
         }
         juego.inicializar();
         mostrarTableroSegunFase();
-        //mostrarFaseColocacion();
-    }
-
-    public static void mostrarTableroInicial(){
-
-        Hashtable data = new Hashtable();
-        data.put("menu", new MenuFaseDeAtaque(juego, escenario));
-        Scene escena = (new VistaJuego(juego)).crearEscena(data);
-        escenario.setScene(escena);
-        escenario.show();
     }
     public static void mostrarTableroSegunFase(){
 
         Hashtable data = new Hashtable();
         Fase fase = juego.getFase();
-        if(fase instanceof FaseColocacionInicial || fase instanceof SegundaFaseColocacionInicial || fase instanceof FaseDeColocacion) {
-            data.put("menu", new MenuFaseDeColocacion(juego, escenario));
-        }else if(fase instanceof FaseDeAtaque){
-            data.put("menu", new MenuFaseDeAtaque(juego, escenario));
-        }
+        data.put("menu", fase.crearMenu(juego, escenario));
 
-
-        Scene escena = (new VistaJuego(juego)).crearEscena(data);
-        escenario.setScene(escena);
-        escenario.show();
-    }
-    public static void mostrarFaseColocacion(){
-        Hashtable data = new Hashtable();
-        data.put("menu", new MenuFaseDeColocacion(juego, escenario));
         Scene escena = (new VistaJuego(juego)).crearEscena(data);
         escenario.setScene(escena);
         escenario.show();

@@ -68,8 +68,10 @@ public class Juego{
     public Tablero getTablero(){
         return this.tablero;
     }
+
     public void proximoTurno(){
-        this.fase = fase.proximoTurno();
+        if (this.getJugadorActual().tropasDisponibles() == 0)
+            this.fase = fase.proximoTurno();
     }
 
     public Fase getFase() {

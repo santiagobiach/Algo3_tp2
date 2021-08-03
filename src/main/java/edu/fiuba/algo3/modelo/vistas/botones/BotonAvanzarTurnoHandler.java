@@ -14,6 +14,7 @@ import java.util.Hashtable;
 public class BotonAvanzarTurnoHandler implements EventHandler<ActionEvent> {
     private Juego juego;
     private Stage stage;
+
     public BotonAvanzarTurnoHandler(Juego juego, Stage stage){
         this.juego = juego;
         this.stage = stage;

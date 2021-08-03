@@ -11,6 +11,8 @@ import edu.fiuba.algo3.modelo.vistas.botones.BotonReagruparHandler;
 import edu.fiuba.algo3.modelo.vistas.comboBox.ComboBoxPaisesColocacionHandler;
 import edu.fiuba.algo3.modelo.vistas.comboBox.PaisesConquistadosReagrupacionHandler;
 import edu.fiuba.algo3.modelo.vistas.comboBox.PaisesLimitrofesReagrupacionHandler;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -66,7 +68,6 @@ public class MenuFaseDeColocacion extends VBox {
         this.tropasPaisDeOrigen = new Label();
         this.tropasPaisDeOrigen.setText("Tropas:");
 
-
         this.cantidadDeTropas = new Label();
         cantidadDeTropas.setText("Cantidad de Tropas disponibles: ");
 
@@ -80,29 +81,33 @@ public class MenuFaseDeColocacion extends VBox {
         contenedorPaisDeOrigen.setSpacing(5);
         contenedorPaisDeOrigen.getChildren().addAll(CBPaisDeOrigen, tropasPaisDeOrigen);
 
-
-
         this.contenedorColocar = new HBox();
         contenedorColocar.setSpacing(5);
         contenedorColocar.setPrefWidth(150);
         contenedorColocar.getChildren().addAll(SPTropas, BTTropas);
 
-
-
         this.getChildren().addAll(turno, contenedorSuperior, paisDeOrigen, contenedorPaisDeOrigen,
                 cantidadDeTropas, contenedorColocar);
 
+        //Handlers
         ComboBoxPaisesColocacionHandler ComboBoxPaisesHandler = new ComboBoxPaisesColocacionHandler(CBPaisDeOrigen,
                 tropasPaisDeOrigen, juego);
         CBPaisDeOrigen.setOnAction(ComboBoxPaisesHandler);
+
         BotonMostrarObjetivoHandler handlerBotonObjetivo = new BotonMostrarObjetivoHandler(juego);
         BTObjetivos.setOnAction(handlerBotonObjetivo);
 
-        BotonAvanzarTurnoHandler botonAvanzarTurnoHandler = new BotonAvanzarTurnoHandler(juego, stage);
-        BTTerminarTurno.setOnAction(botonAvanzarTurnoHandler);
         BotonColocarHandler botonColocarHandler = new BotonColocarHandler(CBPaisDeOrigen, tropasPaisDeOrigen,
                 cantidadDeTropas,SPTropas, juego);
         BTTropas.setOnAction(botonColocarHandler);
+
+        BTTerminarTurno.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                juego.proximoTurno();
+                ControladorJuego.mostrarTableroSegunFase();
+            }
+        });
 
         actualizar();
     }
