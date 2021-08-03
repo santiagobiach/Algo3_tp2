@@ -3,10 +3,10 @@ package edu.fiuba.algo3.modelo.vistas;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Pais;
 import edu.fiuba.algo3.modelo.controladores.ControladorJuego;
-import edu.fiuba.algo3.modelo.vistas.vistaPaisController.VistaPaisPopupHandler;
+import edu.fiuba.algo3.modelo.vistas.vistaPaisController.VistaPaisLabelHandler;
 import javafx.scene.control.Label;
 import javafx.scene.shape.SVGPath;
-import javafx.stage.Popup;
+
 import java.util.Observable;
 import java.util.Observer;
 
@@ -17,7 +17,7 @@ public class VistaPais extends SVGPath implements Observer {
         pais.addObserver(this);
         this.setFill(ControladorJuego.getColorJugador(pais.getJugador()));
 
-        VistaPaisPopupHandler paisPopupHandler = new VistaPaisPopupHandler(this,labelNombrePais,pais.getNombre());
+        VistaPaisLabelHandler paisPopupHandler = new VistaPaisLabelHandler(this,labelNombrePais,pais.getNombre());
         this.setOnMouseEntered(paisPopupHandler);
     }
 

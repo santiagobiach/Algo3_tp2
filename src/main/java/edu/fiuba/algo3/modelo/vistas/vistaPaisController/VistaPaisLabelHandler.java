@@ -9,11 +9,11 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
 
-public class VistaPaisPopupHandler implements EventHandler<MouseEvent> {
+public class VistaPaisLabelHandler implements EventHandler<MouseEvent> {
     private VistaPais vistaPais;
     private Label labelNombreDePais;
     private String nombrePais;
-    public VistaPaisPopupHandler(VistaPais vistaPais, Label labelNombreDePais, String nombrePais){
+    public VistaPaisLabelHandler(VistaPais vistaPais, Label labelNombreDePais, String nombrePais){
         this.vistaPais = vistaPais;
         this.labelNombreDePais = labelNombreDePais;
         this.nombrePais = nombrePais;

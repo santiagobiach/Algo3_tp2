@@ -1,17 +1,9 @@
 package edu.fiuba.algo3.modelo.vistas;
 
 import edu.fiuba.algo3.modelo.Juego;
-import edu.fiuba.algo3.modelo.controladores.ControladorJuego;
-import edu.fiuba.algo3.modelo.vistas.vistaPaisController.VistaPaisPopupHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Font;
-
-import java.util.ArrayList;
-import java.util.Hashtable;
 
 public class VistaTablero extends AnchorPane{
     private Juego juego;
