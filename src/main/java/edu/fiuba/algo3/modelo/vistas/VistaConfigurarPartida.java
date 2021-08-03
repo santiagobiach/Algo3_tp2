@@ -96,42 +96,33 @@ public class VistaConfigurarPartida extends Vista{
         this.getChildren().addAll(mensaje, nombres, botones, btn_empezar);
         mostrarCamposYBotones(nombres, botones);
 
-        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/Portada.jpeg");
+        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/Portada2.jpeg");
         BackgroundImage fondoImagen = new BackgroundImage(imagen,BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         Background fondo = new Background(fondoImagen);
         super.setBackground(fondo);
 
-        btn_agregar_jugador.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                agregarJugador(nombres, botones);
-                btn_agregar_jugador.nuevoNumeroDeJugadores(nombresVisibles);
-                btn_quitar_jugador.nuevoNumeroDeJugadores(nombresVisibles);
+        btn_agregar_jugador.setOnAction(actionEvent -> {
+            agregarJugador(nombres, botones);
+            btn_agregar_jugador.nuevoNumeroDeJugadores(nombresVisibles);
+            btn_quitar_jugador.nuevoNumeroDeJugadores(nombresVisibles);
 
-            }
         });
 
-        btn_quitar_jugador.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                quitarJugador(nombres, botones);
-                btn_agregar_jugador.nuevoNumeroDeJugadores(nombresVisibles);
-                btn_quitar_jugador.nuevoNumeroDeJugadores(nombresVisibles);
+        btn_quitar_jugador.setOnAction(actionEvent -> {
+            quitarJugador(nombres, botones);
+            btn_agregar_jugador.nuevoNumeroDeJugadores(nombresVisibles);
+            btn_quitar_jugador.nuevoNumeroDeJugadores(nombresVisibles);
 
-            }
         });
 
-        btn_empezar.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Hashtable data = new Hashtable();
-                ArrayList<String> nombres_introducidos = new ArrayList<>();
-                for (int i = 0; i < nombresVisibles; i++) {
-                    nombres_introducidos.add(((TextField)nombres.getChildren().get(i)).getText());
-                }
-                data.put("nombres", nombres_introducidos);
-                ControladorMenu.empezarPartida(data);
+        btn_empezar.setOnAction(actionEvent -> {
+            Hashtable data1 = new Hashtable();
+            ArrayList<String> nombres_introducidos = new ArrayList<>();
+            for (int i = 0; i < nombresVisibles; i++) {
+                nombres_introducidos.add(((TextField)nombres.getChildren().get(i)).getText());
             }
+            data1.put("nombres", nombres_introducidos);
+            ControladorMenu.empezarPartida(data1);
         });
 
         return new Scene(this, 1280, 720);

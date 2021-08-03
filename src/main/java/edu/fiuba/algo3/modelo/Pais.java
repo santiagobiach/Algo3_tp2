@@ -34,6 +34,7 @@ public class Pais extends Observable {
     public void defenderConquista(Pais atacante){
         if (cantidadDeTropas==0){
             this.setJugador(atacante.getJugador());
+            atacante.getJugador().conquistoA(this);
             this.cantidadDeTropas = 1;
             atacante.restarTropas(1);
         }
@@ -79,9 +80,6 @@ public class Pais extends Observable {
         return (paisesLimitrofes.contains(unPais));
     }
 
-    /*private void agregarPaisLimitrofeAux(Pais unPais){
-        paisesLimitrofes.add(unPais);
-    }*/
     public ArrayList<Pais> getPaisesLimitrofes(){
         return this.paisesLimitrofes;
     }
@@ -91,14 +89,13 @@ public class Pais extends Observable {
 
     public void agregarPaisLimitrofe(Pais unPais){
         paisesLimitrofes.add(unPais);
-        //unPais.agregarPaisLimitrofeAux(this);
     }
 
     public void setJugador(Jugador unJugador){
         if(this.jugador != null)
             jugador.perdioControlDe(this);
 
-        unJugador.conquistoA(this);
+        unJugador.agregarPais(this);
         jugador = unJugador;
         setChanged();
         notifyObservers(unJugador);

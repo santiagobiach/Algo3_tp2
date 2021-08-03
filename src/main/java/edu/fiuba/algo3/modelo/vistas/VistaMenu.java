@@ -45,24 +45,14 @@ public class VistaMenu extends Vista{
         this.setAlignment(Pos.CENTER);
 
         this.getChildren().addAll(contenedorPrincipal);
-        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/Portada.jpeg");
+        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/Portada2.jpeg");
         BackgroundImage fondoImagen = new BackgroundImage(imagen,BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.CENTER,BackgroundSize.DEFAULT);
         Background fondo = new Background(fondoImagen);
 
         super.setBackground(fondo);
 
-        btn_iniciarPartida.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                ControladorMenu.mostrarConfigurarPartida(new Hashtable());
-            }
-        });
-        btn_reglas.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                ControladorMenu.mostrarComoJugar();
-            }
-        });
+        btn_iniciarPartida.setOnAction(actionEvent -> ControladorMenu.mostrarConfigurarPartida(new Hashtable()));
+        btn_reglas.setOnAction(actionEvent -> ControladorMenu.mostrarComoJugar());
 
         return new Scene(this, 1280, 720);
     }

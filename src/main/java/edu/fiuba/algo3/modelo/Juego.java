@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.mocks.MazoMockTodasParaUnJugador;
 import edu.fiuba.algo3.modelo.batallas.BatallaNormal;
 import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasDisponibles;
 import edu.fiuba.algo3.modelo.canjes.TarjetaDePais;
@@ -15,7 +16,7 @@ import java.util.Random;
 
 public class Juego{
     private ArrayList<Jugador> jugadores;
-    private ArrayList<TarjetaDePais> mazo;
+    private Mazo mazo;
     private Tablero tablero;
     private Jugador ganador;
     private ArrayList<Objetivo> objetivos;
@@ -28,13 +29,21 @@ public class Juego{
 
         this.ganador = null;
         this.tablero = tablero;
-        this.mazo = InicializadorDePaisesYContinentes.inicializarCartasDesdeArchivo("src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Cartas.csv",
-                tablero.getPaises());
+
         this.objetivos = InicializadorDePaisesYContinentes.inicializarObjetivosDesdeArchivo(
                 "src/main/java/edu/fiuba/algo3/archivoscsv/Teg- Objetivos.csv", tablero.getContinentes());
         this.jugadores = jugadores;
         this.calculadores = calculadores;
+        this.mazo = new Mazo(tablero);
     }
+
+    public void distribuirTarjetas(){
+        for(Jugador j: jugadores){
+            if (j.conquistoEnUltimoTurno())
+                mazo.darTarjetaA(j);
+        }
+    }
+
     private void repartirObjetivos(ArrayList<Jugador> jugadores){
         Random generadorRandom = new Random();
 
@@ -58,20 +67,19 @@ public class Juego{
     public Jugador getJugadorActual(){
         return fase.getJugadorActual();
     }
+
     public TarjetaDePais getTarjeta(Pais pais){
-        for (TarjetaDePais t: mazo){
-            if (t.pais() == pais)
-                return t;
-        }
-        return null;
+        return mazo.getTarjeta(pais);
     }
     public Tablero getTablero(){
         return this.tablero;
     }
 
     public void proximoTurno(){
-        if (this.getJugadorActual().tropasDisponibles() == 0)
+        if (this.getJugadorActual().tropasDisponibles() == 0){
             this.fase = fase.proximoTurno();
+            distribuirTarjetas();
+        }
     }
 
     public Fase getFase() {

@@ -38,6 +38,7 @@ public class MenuFaseDeColocacion extends Menu {
     private Label tropasPaisDeOrigen;
     private Label paisDeOrigen;
     private Label cantidadDeTropas;
+
     public MenuFaseDeColocacion(Juego juego, Stage stage){
         this.juego = juego;
         this.turno = new Label();
@@ -101,12 +102,9 @@ public class MenuFaseDeColocacion extends Menu {
                 cantidadDeTropas,SPTropas, juego);
         BTTropas.setOnAction(botonColocarHandler);
 
-        BTTerminarTurno.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                juego.proximoTurno();
-                ControladorJuego.mostrarTableroSegunFase();
-            }
+        BTTerminarTurno.setOnAction(actionEvent -> {
+            juego.proximoTurno();
+            ControladorJuego.mostrarTableroSegunFase();
         });
 
         actualizar();

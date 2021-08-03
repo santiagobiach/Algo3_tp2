@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.mocks.BatallaMockGanaAtacante;
-import edu.fiuba.algo3.modelo.excepciones.ExcepcionBatallaInvalida;
 import edu.fiuba.algo3.modelo.objetivos.Objetivo;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoDeConquista;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoGeneral;
@@ -31,7 +29,7 @@ public class ObjetivoTest {
         Jugador jugador = new Jugador("Jose");
         //Le agregamos 30 paises conquistados
         for(int i = 0; i < 30; i++){
-            jugador.conquistoA(new Pais("nombre", new Continente("nombre")));
+            jugador.agregarPais(new Pais("nombre", new Continente("nombre")));
         }
 
         Objetivo objetivo = new ObjetivoGeneral();

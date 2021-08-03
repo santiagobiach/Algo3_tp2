@@ -14,8 +14,19 @@ public class Jugador {
     private Canje numeroDeCanje;
     private int tropasDisponibles;
     private ArrayList<Objetivo> objetivos;
+    private boolean conquistoEnUltimoTurno;
 
     private ArrayList<Pais> paisesConquistados;
+
+    public Jugador(String nombre){
+        this.paisesConquistados = new ArrayList<>();
+        this.nombre = nombre;
+        this.numeroDeCanje = new PrimerCanje();
+        this.tarjetasObtenidas = new ArrayList<>();
+        this.objetivos = new ArrayList<>();
+        this.tropasDisponibles = 0;
+        this.conquistoEnUltimoTurno = false;
+    }
 
     public void activarTarjeta(TarjetaDePais tarjeta){
         tarjeta.activar(this);
@@ -23,11 +34,17 @@ public class Jugador {
 
     public void darTarjeta(TarjetaDePais tarjeta){
         tarjetasObtenidas.add(tarjeta);
+        System.out.println(this.getNombre()+" recibió: "+tarjeta.pais().getNombre()+" ("+tarjeta.simbolo()+")");
+        conquistoEnUltimoTurno = false;
     }
 
     public void eliminarTarjeta(TarjetaDePais tarjeta){
         if (tarjetasObtenidas.contains(tarjeta))
             tarjetasObtenidas.remove(tarjeta);
+    }
+
+    public boolean conquistoEnUltimoTurno(){
+        return conquistoEnUltimoTurno;
     }
 
     public void canjearTarjetas(TarjetaDePais tarjeta1, TarjetaDePais tarjeta2, TarjetaDePais tarjeta3){
@@ -48,14 +65,6 @@ public class Jugador {
         this.numeroDeCanje = this.numeroDeCanje.siguiente();
     }
 
-    public Jugador(String nombre){
-        this.paisesConquistados = new ArrayList<>();
-        this.nombre = nombre;
-        this.numeroDeCanje = new PrimerCanje();
-        this.tarjetasObtenidas = new ArrayList<>();
-        this.objetivos = new ArrayList<>();
-        this.tropasDisponibles = 0;
-    }
     public void colocarEjercitos(int cantidad){
 //        Scanner input = new Scanner(System.in);
 
@@ -91,6 +100,11 @@ public class Jugador {
     }
 
     public void conquistoA(Pais unPais){
+        agregarPais(unPais);
+        conquistoEnUltimoTurno = true;
+    }
+
+    public void agregarPais(Pais unPais){
         this.paisesConquistados.add(unPais);
     }
 
