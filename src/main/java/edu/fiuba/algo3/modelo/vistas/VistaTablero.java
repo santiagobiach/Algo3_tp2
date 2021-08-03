@@ -2,71 +2,79 @@ package edu.fiuba.algo3.modelo.vistas;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.controladores.ControladorJuego;
+import edu.fiuba.algo3.modelo.vistas.vistaPaisController.VistaPaisPopupHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.shape.SVGPath;
+import javafx.scene.text.Font;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class VistaTablero extends AnchorPane{
     private Juego juego;
     public VistaTablero(Juego juego){
         this.juego = juego;
-        VistaPais argentina = new VistaPais(juego.getTablero().getPais("Argentina"));
-        VistaPais brasil = new VistaPais(juego.getTablero().getPais("Brasil"));
-        VistaPais chile = new VistaPais(juego.getTablero().getPais("Chile"));
-        VistaPais  uruguay = new VistaPais(juego.getTablero().getPais("Uruguay"));
-        VistaPais peru = new VistaPais(juego.getTablero().getPais("Peru"));
-        VistaPais colombia = new VistaPais(juego.getTablero().getPais("Colombia"));
-        VistaPais mexico = new VistaPais(juego.getTablero().getPais("Mexico"));
-        VistaPais california = new VistaPais(juego.getTablero().getPais("California"));
-        VistaPais oregon = new VistaPais(juego.getTablero().getPais("Oregon"));
-        VistaPais alaska = new VistaPais(juego.getTablero().getPais("Alaska"));
-        VistaPais  yukon = new VistaPais(juego.getTablero().getPais("Yukon"));
-        VistaPais canada = new VistaPais(juego.getTablero().getPais("Canada"));
-        VistaPais nuevaYork = new VistaPais(juego.getTablero().getPais("Nueva York"));
-        VistaPais terranova = new VistaPais(juego.getTablero().getPais("Terranova"));
-        VistaPais labrador = new VistaPais(juego.getTablero().getPais("Labrador"));
-        VistaPais groenlandia = new VistaPais(juego.getTablero().getPais("Groenlandia"));
-        VistaPais  sahara = new VistaPais(juego.getTablero().getPais("Sahara"));
-        VistaPais zaire = new VistaPais(juego.getTablero().getPais("Zaire"));
-        VistaPais sudafrica = new VistaPais(juego.getTablero().getPais("Sudafrica"));
-        VistaPais etiopia = new VistaPais(juego.getTablero().getPais("Etiopia"));
-        VistaPais egipto = new VistaPais(juego.getTablero().getPais("Egipto"));
-        VistaPais madagascar = new VistaPais(juego.getTablero().getPais("Madagascar"));
-        VistaPais australia = new VistaPais(juego.getTablero().getPais("Australia"));
-        VistaPais sumatra = new VistaPais(juego.getTablero().getPais("Sumatra"));
-        VistaPais borneo = new VistaPais(juego.getTablero().getPais("Borneo"));
-        VistaPais java = new VistaPais(juego.getTablero().getPais("Java"));
-        VistaPais espania = new VistaPais(juego.getTablero().getPais("España"));
-        VistaPais francia = new VistaPais(juego.getTablero().getPais("Francia"));
-        VistaPais italia = new VistaPais(juego.getTablero().getPais("Italia"));
-        VistaPais alemania = new VistaPais(juego.getTablero().getPais("Alemania"));
-        VistaPais polonia = new VistaPais(juego.getTablero().getPais("Polonia"));
-        VistaPais rusia = new VistaPais(juego.getTablero().getPais("Rusia"));
-        VistaPais suecia = new VistaPais(juego.getTablero().getPais("Suecia"));
-        VistaPais granBretania = new VistaPais(juego.getTablero().getPais("Gran Bretaña"));
-        VistaPais islandia = new VistaPais(juego.getTablero().getPais("Islandia"));
-        VistaPais turquia = new VistaPais(juego.getTablero().getPais("Turquia"));
-        VistaPais israel = new VistaPais(juego.getTablero().getPais("Israel"));
-        VistaPais arabia = new VistaPais(juego.getTablero().getPais("Arabia"));
-        VistaPais iran = new VistaPais(juego.getTablero().getPais("Iran"));
-        VistaPais aral = new VistaPais(juego.getTablero().getPais("Aral"));
-        VistaPais tartaria = new VistaPais(juego.getTablero().getPais("Tartaria"));
-        VistaPais taymir = new VistaPais(juego.getTablero().getPais("Taymir"));
-        VistaPais siberia = new VistaPais(juego.getTablero().getPais("Siberia"));
-        VistaPais kamtchatka = new VistaPais(juego.getTablero().getPais("Kamtchatka"));
-        VistaPais india = new VistaPais(juego.getTablero().getPais("India"));
-        VistaPais malasia = new VistaPais(juego.getTablero().getPais("Malasia"));
-        VistaPais mongolia = new VistaPais(juego.getTablero().getPais("Mongolia"));
-        VistaPais gobi = new VistaPais(juego.getTablero().getPais("Gobi"));
-        VistaPais china = new VistaPais(juego.getTablero().getPais("China"));
-        VistaPais japon = new VistaPais(juego.getTablero().getPais("Japon"));
+        Label nombrePais = new Label("Pais seleccionado:");
+        VistaPais argentina = new VistaPais(juego.getTablero().getPais("Argentina"),nombrePais);
+        VistaPais brasil = new VistaPais(juego.getTablero().getPais("Brasil"),nombrePais);
+        VistaPais chile = new VistaPais(juego.getTablero().getPais("Chile"),nombrePais);
+        VistaPais  uruguay = new VistaPais(juego.getTablero().getPais("Uruguay"),nombrePais);
+        VistaPais peru = new VistaPais(juego.getTablero().getPais("Peru"),nombrePais);
+        VistaPais colombia = new VistaPais(juego.getTablero().getPais("Colombia"),nombrePais);
+        VistaPais mexico = new VistaPais(juego.getTablero().getPais("Mexico"),nombrePais);
+        VistaPais california = new VistaPais(juego.getTablero().getPais("California"),nombrePais);
+        VistaPais oregon = new VistaPais(juego.getTablero().getPais("Oregon"),nombrePais);
+        VistaPais alaska = new VistaPais(juego.getTablero().getPais("Alaska"),nombrePais);
+        VistaPais  yukon = new VistaPais(juego.getTablero().getPais("Yukon"),nombrePais);
+        VistaPais canada = new VistaPais(juego.getTablero().getPais("Canada"),nombrePais);
+        VistaPais nuevaYork = new VistaPais(juego.getTablero().getPais("Nueva York"),nombrePais);
+        VistaPais terranova = new VistaPais(juego.getTablero().getPais("Terranova"),nombrePais);
+        VistaPais labrador = new VistaPais(juego.getTablero().getPais("Labrador"),nombrePais);
+        VistaPais groenlandia = new VistaPais(juego.getTablero().getPais("Groenlandia"),nombrePais);
+        VistaPais  sahara = new VistaPais(juego.getTablero().getPais("Sahara"),nombrePais);
+        VistaPais zaire = new VistaPais(juego.getTablero().getPais("Zaire"),nombrePais);
+        VistaPais sudafrica = new VistaPais(juego.getTablero().getPais("Sudafrica"),nombrePais);
+        VistaPais etiopia = new VistaPais(juego.getTablero().getPais("Etiopia"),nombrePais);
+        VistaPais egipto = new VistaPais(juego.getTablero().getPais("Egipto"),nombrePais);
+        VistaPais madagascar = new VistaPais(juego.getTablero().getPais("Madagascar"),nombrePais);
+        VistaPais australia = new VistaPais(juego.getTablero().getPais("Australia"),nombrePais);
+        VistaPais sumatra = new VistaPais(juego.getTablero().getPais("Sumatra"),nombrePais);
+        VistaPais borneo = new VistaPais(juego.getTablero().getPais("Borneo"),nombrePais);
+        VistaPais java = new VistaPais(juego.getTablero().getPais("Java"),nombrePais);
+        VistaPais espania = new VistaPais(juego.getTablero().getPais("España"),nombrePais);
+        VistaPais francia = new VistaPais(juego.getTablero().getPais("Francia"),nombrePais);
+        VistaPais italia = new VistaPais(juego.getTablero().getPais("Italia"),nombrePais);
+        VistaPais alemania = new VistaPais(juego.getTablero().getPais("Alemania"),nombrePais);
+        VistaPais polonia = new VistaPais(juego.getTablero().getPais("Polonia"),nombrePais);
+        VistaPais rusia = new VistaPais(juego.getTablero().getPais("Rusia"),nombrePais);
+        VistaPais suecia = new VistaPais(juego.getTablero().getPais("Suecia"),nombrePais);
+        VistaPais granBretania = new VistaPais(juego.getTablero().getPais("Gran Bretaña"),nombrePais);
+        VistaPais islandia = new VistaPais(juego.getTablero().getPais("Islandia"),nombrePais);
+        VistaPais turquia = new VistaPais(juego.getTablero().getPais("Turquia"),nombrePais);
+        VistaPais israel = new VistaPais(juego.getTablero().getPais("Israel"),nombrePais);
+        VistaPais arabia = new VistaPais(juego.getTablero().getPais("Arabia"),nombrePais);
+        VistaPais iran = new VistaPais(juego.getTablero().getPais("Iran"),nombrePais);
+        VistaPais aral = new VistaPais(juego.getTablero().getPais("Aral"),nombrePais);
+        VistaPais tartaria = new VistaPais(juego.getTablero().getPais("Tartaria"),nombrePais);
+        VistaPais taymir = new VistaPais(juego.getTablero().getPais("Taymir"),nombrePais);
+        VistaPais siberia = new VistaPais(juego.getTablero().getPais("Siberia"),nombrePais);
+        VistaPais kamtchatka = new VistaPais(juego.getTablero().getPais("Kamtchatka"),nombrePais);
+        VistaPais india = new VistaPais(juego.getTablero().getPais("India"),nombrePais);
+        VistaPais malasia = new VistaPais(juego.getTablero().getPais("Malasia"),nombrePais);
+        VistaPais mongolia = new VistaPais(juego.getTablero().getPais("Mongolia"),nombrePais);
+        VistaPais gobi = new VistaPais(juego.getTablero().getPais("Gobi"),nombrePais);
+        VistaPais china = new VistaPais(juego.getTablero().getPais("China"),nombrePais);
+        VistaPais japon = new VistaPais(juego.getTablero().getPais("Japon"),nombrePais);
 
         argentina.setContent("m -36.253185,254.755 -11.861592,-8.04553 -2.156653,-80.45528 13.658802,-8.04553 23.363743,7.59855 -4.672751,13.40923 11.8615947,21.00776 -1.078329,8.4925 -28.3959307,16.09106 z");
         argentina.setLayoutX(381.0);
         argentina.setLayoutY(302.0);
+        nombrePais.setLayoutY(23.0);
+        nombrePais.setLayoutX(56.0);
+        nombrePais.setFont(new Font("Arial", 18));
         brasil.setContent("M -36.612628,158.20866 -54.259614,127.93846 -42.265385,96.524997 2.8557693,101.66538 37.696153,126.225 43.978845,149.64231 9.1384614,174.20192 Z");
         brasil.setLayoutX(385.0);
         brasil.setLayoutY(301.0);
@@ -218,10 +226,12 @@ public class VistaTablero extends AnchorPane{
 
         this.setPrefWidth(1080.0);
         this.setPrefHeight(720.0);
+
         this.getChildren().addAll(argentina,chile,brasil,uruguay,peru,colombia,mexico,california,
                 oregon,alaska,yukon, canada,nuevaYork,terranova,labrador,groenlandia, sahara,zaire,sudafrica,
                 etiopia,egipto,madagascar,australia,sumatra,borneo,java,espania,francia,italia,alemania,
                 polonia,rusia,suecia,granBretania,islandia,turquia,israel,arabia,iran,aral,tartaria,taymir,
-                siberia,kamtchatka,india,malasia,mongolia,gobi,china,japon);
+                siberia,kamtchatka,india,malasia,mongolia,gobi,china,japon,nombrePais);
     }
+
 }
