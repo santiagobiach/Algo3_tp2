@@ -37,7 +37,7 @@ public class ControladorJuego {
 
     private static Hashtable<String, Color> asignarColoresRandomAJugadores(ArrayList<Jugador> jugadores){
         ArrayList<Color> colores = new ArrayList<>();
-        colores.add(Color.rgb(0, 119, 119));
+        colores.add(Color.rgb(7, 123, 176));
         colores.add(Color.rgb(204, 51, 17));
         colores.add(Color.rgb(238, 119, 51));
         colores.add(Color.rgb(0, 153, 136));
