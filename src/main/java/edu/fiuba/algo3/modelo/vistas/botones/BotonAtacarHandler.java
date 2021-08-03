@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.vistas.botones;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Pais;
+import edu.fiuba.algo3.modelo.controladores.ControladorJuego;
 import edu.fiuba.algo3.modelo.vistas.MenuFaseDeAtaque;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -33,6 +34,7 @@ public class BotonAtacarHandler implements EventHandler<ActionEvent> {
             Pais defensor = juego.getTablero().getPais(cbxDefensor.getSelectionModel().getSelectedItem());
             juego.crearBatalla(atacante, defensor, (int)tropas.getValue());
             menu.actualizar();
+            ControladorJuego.chequearVictoria();
         }
 
     }

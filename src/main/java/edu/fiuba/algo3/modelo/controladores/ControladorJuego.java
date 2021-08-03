@@ -12,6 +12,7 @@ import edu.fiuba.algo3.modelo.fases.*;
 import edu.fiuba.algo3.modelo.vistas.MenuFaseDeAtaque;
 import edu.fiuba.algo3.modelo.vistas.MenuFaseDeColocacion;
 import edu.fiuba.algo3.modelo.vistas.VistaJuego;
+import edu.fiuba.algo3.modelo.vistas.VistaVictoria;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -93,5 +94,16 @@ public class ControladorJuego {
         Scene escena = (new VistaJuego(juego)).crearEscena(data);
         escenario.setScene(escena);
         escenario.show();
+
+        chequearVictoria();
+
+    }
+    public static void chequearVictoria(){
+        Hashtable data = new Hashtable();
+        if(juego.ganador() != null){
+            Scene escena = (new VistaVictoria(juego)).crearEscena(data);
+            escenario.setScene(escena);
+            escenario.show();
+        }
     }
 }

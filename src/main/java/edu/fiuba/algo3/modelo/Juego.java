@@ -62,10 +62,23 @@ public class Juego{
         this.jugadores = ordenarJugadores(jugadores, numeroRandom);
         this.calculadores = calculadores;
         this.fase = new FaseColocacionInicial(jugadores, 5, 3, calculadores);
-        //this.jugadorActual = jugadores.get(numeroRandom);
+        this.ganador = null;
+        chequearVictoria();
     }
     public Jugador getJugadorActual(){
         return fase.getJugadorActual();
+    }
+
+    private void chequearVictoria(){
+        for(Jugador j: jugadores){
+            if(j.cumplioObjetivos()){
+                this.ganador = j;
+                return;
+            }
+        }
+    }
+    public Jugador ganador(){
+        return ganador;
     }
 
     public TarjetaDePais getTarjeta(Pais pais){
@@ -90,9 +103,11 @@ public class Juego{
         try{
             BatallaNormal batalla = new BatallaNormal(atacante,defensor, tropasAtacantes);
             batalla.combatir();
+            chequearVictoria();
         }catch(ExcepcionBatallaInvalida e){
             System.out.println("La batalla es invalida");
         }
+
     }
 
     private ArrayList<Jugador> ordenarJugadores(ArrayList<Jugador> jugadores, int indiceJugadorInicial){
