@@ -4,15 +4,9 @@ import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Pais;
 import edu.fiuba.algo3.modelo.controladores.ControladorJuego;
-import edu.fiuba.algo3.modelo.vistas.botones.BotonAvanzarTurnoHandler;
 import edu.fiuba.algo3.modelo.vistas.botones.BotonColocarHandler;
 import edu.fiuba.algo3.modelo.vistas.botones.BotonMostrarObjetivoHandler;
-import edu.fiuba.algo3.modelo.vistas.botones.BotonReagruparHandler;
 import edu.fiuba.algo3.modelo.vistas.comboBox.ComboBoxPaisesColocacionHandler;
-import edu.fiuba.algo3.modelo.vistas.comboBox.PaisesConquistadosReagrupacionHandler;
-import edu.fiuba.algo3.modelo.vistas.comboBox.PaisesLimitrofesReagrupacionHandler;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -28,15 +22,15 @@ import javafx.stage.Stage;
 public class MenuFaseDeColocacion extends Menu {
     private Juego juego;
     private Label turno;
-    private VBox contenedorPaisDeOrigen;
+    private VBox contenedorPaisDeDestino;
     private HBox contenedorColocar;
-    private ComboBox CBPaisDeOrigen;
+    private ComboBox CBPaisDeDestino;
     private Spinner SPTropas;
     private Button BTTropas;
     private Button BTObjetivos;
     private Button BTTerminarTurno;
-    private Label tropasPaisDeOrigen;
-    private Label paisDeOrigen;
+    private Label tropasPaisDeDestino;
+    private Label paisDeDestino;
     private Label cantidadDeTropas;
 
     public MenuFaseDeColocacion(Juego juego, Stage stage){
@@ -61,13 +55,13 @@ public class MenuFaseDeColocacion extends Menu {
         contenedorSuperior.setSpacing(10);
         contenedorSuperior.getChildren().addAll(BTObjetivos, BTTerminarTurno);
 
-        this.paisDeOrigen = new Label();
-        paisDeOrigen.setText("Pais de Origen");
+        this.paisDeDestino = new Label();
+        paisDeDestino.setText("Colocar en:");
 
-        this.CBPaisDeOrigen = new ComboBox();
-        CBPaisDeOrigen.setPrefWidth(170);
-        this.tropasPaisDeOrigen = new Label();
-        this.tropasPaisDeOrigen.setText("Tropas:");
+        this.CBPaisDeDestino = new ComboBox();
+        CBPaisDeDestino.setPrefWidth(170);
+        this.tropasPaisDeDestino = new Label();
+        this.tropasPaisDeDestino.setText("Tropas:");
 
         this.cantidadDeTropas = new Label();
         cantidadDeTropas.setText("Cantidad de Tropas disponibles: ");
@@ -78,27 +72,27 @@ public class MenuFaseDeColocacion extends Menu {
         BTTropas.setText("Colocar");
         BTTropas.setPrefWidth(100);
 
-        this.contenedorPaisDeOrigen = new VBox();
-        contenedorPaisDeOrigen.setSpacing(5);
-        contenedorPaisDeOrigen.getChildren().addAll(CBPaisDeOrigen, tropasPaisDeOrigen);
+        this.contenedorPaisDeDestino = new VBox();
+        contenedorPaisDeDestino.setSpacing(5);
+        contenedorPaisDeDestino.getChildren().addAll(CBPaisDeDestino, tropasPaisDeDestino);
 
         this.contenedorColocar = new HBox();
         contenedorColocar.setSpacing(5);
         contenedorColocar.setPrefWidth(150);
         contenedorColocar.getChildren().addAll(SPTropas, BTTropas);
 
-        this.getChildren().addAll(turno, contenedorSuperior, paisDeOrigen, contenedorPaisDeOrigen,
+        this.getChildren().addAll(turno, contenedorSuperior, paisDeDestino, contenedorPaisDeDestino,
                 cantidadDeTropas, contenedorColocar);
 
         //Handlers
-        ComboBoxPaisesColocacionHandler ComboBoxPaisesHandler = new ComboBoxPaisesColocacionHandler(CBPaisDeOrigen,
-                tropasPaisDeOrigen, juego);
-        CBPaisDeOrigen.setOnAction(ComboBoxPaisesHandler);
+        ComboBoxPaisesColocacionHandler ComboBoxPaisesHandler = new ComboBoxPaisesColocacionHandler(CBPaisDeDestino,
+                tropasPaisDeDestino, juego);
+        CBPaisDeDestino.setOnAction(ComboBoxPaisesHandler);
 
         BotonMostrarObjetivoHandler handlerBotonObjetivo = new BotonMostrarObjetivoHandler(juego);
         BTObjetivos.setOnAction(handlerBotonObjetivo);
 
-        BotonColocarHandler botonColocarHandler = new BotonColocarHandler(CBPaisDeOrigen, tropasPaisDeOrigen,
+        BotonColocarHandler botonColocarHandler = new BotonColocarHandler(CBPaisDeDestino, tropasPaisDeDestino,
                 cantidadDeTropas,SPTropas, juego);
         BTTropas.setOnAction(botonColocarHandler);
 
@@ -116,14 +110,14 @@ public class MenuFaseDeColocacion extends Menu {
         this.turno.setText("Turno: " + jugadorActual.getNombre());
         this.cantidadDeTropas.setText("Tropas disponibles: " + jugadorActual.tropasDisponibles());
         this.turno.setTextFill(ControladorJuego.getColorJugador(jugadorActual));
-        CBPaisDeOrigen.getItems().clear();
+        CBPaisDeDestino.getItems().clear();
         for(Pais p: jugadorActual.getPaisesConquistados()){
-            CBPaisDeOrigen.getItems().add(p.getNombre());
+            CBPaisDeDestino.getItems().add(p.getNombre());
         }
     }
 
     @Override
     public ComboBox<String> getComboBox() {
-        return CBPaisDeOrigen;
+        return CBPaisDeDestino;
     }
 }
