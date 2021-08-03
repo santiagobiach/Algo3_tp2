@@ -30,6 +30,7 @@ public class ControladorJuego {
     }
 
     public static Color getColorJugador(Jugador jugador){
+
         return coloresJugadores.get(jugador.getNombre());
     }
 
@@ -57,7 +58,7 @@ public class ControladorJuego {
         Tablero tablero = null;
 
         try{
-             tablero = new TableroMock20TropasPorPais();
+             tablero = new Tablero();
         } catch (Exception e){
             System.out.printf("Excepcion creando tablero");
             System.exit(-1);

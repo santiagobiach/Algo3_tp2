@@ -1,8 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class Pais{
+public class Pais extends Observable {
 
     private final String nombre;
     private Jugador jugador;
@@ -99,6 +100,8 @@ public class Pais{
 
         unJugador.conquistoA(this);
         jugador = unJugador;
+        setChanged();
+        notifyObservers(unJugador);
     }
 
     public Jugador getJugador(){

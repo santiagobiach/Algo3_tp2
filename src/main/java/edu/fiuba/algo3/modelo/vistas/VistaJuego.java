@@ -20,15 +20,16 @@ public class VistaJuego extends Vista{
 
         VBox menu = ((VBox)data.get("menu"));
 
-        Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/tableroteg2.png");
+        /*Image imagen = new Image("file:"+System.getProperty("user.dir") + "/assets/tableroteg2.png");
         ImageView vistaImagen = new ImageView();
         vistaImagen.setImage(imagen);
         vistaImagen.setFitWidth(1080);
-        vistaImagen.setFitHeight(720);
+        vistaImagen.setFitHeight(720);*/
+        VistaTablero vistaTablero = new VistaTablero(juego);
 
 
         HBox contenedorPrincipal = new HBox();
-        contenedorPrincipal.getChildren().addAll(menu, vistaImagen);
+        contenedorPrincipal.getChildren().addAll(menu, vistaTablero);
 
         this.getChildren().addAll(contenedorPrincipal);
 

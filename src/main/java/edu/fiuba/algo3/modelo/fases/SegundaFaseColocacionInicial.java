@@ -14,7 +14,7 @@ public class SegundaFaseColocacionInicial extends Fase{
         this.tropasAOtorgar = tropasAOtorgar;
         this.jugadorActual.agregarTropasDisponibles(tropasAOtorgar);
         this.calculador = calculador;
-        System.out.println(tropasAOtorgar);
+
     }
 
     @Override
