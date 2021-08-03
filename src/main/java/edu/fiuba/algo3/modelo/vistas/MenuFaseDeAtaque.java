@@ -22,7 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
-public class MenuFaseDeAtaque extends VBox {
+public class MenuFaseDeAtaque extends Menu{
     private Juego juego;
     private Label turno;
     private ComboBox<String> CBPaisAtacante;
@@ -140,5 +140,10 @@ public class MenuFaseDeAtaque extends VBox {
         CBPaisAtacante.getItems().clear();
         CBPaisDefensor.getItems().clear();
         CBPaisAtacante.getItems().addAll(conseguirNombrePaisesDeJugador(jugadorActual));
+    }
+
+    @Override
+    public ComboBox<String> getComboBox() {
+        return CBPaisAtacante;
     }
 }

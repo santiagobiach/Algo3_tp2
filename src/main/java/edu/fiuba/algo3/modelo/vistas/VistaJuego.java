@@ -18,8 +18,8 @@ public class VistaJuego extends Vista{
     }
     public Scene crearEscena(Hashtable data){
 
-        VBox menu = ((VBox)data.get("menu"));
-        VistaTablero vistaTablero = new VistaTablero(juego);
+        Menu menu = ((Menu)data.get("menu"));
+        VistaTablero vistaTablero = new VistaTablero(juego, menu.getComboBox());
         HBox contenedorPrincipal = new HBox();
         contenedorPrincipal.getChildren().addAll(menu, vistaTablero);
 

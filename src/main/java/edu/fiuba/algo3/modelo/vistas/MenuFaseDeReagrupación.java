@@ -23,7 +23,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
-public class MenuFaseDeReagrupación extends VBox {
+public class MenuFaseDeReagrupación extends Menu{
     private Juego juego;
     private Label turno;
     private VBox contenedorPaisDeOrigen;
@@ -141,5 +141,10 @@ public class MenuFaseDeReagrupación extends VBox {
         for(Pais p: jugadorActual.getPaisesConquistados()){
             CBPaisDeOrigen.getItems().add(p.getNombre());
         }
+    }
+
+    @Override
+    public ComboBox<String> getComboBox() {
+        return CBPaisDeOrigen;
     }
 }

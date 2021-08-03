@@ -25,7 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class MenuFaseDeColocacion extends VBox {
+public class MenuFaseDeColocacion extends Menu {
     private Juego juego;
     private Label turno;
     private VBox contenedorPaisDeOrigen;
@@ -122,5 +122,10 @@ public class MenuFaseDeColocacion extends VBox {
         for(Pais p: jugadorActual.getPaisesConquistados()){
             CBPaisDeOrigen.getItems().add(p.getNombre());
         }
+    }
+
+    @Override
+    public ComboBox<String> getComboBox() {
+        return CBPaisDeOrigen;
     }
 }
