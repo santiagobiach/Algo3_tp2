@@ -12,6 +12,7 @@ import edu.fiuba.algo3.modelo.objetivos.Objetivo;
 import edu.fiuba.algo3.modelo.objetivos.ObjetivoGeneral;
 
 import java.util.ArrayList;
+import java.util.Observer;
 import java.util.Random;
 
 public class Juego{
@@ -99,17 +100,18 @@ public class Juego{
         return fase;
     }
 
-    public void crearBatalla(Pais atacante, Pais defensor, int tropasAtacantes){
+    public void crearBatalla(Pais atacante, Pais defensor, int tropasAtacantes, Observer o){
         try{
             BatallaNormal batalla = new BatallaNormal(atacante,defensor, tropasAtacantes);
+            batalla.addObserver(o);
             batalla.combatir();
             chequearVictoria();
+            batalla.deleteObserver(o);
         }catch(ExcepcionBatallaInvalida e){
             System.out.println("La batalla es invalida");
         }
 
     }
-
     private ArrayList<Jugador> ordenarJugadores(ArrayList<Jugador> jugadores, int indiceJugadorInicial){
         ArrayList<Jugador> jugadoresOrdenados = new ArrayList<>();
 

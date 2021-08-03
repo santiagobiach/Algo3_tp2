@@ -100,8 +100,10 @@ public class MenuFaseDeAtaque extends Menu{
         contenedorControlesAtaque.setSpacing(10);
         contenedorControlesAtaque.getChildren().addAll(SPTropas, BTAtacar);
 
+        VistaBatalla vistaBatalla = new VistaBatalla();
+
         this.getChildren().addAll(turno, contenedorSuperior, LBpaisAtacante, contenedorPaisAtacante,
-                LBpaisDefensor, contenedorPaisDefensor, cantidadDeTropas, contenedorControlesAtaque);
+                LBpaisDefensor, contenedorPaisDefensor, cantidadDeTropas, contenedorControlesAtaque,vistaBatalla);
         actualizar();
 
         //Handlers
@@ -112,7 +114,7 @@ public class MenuFaseDeAtaque extends Menu{
         ComboBoxPaisesLimitrofesHandler handlerPaisDefensor = new ComboBoxPaisesLimitrofesHandler(CBPaisDefensor, tropasDefensor, juego);
         CBPaisDefensor.setOnAction(handlerPaisDefensor);
 
-        BotonAtacarHandler handlearBotonAtacar = new BotonAtacarHandler(juego, CBPaisAtacante, CBPaisDefensor, SPTropas, this);
+        BotonAtacarHandler handlearBotonAtacar = new BotonAtacarHandler(juego, CBPaisAtacante, CBPaisDefensor, SPTropas, this, vistaBatalla);
         BTAtacar.setOnAction(handlearBotonAtacar);
 
         BotonMostrarObjetivoHandler handlearBotonObjetivo = new BotonMostrarObjetivoHandler(juego);

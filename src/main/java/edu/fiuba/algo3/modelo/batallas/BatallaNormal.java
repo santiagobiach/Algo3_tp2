@@ -5,8 +5,9 @@ import edu.fiuba.algo3.modelo.excepciones.ExcepcionBatallaInvalida;
 import edu.fiuba.algo3.modelo.Pais;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class BatallaNormal implements Batalla{
+public class BatallaNormal extends Observable implements Batalla{
 
     private final int cantidadDeTropasAtacantes;
     private final Pais atacante, defensor;
@@ -40,6 +41,11 @@ public class BatallaNormal implements Batalla{
 
         ArrayList <Integer> tirosAtacante = Dados.tirar(cantidadDadosAtacante);
         ArrayList <Integer> tirosDefensor = Dados.tirar(cantidadDadosDefensor);
+        setChanged();
+        ArrayList<ArrayList<Integer>> tiradasTotales = new ArrayList<>();
+        tiradasTotales.add(tirosAtacante);
+        tiradasTotales.add(tirosDefensor);
+        notifyObservers(tiradasTotales);
 
         while(!tirosAtacante.isEmpty() && !tirosDefensor.isEmpty()){
             if(tirosAtacante.get(0) > tirosDefensor.get(0))
