@@ -3,15 +3,15 @@ package edu.fiuba.algo3.modelo.vistas;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Pais;
+import edu.fiuba.algo3.modelo.canjes.TarjetaDePais;
 import edu.fiuba.algo3.modelo.controladores.ControladorJuego;
+import edu.fiuba.algo3.modelo.vistas.botones.BotonCanjearHandler;
 import edu.fiuba.algo3.modelo.vistas.botones.BotonColocarHandler;
+import edu.fiuba.algo3.modelo.vistas.botones.BotonMostrarAyudaCanjeHandler;
 import edu.fiuba.algo3.modelo.vistas.botones.BotonMostrarObjetivoHandler;
 import edu.fiuba.algo3.modelo.vistas.comboBox.ComboBoxPaisesColocacionHandler;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
+import javafx.scene.control.*;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
@@ -32,6 +32,7 @@ public class MenuFaseDeColocacion extends Menu {
     private Label tropasPaisDeDestino;
     private Label paisDeDestino;
     private Label cantidadDeTropas;
+    private ListView<TarjetaDePais> cartas;
 
     public MenuFaseDeColocacion(Juego juego, Stage stage){
         this.juego = juego;
@@ -81,8 +82,35 @@ public class MenuFaseDeColocacion extends Menu {
         contenedorColocar.setPrefWidth(150);
         contenedorColocar.getChildren().addAll(SPTropas, BTTropas);
 
+        VBox contenedorCartas = new VBox();
+        contenedorCartas.setSpacing(10);
+        HBox contenedorBotonesCanje = new HBox();
+        contenedorBotonesCanje.setSpacing(10);
+        Label tituloCartas = new Label("Cartas obtenidas:");
+        Button BTAyuda = new Button("Ayuda");
+        BTAyuda.setPrefWidth(80);
+        Button BTCanjear = new Button("Canjear");
+        BTCanjear.setPrefWidth(80);
+        this.cartas = new ListView();
+        cartas.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        cartas.setPrefHeight(120);
+        cartas.setCellFactory(param -> new ListCell<TarjetaDePais>() {
+            @Override
+            protected void updateItem(TarjetaDePais item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null || item.pais() == null) {
+                    setText(null);
+                } else {
+                    setText(item.pais().getNombre() + ", " + item.simbolo());
+                }
+            }
+        });
+
+        contenedorBotonesCanje.getChildren().addAll(BTAyuda,BTCanjear);
+        contenedorCartas.getChildren().addAll(tituloCartas,cartas, contenedorBotonesCanje);
         this.getChildren().addAll(turno, contenedorSuperior, paisDeDestino, contenedorPaisDeDestino,
-                cantidadDeTropas, contenedorColocar);
+                cantidadDeTropas, contenedorColocar,contenedorCartas);
 
         //Handlers
         ComboBoxPaisesColocacionHandler ComboBoxPaisesHandler = new ComboBoxPaisesColocacionHandler(CBPaisDeDestino,
@@ -95,7 +123,11 @@ public class MenuFaseDeColocacion extends Menu {
         BotonColocarHandler botonColocarHandler = new BotonColocarHandler(CBPaisDeDestino, tropasPaisDeDestino,
                 cantidadDeTropas,SPTropas, juego);
         BTTropas.setOnAction(botonColocarHandler);
+        BotonMostrarAyudaCanjeHandler botonMostrarAyudaCanjeHandler = new BotonMostrarAyudaCanjeHandler();
+        BTAyuda.setOnAction(botonMostrarAyudaCanjeHandler);
 
+        BotonCanjearHandler botonCanjearHandler = new BotonCanjearHandler(juego,cartas,this);
+        BTCanjear.setOnAction(botonCanjearHandler);
         BTTerminarTurno.setOnAction(actionEvent -> {
             juego.proximoTurno();
             ControladorJuego.mostrarTableroSegunFase();
@@ -113,6 +145,10 @@ public class MenuFaseDeColocacion extends Menu {
         CBPaisDeDestino.getItems().clear();
         for(Pais p: jugadorActual.getPaisesConquistados()){
             CBPaisDeDestino.getItems().add(p.getNombre());
+        }
+        cartas.getItems().clear();
+        for(TarjetaDePais tp: juego.getJugadorActual().getTarjetasObtenidas()){
+            cartas.getItems().add(tp);
         }
     }
 

@@ -29,7 +29,8 @@ public class Jugador {
     }
 
     public void activarTarjeta(TarjetaDePais tarjeta){
-        tarjeta.activar(this);
+        if(tarjetasObtenidas.contains(tarjeta))
+            tarjeta.activar(this);
     }
 
     public void darTarjeta(TarjetaDePais tarjeta){
@@ -39,7 +40,6 @@ public class Jugador {
     }
 
     public void eliminarTarjeta(TarjetaDePais tarjeta){
-        if (tarjetasObtenidas.contains(tarjeta))
             tarjetasObtenidas.remove(tarjeta);
     }
 
@@ -59,10 +59,13 @@ public class Jugador {
     public void restarTropasDisponibles(int numero){
         this.tropasDisponibles -= numero;
     }
-    public void canjeRealizado(){
+    public void canjeRealizado(TarjetaDePais t1, TarjetaDePais t2, TarjetaDePais t3){
 
         agregarTropasDisponibles(numeroDeCanje.tropasDisponibles());
         this.numeroDeCanje = this.numeroDeCanje.siguiente();
+        eliminarTarjeta(t1);
+        eliminarTarjeta(t2);
+        eliminarTarjeta(t3);
     }
 
     public void colocarEjercitos(int cantidad){
@@ -125,5 +128,9 @@ public class Jugador {
     }
     public ArrayList<Objetivo> getObjetivos(){
         return objetivos;
+    }
+
+    public ArrayList<TarjetaDePais> getTarjetasObtenidas() {
+        return tarjetasObtenidas;
     }
 }

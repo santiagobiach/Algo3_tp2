@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.mocks.MazoMockTodasParaUnJugador;
 import edu.fiuba.algo3.modelo.batallas.BatallaNormal;
 import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasDisponibles;
+import edu.fiuba.algo3.modelo.canjes.CanjeadorDeTarjetas;
 import edu.fiuba.algo3.modelo.canjes.TarjetaDePais;
 import edu.fiuba.algo3.modelo.excepciones.ExcepcionBatallaInvalida;
 import edu.fiuba.algo3.modelo.fases.Fase;
@@ -64,6 +65,7 @@ public class Juego{
         this.calculadores = calculadores;
         this.fase = new FaseColocacionInicial(jugadores, 5, 3, calculadores);
         this.ganador = null;
+        CanjeadorDeTarjetas.setMazo(this.mazo);
         chequearVictoria();
     }
     public Jugador getJugadorActual(){

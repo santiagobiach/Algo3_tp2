@@ -24,10 +24,14 @@ public class CanjeadorDeTarjetas {
             mazo.reincorporarTarjeta(tarjeta1);
             mazo.reincorporarTarjeta(tarjeta2);
             mazo.reincorporarTarjeta(tarjeta3);
-            jugador.canjeRealizado();
+            jugador.canjeRealizado(tarjeta1, tarjeta2, tarjeta3);
 
         }
 
 
+    }
+
+    public static void setMazo(Mazo mazo) {
+        CanjeadorDeTarjetas.mazo = mazo;
     }
 }
