@@ -1,8 +1,10 @@
 package edu.fiuba.algo3.modelo.vistas;
 
 import edu.fiuba.algo3.modelo.Juego;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.modelo.canjes.TarjetaDePais;
+import edu.fiuba.algo3.modelo.controladores.ControladorJuego;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
@@ -413,8 +415,33 @@ public class VistaTablero extends AnchorPane{
         puente28.setStartY(-34.0);
         puente28.setLayoutX(891.0);
         puente28.setLayoutY(514.);
+        VBox jugadores = new VBox();
+        jugadores.setLayoutY(554.0);
+        jugadores.setPrefHeight(145);
+        ListView<Jugador> listaJugadores = new ListView<Jugador>();
+        listaJugadores.setMouseTransparent(true);
+        listaJugadores.setFocusTraversable( false );
+        listaJugadores.setCellFactory(param -> new ListCell<Jugador>() {
+            @Override
+            protected void updateItem(Jugador item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null || item.cantidadPaisesConquistados() == 0) {
+                    setText(null);
+                } else {
+                    setTextFill(ControladorJuego.getColorJugador(item));
+                    setText(item.getNombre());
+                }
+            }
+        });
+        for(Jugador j: juego.getJugadores()){
+            listaJugadores.getItems().add(j);
+        }
+        jugadores.getChildren().addAll(listaJugadores);
+
         this.setPrefWidth(1080.0);
         this.setPrefHeight(720.0);
+
 
         this.getChildren().addAll(argentina,chile,brasil,uruguay,peru,colombia,mexico,california,
                 oregon,alaska,yukon, canada,nuevaYork,terranova,labrador,groenlandia, sahara,zaire,sudafrica,
@@ -423,7 +450,7 @@ public class VistaTablero extends AnchorPane{
                 siberia,kamtchatka,india,malasia,mongolia,gobi,china,japon,nombrePais,puente1,puente2,puente3, puente4,
                 puente5,puente6,puente7,puente8,puente9,puente10,puente11,puente12,puente13,puente14,puente15,
                 puente16,puente17,puente18,puente19,puente20,puente21,puente22,puente23,puente24,puente25,
-                puente26,puente27,puente28);
+                puente26,puente27,puente28,jugadores);
     }
 
 }

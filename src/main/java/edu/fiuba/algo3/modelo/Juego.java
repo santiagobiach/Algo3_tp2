@@ -71,7 +71,9 @@ public class Juego{
     public Jugador getJugadorActual(){
         return fase.getJugadorActual();
     }
-
+    public ArrayList<Jugador> getJugadores(){
+        return jugadores;
+    }
     private void chequearVictoria(){
         for(Jugador j: jugadores){
             if(j.cumplioObjetivos()){

@@ -109,7 +109,8 @@ public class Jugador {
     }
 
     public void agregarPais(Pais unPais){
-        this.paisesConquistados.add(unPais);
+        if(!paisesConquistados.contains(unPais))
+            this.paisesConquistados.add(unPais);
     }
 
     public String getNombre(){
