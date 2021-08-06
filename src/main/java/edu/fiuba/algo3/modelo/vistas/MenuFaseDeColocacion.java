@@ -130,7 +130,7 @@ public class MenuFaseDeColocacion extends Menu {
         BTCanjear.setOnAction(botonCanjearHandler);
         BTTerminarTurno.setOnAction(actionEvent -> {
             juego.proximoTurno();
-            ControladorJuego.mostrarTableroSegunFase();
+            ControladorJuego.mostrarTablero();
         });
 
         actualizar();

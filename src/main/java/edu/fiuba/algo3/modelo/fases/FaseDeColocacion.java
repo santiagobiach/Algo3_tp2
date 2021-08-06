@@ -25,9 +25,20 @@ public class FaseDeColocacion extends Fase{
         }
         return numeroAOtorgar;
     }
+
     @Override
-    public VBox crearMenu(Juego juego, Stage escenario) {
-        return new MenuFaseDeColocacion(juego, escenario);
+    public boolean esDeAtaque() {
+        return false;
+    }
+
+    @Override
+    public boolean esDeColocacion() {
+        return true;
+    }
+
+    @Override
+    public boolean esDeReagrupacion() {
+        return false;
     }
 
     @Override

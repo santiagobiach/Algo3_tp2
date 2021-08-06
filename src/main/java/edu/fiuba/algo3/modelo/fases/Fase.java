@@ -15,11 +15,15 @@ public abstract class Fase {
         this.jugadorActual = this.jugadores.get(0);
     }
 
+    public abstract boolean esDeAtaque();
+
+    public abstract boolean esDeColocacion();
+
+    public abstract boolean esDeReagrupacion();
+
     public Jugador getJugadorActual() {
         return jugadorActual;
     }
-
-    public abstract VBox crearMenu(Juego juego, Stage escenario);
 
     public abstract Fase proximoTurno();
 }

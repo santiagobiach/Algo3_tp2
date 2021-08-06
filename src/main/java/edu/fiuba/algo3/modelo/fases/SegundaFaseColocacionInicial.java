@@ -20,9 +20,20 @@ public class SegundaFaseColocacionInicial extends Fase{
         this.calculador = calculador;
 
     }
+
     @Override
-    public VBox crearMenu(Juego juego, Stage escenario) {
-        return new MenuFaseDeColocacion(juego, escenario);
+    public boolean esDeReagrupacion() {
+        return false;
+    }
+
+    @Override
+    public boolean esDeColocacion() {
+        return true;
+    }
+
+    @Override
+    public boolean esDeAtaque() {
+        return false;
     }
 
     @Override

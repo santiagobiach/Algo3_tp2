@@ -1,19 +1,16 @@
 package edu.fiuba.algo3.modelo.controladores;
 
-import edu.fiuba.algo3.mocks.TableroMock20TropasPorPais;
-import edu.fiuba.algo3.mocks.TableroMockTodoAsiaParaJugadorUno;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Tablero;
 import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasDisponibles;
 import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasPorContinentesConquistados;
 import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasPorPaisesConquistados;
+import edu.fiuba.algo3.modelo.excepciones.ExcepcionFaseInvalida;
 import edu.fiuba.algo3.modelo.fases.*;
-import edu.fiuba.algo3.modelo.vistas.MenuFaseDeAtaque;
-import edu.fiuba.algo3.modelo.vistas.MenuFaseDeColocacion;
-import edu.fiuba.algo3.modelo.vistas.VistaJuego;
-import edu.fiuba.algo3.modelo.vistas.VistaVictoria;
+import edu.fiuba.algo3.modelo.vistas.*;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -83,13 +80,32 @@ public class ControladorJuego {
             System.exit(-1);
         }
         juego.inicializar();
-        mostrarTableroSegunFase();
+        mostrarTablero();
     }
-    public static void mostrarTableroSegunFase(){
+
+    private static Menu crearMenuSegunFase(Fase fase) throws ExcepcionFaseInvalida{
+        if(fase.esDeAtaque())
+            return new MenuFaseDeAtaque(juego, escenario);
+        else if(fase.esDeColocacion())
+            return new MenuFaseDeColocacion(juego, escenario);
+        else if(fase.esDeReagrupacion())
+            return new MenuFaseDeReagrupación(juego, escenario);
+        else
+            throw new ExcepcionFaseInvalida("Fase Inválida");
+    }
+    public static void mostrarTablero(){
 
         Hashtable data = new Hashtable();
         Fase fase = juego.getFase();
-        data.put("menu", fase.crearMenu(juego, escenario));
+        Menu menu = null;
+        try{
+            menu = crearMenuSegunFase(fase);
+        } catch (ExcepcionFaseInvalida e){
+            System.out.println("Fase Inválida");
+            System.exit(-1);
+        }
+
+        data.put("menu", menu);
 
         Scene escena = (new VistaJuego(juego)).crearEscena(data);
         escenario.setScene(escena);

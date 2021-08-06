@@ -104,6 +104,7 @@ public class Jugador {
 
     public void conquistoA(Pais unPais){
         agregarPais(unPais);
+        System.out.println(nombre+" conquisto a "+unPais.getNombre());
         conquistoEnUltimoTurno = true;
     }
 

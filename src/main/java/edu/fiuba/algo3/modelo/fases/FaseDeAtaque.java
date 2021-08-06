@@ -15,9 +15,20 @@ public class FaseDeAtaque extends Fase{
         super(jugadores);
         this.calculador = calculador;
     }
+
     @Override
-    public VBox crearMenu(Juego juego, Stage escenario) {
-        return new MenuFaseDeAtaque(juego, escenario);
+    public boolean esDeReagrupacion() {
+        return false;
+    }
+
+    @Override
+    public boolean esDeColocacion() {
+        return false;
+    }
+
+    @Override
+    public boolean esDeAtaque() {
+        return true;
     }
 
     @Override

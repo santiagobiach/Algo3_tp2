@@ -22,9 +22,20 @@ public class FaseColocacionInicial extends Fase{
         this.jugadorActual.agregarTropasDisponibles(tropasAOtorgar);
         this.calculador = calculador;
     }
+
     @Override
-    public VBox crearMenu(Juego juego, Stage escenario) {
-        return new MenuFaseDeColocacion(juego, escenario);
+    public boolean esDeAtaque() {
+        return false;
+    }
+
+    @Override
+    public boolean esDeReagrupacion() {
+        return false;
+    }
+
+    @Override
+    public boolean esDeColocacion() {
+        return true;
     }
 
     @Override
