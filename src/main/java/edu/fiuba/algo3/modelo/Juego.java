@@ -56,6 +56,7 @@ public class Juego{
             j.agregarObjetivo(new ObjetivoGeneral());
         }
     }
+
     public void inicializar(){
         tablero.distribuirPaises(jugadores);
         Random generadorRandom = new Random();
@@ -68,12 +69,15 @@ public class Juego{
         CanjeadorDeTarjetas.setMazo(this.mazo);
         chequearVictoria();
     }
+
     public Jugador getJugadorActual(){
         return fase.getJugadorActual();
     }
+
     public ArrayList<Jugador> getJugadores(){
         return jugadores;
     }
+
     private void chequearVictoria(){
         for(Jugador j: jugadores){
             if(j.cumplioObjetivos()){
@@ -82,19 +86,28 @@ public class Juego{
             }
         }
     }
+
     public Jugador ganador(){
         return ganador;
+    }
+
+    private void eliminarPerdedores(){
+        for (Jugador j: jugadores)
+            if (j.perdio())
+                jugadores.remove(j);
     }
 
     public TarjetaDePais getTarjeta(Pais pais){
         return mazo.getTarjeta(pais);
     }
+
     public Tablero getTablero(){
         return this.tablero;
     }
 
     public void proximoTurno(){
         if (this.getJugadorActual().tropasDisponibles() == 0){
+            eliminarPerdedores();
             this.fase = fase.proximoTurno();
             distribuirTarjetas();
         }
@@ -116,6 +129,7 @@ public class Juego{
         }
 
     }
+
     private ArrayList<Jugador> ordenarJugadores(ArrayList<Jugador> jugadores, int indiceJugadorInicial){
         ArrayList<Jugador> jugadoresOrdenados = new ArrayList<>();
 

@@ -54,6 +54,8 @@ public class VistaMenu extends Vista{
         btn_iniciarPartida.setOnAction(actionEvent -> ControladorMenu.mostrarConfigurarPartida(new Hashtable()));
         btn_reglas.setOnAction(actionEvent -> ControladorMenu.mostrarComoJugar());
 
+        btn_salir.setOnAction(actionEvent -> System.exit(0));
+
         return new Scene(this, 1280, 720);
     }
 

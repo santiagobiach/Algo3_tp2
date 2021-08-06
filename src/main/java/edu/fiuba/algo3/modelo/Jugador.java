@@ -28,6 +28,10 @@ public class Jugador {
         this.conquistoEnUltimoTurno = false;
     }
 
+    public boolean perdio(){
+        return (paisesConquistados.size() == 0);
+    }
+
     public void activarTarjeta(TarjetaDePais tarjeta){
         if(tarjetasObtenidas.contains(tarjeta))
             tarjeta.activar(this);
