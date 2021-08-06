@@ -50,6 +50,7 @@ public class MenuFaseDeReagrupación extends Menu{
         this.setMinWidth(200);
         BackgroundFill colorFondo = new BackgroundFill(Color.LIGHTGREY, null, null);
         this.setBackground(new Background(colorFondo));
+        super.titulo.setText("FASE DE COLOCACIÓN");
 
         this.BTObjetivos = new Button();
         BTObjetivos.setText("Objetivos");
@@ -103,7 +104,7 @@ public class MenuFaseDeReagrupación extends Menu{
 
 
 
-        this.getChildren().addAll(turno, contenedorSuperior, paisDeOrigen, contenedorPaisDeOrigen, paisDeDestino,
+        this.getChildren().addAll(super.titulo, turno, contenedorSuperior, paisDeOrigen, contenedorPaisDeOrigen, paisDeDestino,
                 contenedorPaisDeDestino,cantidadDeTropas, contenedorReagrupar);
 
         PaisesConquistadosReagrupacionHandler handlerCBPaisDeOrigen =

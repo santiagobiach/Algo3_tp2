@@ -43,6 +43,7 @@ public class MenuFaseDeAtaque extends Menu{
 
 //        BorderStroke trazoBorde = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT);
 //        this.setBorder(new Border(trazoBorde));
+        super.titulo.setText("FASE DE ATAQUE");
 
         this.setPrefHeight(1200);
         this.setMinWidth(200);
@@ -102,7 +103,7 @@ public class MenuFaseDeAtaque extends Menu{
 
         VistaBatalla vistaBatalla = new VistaBatalla();
 
-        this.getChildren().addAll(turno, contenedorSuperior, LBpaisAtacante, contenedorPaisAtacante,
+        this.getChildren().addAll(super.titulo, turno, contenedorSuperior, LBpaisAtacante, contenedorPaisAtacante,
                 LBpaisDefensor, contenedorPaisDefensor, cantidadDeTropas, contenedorControlesAtaque,vistaBatalla);
         actualizar();
 
