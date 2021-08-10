@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.canjes.CanjeadorDeTarjetas;
 import edu.fiuba.algo3.modelo.canjes.TarjetaDePais;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +27,7 @@ public class TarjetasDePaisTest {
     public void unJugadorCanjea3TarjetasDelMismoSimboloYObtiene4Tropas() throws Exception{
 
         Jugador jugador = new Jugador("Pepe");
-
+        CanjeadorDeTarjetas.setMazo(new Mazo(new Tablero()));
         TarjetaDePais tarjeta1 = new TarjetaDePais(new Pais("Argentina", new Continente("America")), "cañon");
         TarjetaDePais tarjeta2 = new TarjetaDePais(new Pais("Brasil", new Continente("America")), "cañon");
         TarjetaDePais tarjeta3 = new TarjetaDePais(new Pais("Chile", new Continente("America")), "cañon");
