@@ -35,4 +35,10 @@ public class Mazo {
     }
     public void reincorporarTarjeta(TarjetaDePais tarjeta)
     {tarjetas.add(tarjeta);}
+
+    //Solo para pruebas
+    public int cantidadCartas(){
+        return this.tarjetas.size();
+    }
 }
+
