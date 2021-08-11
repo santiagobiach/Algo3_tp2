@@ -1,11 +1,9 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.modelo.controladores.ControladorJuego;
-import edu.fiuba.algo3.modelo.controladores.ControladorMenu;
+import edu.fiuba.algo3.controladores.ControladorJuego;
+import edu.fiuba.algo3.controladores.ControladorMenu;
 import javafx.application.Application;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
 
 /**
  * JavaFX App
@@ -23,7 +21,8 @@ public class App extends Application {
 //        jugadores.add("Santi");
 //        jugadores.add("Martin");
 //        ControladorJuego.empezarPartida(jugadores);
-        ControladorMenu.mostrarMenu();
+       ControladorMenu.mostrarMenu();
+
     }
 
     public static void main(String[] args) {
