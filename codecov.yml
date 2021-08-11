@@ -1,5 +1,6 @@
 ignore:
-  - "**/controladores/*"
-  - "**/vistas/*"
+  - "**/controladores"
+  - "**/vistas"
+  - "**/mocks"
   - "**/Main.java"
   - "**/App.java"
