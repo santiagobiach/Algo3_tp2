@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.inicializadores;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +10,6 @@ public class CSVParser {
     private final char DOUBLE_QUOTES = '"';
     private final char DEFAULT_QUOTE_CHAR = DOUBLE_QUOTES;
     private final String NEW_LINE = "\n";
-
-
-
-    public CSVParser(){
-
-    }
 
     public ArrayList<String[]> readFromFile(String path) throws Exception {
         BufferedReader csvReader = new BufferedReader(new FileReader(path));

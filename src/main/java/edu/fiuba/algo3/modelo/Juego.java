@@ -1,10 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.mocks.MazoMockTodasParaUnJugador;
 import edu.fiuba.algo3.modelo.batallas.BatallaNormal;
 import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasDisponibles;
 import edu.fiuba.algo3.modelo.canjes.CanjeadorDeTarjetas;
-import edu.fiuba.algo3.modelo.canjes.TarjetaDePais;
 import edu.fiuba.algo3.modelo.excepciones.ExcepcionBatallaInvalida;
 import edu.fiuba.algo3.modelo.fases.Fase;
 import edu.fiuba.algo3.modelo.fases.FaseColocacionInicial;
@@ -23,7 +21,7 @@ public class Juego{
     private Jugador ganador;
     private ArrayList<Objetivo> objetivos;
     private Fase fase;
-    //private Jugador jugadorActual;
+
     private ArrayList<CalculadorTropasDisponibles> calculadores;
 
     public Juego(Tablero tablero, ArrayList<CalculadorTropasDisponibles> calculadores,
@@ -95,10 +93,6 @@ public class Juego{
         for (Jugador j: jugadores)
             if (j.perdio())
                 jugadores.remove(j);
-    }
-
-    public TarjetaDePais getTarjeta(Pais pais){
-        return mazo.getTarjeta(pais);
     }
 
     public Tablero getTablero(){

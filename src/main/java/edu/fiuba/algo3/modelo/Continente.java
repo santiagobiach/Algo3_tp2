@@ -47,6 +47,7 @@ public class Continente{
 
         return conquistado;
     }
+
     public boolean jugadorControlaXProvincias(Jugador unJugador, int x){
 
         int numeroDePronviciasControladas = 0;

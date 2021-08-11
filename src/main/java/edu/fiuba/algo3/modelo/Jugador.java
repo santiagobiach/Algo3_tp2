@@ -54,15 +54,19 @@ public class Jugador {
     public void canjearTarjetas(TarjetaDePais tarjeta1, TarjetaDePais tarjeta2, TarjetaDePais tarjeta3){
         CanjeadorDeTarjetas.canjearTarjetas(tarjeta1, tarjeta2, tarjeta3, this);
     }
+
     public int tropasDisponibles(){
         return this.tropasDisponibles;
     }
+
     public void agregarTropasDisponibles(int numero){
         this.tropasDisponibles += numero;
     }
+
     public void restarTropasDisponibles(int numero){
         this.tropasDisponibles -= numero;
     }
+
     public void canjeRealizado(TarjetaDePais t1, TarjetaDePais t2, TarjetaDePais t3){
 
         agregarTropasDisponibles(numeroDeCanje.tropasDisponibles());
@@ -70,23 +74,6 @@ public class Jugador {
         eliminarTarjeta(t1);
         eliminarTarjeta(t2);
         eliminarTarjeta(t3);
-    }
-
-    public void colocarEjercitos(int cantidad){
-//        Scanner input = new Scanner(System.in);
-
-//        System.out.println("Paises Conquistados:");
-//        for(Pais p: paisesConquistados)
-//            System.out.println(p.getNombre());
-
-        for (int i = 0; i < cantidad; i++) {
-            Pais pais = this.getPaisesConquistados().get(0);
-//            Pais pais = Pais.buscar(nombrePais, paisesConquistados);
-            if(pais.getJugador() == this)
-                pais.agregarTropas(1);
-            else
-                System.out.printf("Ingrese el nombre de un pais controlado");
-        }
     }
 
     public void colocarEjercitosEn(int cantidad, Pais pais){
@@ -124,6 +111,7 @@ public class Jugador {
     public void agregarObjetivo(Objetivo objetivo){
         objetivos.add(objetivo);
     }
+
     public boolean cumplioObjetivos(){
         for(Objetivo obj: objetivos){
             if(obj.estaCumplido(this)){
@@ -132,6 +120,7 @@ public class Jugador {
         }
         return false;
     }
+
     public ArrayList<Objetivo> getObjetivos(){
         return objetivos;
     }

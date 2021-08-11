@@ -2,7 +2,6 @@ package edu.fiuba.algo3.modelo.canjes;
 
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Mazo;
-import edu.fiuba.algo3.modelo.canjes.TarjetaDePais;
 
 public class CanjeadorDeTarjetas {
 

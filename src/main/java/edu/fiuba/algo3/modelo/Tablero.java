@@ -10,7 +10,6 @@ public class Tablero {
     protected ArrayList<Continente> continentes;
 
     private String csvFronteras = "src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Fronteras.csv";
-    private String csvCartas = "src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Cartas.csv";
 
     public Tablero() throws Exception{
         continentes = InicializadorDePaisesYContinentes.InicializarContinentes();
@@ -38,9 +37,11 @@ public class Tablero {
 
         return null;
     }
+
     public ArrayList<Continente> getContinentes() {
         return continentes;
     }
+
     public Pais getPais(String nombre){
 
         for (Pais p: paises)

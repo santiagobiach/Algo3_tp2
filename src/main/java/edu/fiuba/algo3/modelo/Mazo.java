@@ -8,6 +8,7 @@ import java.util.Random;
 
 public class Mazo {
     protected ArrayList<TarjetaDePais> tarjetas;
+
     public Mazo(Tablero tablero){
         try{
             this.tarjetas = InicializadorDePaisesYContinentes.inicializarCartasDesdeArchivo("src/main/java/edu/fiuba/algo3/archivoscsv/Teg - Cartas.csv",
@@ -17,6 +18,7 @@ public class Mazo {
             System.exit(-1);
         }
     }
+
     public TarjetaDePais getTarjeta(Pais pais) {
         for (TarjetaDePais t : tarjetas) {
             if (t.pais() == pais)
@@ -33,10 +35,9 @@ public class Mazo {
             tarjetas.remove(i);
         }
     }
-    public void reincorporarTarjeta(TarjetaDePais tarjeta)
-    {tarjetas.add(tarjeta);}
 
-    //Solo para pruebas
+    public void reincorporarTarjeta(TarjetaDePais tarjeta){tarjetas.add(tarjeta);}
+
     public int cantidadCartas(){
         return this.tarjetas.size();
     }

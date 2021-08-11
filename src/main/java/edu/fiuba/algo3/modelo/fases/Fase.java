@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.modelo.fases;
 
-import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Jugador;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
