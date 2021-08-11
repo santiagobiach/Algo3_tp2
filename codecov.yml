@@ -1,0 +1,5 @@
+ignore:
+  - "**/controladores/*"
+  - "**/vistas/*"
+  - "**/Main.java"
+  - "**/App.java"
