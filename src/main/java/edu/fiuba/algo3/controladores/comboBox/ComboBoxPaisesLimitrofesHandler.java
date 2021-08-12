@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vistas.comboBox;
+package edu.fiuba.algo3.controladores.comboBox;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Pais;

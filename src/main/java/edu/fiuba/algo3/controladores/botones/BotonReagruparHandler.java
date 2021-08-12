@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vistas.botones;
+package edu.fiuba.algo3.controladores.botones;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.Pais;
