@@ -66,6 +66,32 @@ public class FaseTest {
     }
 
     @Test
+    public void UnaFaseDeColocacionInicialDevuelveOtraInstanciaCuandoElJugadorActualNoEsElUltimo(){
+        Fase fase = new FaseColocacionInicial(jugadores,5, 3, calculadores);
+        assert(fase.proximoTurno().getClass() == FaseColocacionInicial.class);
+    }
+
+    @Test
+    public void UnaFaseDeColocacionInicialDevuelveSegundaFaseDeColocacionCuandoElJugadorActualEsElUltimo(){
+        Fase fase = new FaseColocacionInicial(jugadores,5, 3, calculadores);
+        fase = fase.proximoTurno();
+        assert(fase.proximoTurno().getClass() == SegundaFaseColocacionInicial.class);
+    }
+
+    @Test
+    public void UnaSegundaFaseDeColocacionInicialDevuelveOtraInstanciaCuandoElJugadorActualNoEsElUltimo(){
+        Fase fase = new SegundaFaseColocacionInicial(jugadores,3, calculadores);
+        assert(fase.proximoTurno().getClass() == SegundaFaseColocacionInicial.class);
+    }
+
+    @Test
+    public void UnaSegundaFaseDeColocacionInicialDevuelveFaseDeAtaqueYReagrupacionCuandoElJugadorActualEsElUltimo(){
+        Fase fase = new SegundaFaseColocacionInicial(jugadores,3, calculadores);
+        fase = fase.proximoTurno();
+        assert(fase.proximoTurno().getClass() == FaseDeAtaqueYReagrupacion.class);
+    }
+
+    @Test
     public void laFaseDeAtaqueYReagrupacionEsDeAtaqueYReagrupacion(){
         Fase fase = new FaseDeAtaqueYReagrupacion(jugadores, calculadores);
         assert(fase.esDeAtaqueYReagrupacion());
