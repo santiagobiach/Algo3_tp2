@@ -14,20 +14,30 @@ public class BatallaNormal extends Observable implements Batalla{
 
     public BatallaNormal(Pais unAtacante, Pais unDefensor, int unaCantidadDeTropasAtacantes) throws ExcepcionBatallaInvalida {
 
-        if (unaCantidadDeTropasAtacantes < 1)
+        if (unaCantidadDeTropasAtacantes < 1){
+            System.out.println("Numero inválido de tropas");
             throw new ExcepcionBatallaInvalida("Numero inválido de tropas");
+        }
 
-        else if (!unAtacante.tieneTropasSuficientes(unaCantidadDeTropasAtacantes))
+        else if (!unAtacante.tieneTropasSuficientes(unaCantidadDeTropasAtacantes)){
+            System.out.println("Tropas insuficientes");
             throw new ExcepcionBatallaInvalida("Tropas insuficientes");
+        }
 
-        else if(unAtacante.esNeutral())
+        else if(unAtacante.esNeutral()){
+            System.out.println("Atacante Neutral");
             throw new ExcepcionBatallaInvalida("Atacante Neutral");
+        }
 
-        else if(!unAtacante.esLimitrofeCon(unDefensor))
+        else if(!unAtacante.esLimitrofeCon(unDefensor)){
+            System.out.println("Paises no limítrofes");
             throw new ExcepcionBatallaInvalida("Paises no limítrofes");
+        }
 
-        else if(unAtacante.esAliado(unDefensor))
+        else if(unAtacante.esAliado(unDefensor)){
+            System.out.println("Batalla entre paises aliados");
             throw new ExcepcionBatallaInvalida("Batalla entre paises aliados");
+        }
 
         cantidadDeTropasAtacantes = unaCantidadDeTropasAtacantes;
         atacante = unAtacante;
@@ -57,7 +67,7 @@ public class BatallaNormal extends Observable implements Batalla{
             tirosDefensor.remove(0);
         }
 
-        defensor.defenderConquista(atacante);
+            defensor.defenderConquista(atacante);
 
     }
 

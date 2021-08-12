@@ -49,7 +49,8 @@ public class Pais extends Observable {
     }
 
     public void recibirTropasDe(Pais paisDeOrigen, Integer cantidad){
-        if (paisDeOrigen.dominadoPor(this.jugador) && paisDeOrigen.esAliado(this)){
+        if (paisDeOrigen.dominadoPor(this.jugador) && paisDeOrigen.esAliado(this) &&
+                paisDeOrigen.esLimitrofeCon(this)){
             this.agregarTropas(cantidad);
             paisDeOrigen.restarTropas(cantidad);
         }
@@ -83,6 +84,7 @@ public class Pais extends Observable {
     public ArrayList<Pais> getPaisesLimitrofes(){
         return this.paisesLimitrofes;
     }
+
     public boolean tieneTropasSuficientes(int cantidad){
         return (cantidadDeTropas > cantidad);
     }
