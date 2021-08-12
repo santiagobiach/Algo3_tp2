@@ -12,7 +12,7 @@ public class BatallaMockGanaDefensor implements Batalla {
         atacante = unAtacante;
         defensor = unDefensor;
     }
-    public void combatir() throws ExcepcionBatallaInvalida {
+    public void combatir(){
         atacante.restarTropas(3);
         defensor.defenderConquista(atacante);
     }

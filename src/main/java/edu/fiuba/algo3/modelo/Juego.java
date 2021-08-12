@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.batallas.Batalla;
 import edu.fiuba.algo3.modelo.batallas.BatallaNormal;
 import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasDisponibles;
 import edu.fiuba.algo3.modelo.canjes.CanjeadorDeTarjetas;
@@ -111,19 +112,20 @@ public class Juego{
         return fase;
     }
 
-    public void crearBatalla(Pais atacante, Pais defensor, int tropasAtacantes, Observer o){
+    public BatallaNormal crearBatalla(Pais atacante, Pais defensor, int tropasAtacantes){
+        BatallaNormal batalla = null;
         try{
-            BatallaNormal batalla = new BatallaNormal(atacante,defensor, tropasAtacantes);
-            batalla.addObserver(o);
-            batalla.combatir();
-            chequearVictoria();
-            batalla.deleteObserver(o);
+            batalla = new BatallaNormal(atacante,defensor, tropasAtacantes);
+
         }catch(ExcepcionBatallaInvalida e){
             System.out.println("La batalla es invalida");
         }
-
+        return batalla;
     }
-
+    public void combatir(Batalla batalla){
+            batalla.combatir();
+            chequearVictoria();
+    }
     private ArrayList<Jugador> ordenarJugadores(ArrayList<Jugador> jugadores, int indiceJugadorInicial){
         ArrayList<Jugador> jugadoresOrdenados = new ArrayList<>();
 

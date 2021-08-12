@@ -44,7 +44,7 @@ public class BatallaNormal extends Observable implements Batalla{
         defensor = unDefensor;
     }
 
-    public void combatir() throws ExcepcionBatallaInvalida{
+    public void combatir(){
 
         int cantidadDadosAtacante = Math.min(3, cantidadDeTropasAtacantes);
         int cantidadDadosDefensor = Math.min(3, defensor.getCantidadDeTropas());
