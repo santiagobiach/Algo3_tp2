@@ -5,11 +5,9 @@ import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Pais;
 import edu.fiuba.algo3.modelo.canjes.TarjetaDePais;
 import edu.fiuba.algo3.controladores.ControladorJuego;
-import edu.fiuba.algo3.controladores.botones.BotonCanjearHandler;
-import edu.fiuba.algo3.controladores.botones.BotonColocarHandler;
-import edu.fiuba.algo3.controladores.botones.BotonMostrarAyudaCanjeHandler;
-import edu.fiuba.algo3.controladores.botones.BotonMostrarObjetivoHandler;
-import edu.fiuba.algo3.controladores.comboBox.ComboBoxPaisesColocacionHandler;
+import edu.fiuba.algo3.controladores.botones.*;
+import edu.fiuba.algo3.controladores.comboBox.*;
+
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.Background;
