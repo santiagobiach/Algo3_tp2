@@ -68,11 +68,6 @@ public class Tablero {
             j = (j+1)%jugadores.size();
         }
 
-//        for(Jugador ju: jugadores)
-//            System.out.println(ju.getNombre()+": "+ju.cantidadPaisesConquistados());
-//        for(Pais pais: paises)
-//            System.out.printf(pais.getNombre()+": "+(pais.getJugador()).getNombre()+" ("+pais.getCantidadDeTropas()+")\n");
-
     }
 
 }
