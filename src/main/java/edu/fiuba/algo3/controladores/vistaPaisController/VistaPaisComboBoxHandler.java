@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vistas.vistaPaisController;
+package edu.fiuba.algo3.controladores.vistaPaisController;
 
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;

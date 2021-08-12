@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.vistas;
 
 import edu.fiuba.algo3.controladores.ControladorMenu;
-import edu.fiuba.algo3.vistas.botones.BotonAgregarJugador;
-import edu.fiuba.algo3.vistas.botones.BotonModificarCantidadDeJugadores;
-import edu.fiuba.algo3.vistas.botones.BotonQuitarJugador;
+import edu.fiuba.algo3.controladores.botones.BotonAgregarJugador;
+import edu.fiuba.algo3.controladores.botones.BotonModificarCantidadDeJugadores;
+import edu.fiuba.algo3.controladores.botones.BotonQuitarJugador;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
