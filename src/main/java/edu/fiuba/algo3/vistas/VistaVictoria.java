@@ -48,7 +48,8 @@ public class VistaVictoria extends Vista{
         informacion.setText("Informacion de la partida:");
         informacion.setFont(new Font(informacion.getFont().getName(), 16));
         HBox contenedorJugadores = new HBox();
-        Label jugadoresLabel = new Label("Jugadores: ");
+        Label jugadoresLabel = new Label("Jugador: ");
+        Label paisesConquistados = new Label("Paises conquistados: ");
         ComboBox<Jugador> jugadoresCB = new ComboBox<>();
         Callback<ListView<Jugador>, ListCell<Jugador>> factory = lv -> new ListCell<Jugador>() {
 
@@ -88,7 +89,7 @@ public class VistaVictoria extends Vista{
         ComboBoxJugadoresVistaVictoriaHandler jugadoresVistaVictoriaHandler = new ComboBoxJugadoresVistaVictoriaHandler(jugadoresCB,listaPaisesJugador);
         jugadoresCB.setOnAction(jugadoresVistaVictoriaHandler);
 
-        contenedorInformacionPartida.getChildren().addAll(informacion,contenedorJugadores, listaPaisesJugador);
+        contenedorInformacionPartida.getChildren().addAll(informacion,contenedorJugadores, paisesConquistados, listaPaisesJugador);
         contenedorPrincipal.getChildren().addAll(ganador, objetivos, contenedorInformacionPartida);
         this.getChildren().addAll(contenedorPrincipal);
         return new Scene(this, 1280, 720);
