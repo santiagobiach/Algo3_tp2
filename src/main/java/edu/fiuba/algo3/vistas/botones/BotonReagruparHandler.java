@@ -46,10 +46,6 @@ public class BotonReagruparHandler implements EventHandler<ActionEvent> {
         } catch (Exception e){};
 
         if(paisDeDestino != null && paisDeOrigen != null){
-            System.out.println("ORIGEN: "+paisDeOrigen.getNombre());
-            System.out.println("DESTINO: "+paisDeDestino.getNombre());
-            System.out.println("ALIADOS: "+paisDeDestino.esAliado(paisDeOrigen));
-
             paisDeOrigen.moverTropasA(paisDeDestino, cantidad);
             tropasPaisDeOrigen.setText("Tropas: " + String.valueOf(paisDeOrigen.getCantidadDeTropas()));
             tropasPaisDeDestino.setText("Tropas: " + String.valueOf(paisDeDestino.getCantidadDeTropas()));

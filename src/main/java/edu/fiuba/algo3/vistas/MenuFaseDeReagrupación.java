@@ -45,7 +45,7 @@ public class MenuFaseDeReagrupación extends Menu{
         this.setMinWidth(200);
         BackgroundFill colorFondo = new BackgroundFill(Color.LIGHTGREY, null, null);
         this.setBackground(new Background(colorFondo));
-        super.titulo.setText("FASE DE COLOCACIÓN");
+        super.titulo.setText("FASE DE REAGRUPACIÓN");
 
         this.BTObjetivos = new Button();
         BTObjetivos.setText("Objetivos");
