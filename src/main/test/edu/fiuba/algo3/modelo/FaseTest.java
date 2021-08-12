@@ -21,7 +21,7 @@ public class FaseTest {
     //Setup
     public FaseTest(){
         try{
-            Tablero tablero = new Tablero();
+            tablero = new Tablero();
         } catch (Exception e) {}
 
         jugador1 = new Jugador("J1");
@@ -52,9 +52,36 @@ public class FaseTest {
     }
 
     @Test
-    public void laFaseDeAtaqueEsDeAtaque(){
-        Fase ataque = new FaseDeAtaqueYReagrupacion(jugadores, calculadores);
-        assert(ataque.esDeAtaqueYReagrupacion());
+    public void UnaFaseDeColocacionDevuelveOtraInstanciaCuandoElJugadorActualNoEsElUltimo(){
+        Fase fase = new FaseDeColocacion(jugadores, calculadores);
+        assert(fase.proximoTurno().getClass() == FaseDeColocacion.class);
+    }
+
+    @Test
+    public void UnaFaseDeColocacionDevuelveFaseDeAtaqueYReagrupacionCuandoElJugadorActualNoEsElUltimo(){
+        Fase fase = new FaseDeColocacion(jugadores, calculadores);
+        fase = fase.proximoTurno();
+        System.out.println(fase.getClass());
+        assert(fase.proximoTurno().getClass() == FaseDeAtaqueYReagrupacion.class);
+    }
+
+    @Test
+    public void laFaseDeAtaqueYReagrupacionEsDeAtaqueYReagrupacion(){
+        Fase fase = new FaseDeAtaqueYReagrupacion(jugadores, calculadores);
+        assert(fase.esDeAtaqueYReagrupacion());
+    }
+
+    @Test
+    public void UnaFaseDeAtaqueYRegrupacionDevuelveOtraInstanciaCuandoElJugadorActualNoEsElUltimo(){
+        Fase fase = new FaseDeAtaqueYReagrupacion(jugadores, calculadores);
+        assert(fase.proximoTurno().getClass() == FaseDeAtaqueYReagrupacion.class);
+    }
+
+    @Test
+    public void UnaFaseDeAtaqueYRegrupacionDevuelveFaseDeColocacionCuandoElJugadorActualEsElUltimo(){
+        Fase fase = new FaseDeAtaqueYReagrupacion(jugadores, calculadores);
+        fase = fase.proximoTurno();
+        assert(fase.proximoTurno().getClass() == FaseDeColocacion.class);
     }
 
 }
