@@ -110,4 +110,75 @@ public class PaisTest {
 
     }
 
+    @Test
+    public void unPaisConCeroTropasNoPuedeSigueTeniendoCeroTrasRestarleTropas(){
+        Pais pais = new Pais("Argentina", new Continente("America"));
+        assert(pais.getCantidadDeTropas() == 0);
+        pais.restarTropas(1);
+        assert(pais.getCantidadDeTropas() == 0);
+    }
+
+    @Test
+    public void unPaisNoPuedeRecibirTropasDeUnPaisQueNoEsAliado(){
+        Continente america = new Continente("America");
+        Pais pais = new Pais("Argentina", america);
+        Pais pais2 = new Pais("Brasil", america);
+        pais.agregarPaisLimitrofe(pais2);
+        pais2.agregarPaisLimitrofe(pais);
+
+        Jugador j1 = new Jugador("J1");
+        Jugador j2 = new Jugador("J2");
+
+        pais.setJugador(j1);
+        pais2.setJugador(j2);
+
+        pais.agregarTropas(10);
+
+        assert(pais2.getCantidadDeTropas() == 0);
+        pais2.recibirTropasDe(pais, 5);
+
+        assert(pais2.getCantidadDeTropas() == 0);
+
+    }
+
+    @Test
+    public void unPaisConCeroTropasTiene3TropasTrasRecibir3TropasDeUnOtro(){
+        Continente america = new Continente("America");
+        Pais pais = new Pais("Argentina", america);
+        Pais pais2 = new Pais("Brasil", america);
+        pais.agregarPaisLimitrofe(pais2);
+        pais2.agregarPaisLimitrofe(pais);
+
+        Jugador j1 = new Jugador("J1");
+
+        pais.setJugador(j1);
+        pais2.setJugador(j1);
+
+        pais.agregarTropas(10);
+
+        assert(pais2.getCantidadDeTropas() == 0);
+        pais2.recibirTropasDe(pais, 3);
+
+        assert(pais2.getCantidadDeTropas() == 3);
+    }
+
+    @Test
+    public void unPaisCon4TropasTiene3TropasTrasEnviar1TropaAOtro(){
+        Continente america = new Continente("America");
+        Pais pais = new Pais("Argentina", america);
+        Pais pais2 = new Pais("Brasil", america);
+        pais.agregarPaisLimitrofe(pais2);
+        pais2.agregarPaisLimitrofe(pais);
+
+        Jugador j1 = new Jugador("J1");
+
+        pais.setJugador(j1);
+        pais2.setJugador(j1);
+
+        pais.agregarTropas(4);
+
+        assert(pais.getCantidadDeTropas() == 4);
+        pais.moverTropasA(pais2, 1);
+        assert(pais.getCantidadDeTropas() == 3);
+    }
 }

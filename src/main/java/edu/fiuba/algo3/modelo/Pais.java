@@ -49,7 +49,7 @@ public class Pais extends Observable {
     }
 
     public void recibirTropasDe(Pais paisDeOrigen, Integer cantidad){
-        if (paisDeOrigen.dominadoPor(this.jugador)){
+        if (paisDeOrigen.dominadoPor(this.jugador) && paisDeOrigen.esAliado(this)){
             this.agregarTropas(cantidad);
             paisDeOrigen.restarTropas(cantidad);
         }
