@@ -12,11 +12,9 @@ public abstract class Fase {
         this.jugadorActual = this.jugadores.get(0);
     }
 
-    public abstract boolean esDeAtaque();
+    public abstract boolean esDeAtaqueYReagrupacion();
 
     public abstract boolean esDeColocacion();
-
-    public abstract boolean esDeReagrupacion();
 
     public Jugador getJugadorActual() {
         return jugadorActual;

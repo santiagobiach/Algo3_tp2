@@ -83,12 +83,10 @@ public class ControladorJuego {
     }
 
     private static Menu crearMenuSegunFase(Fase fase) throws ExcepcionFaseInvalida{
-        if(fase.esDeAtaque())
+        if(fase.esDeAtaqueYReagrupacion())
             return new MenuFaseDeAtaque(juego, escenario);
         else if(fase.esDeColocacion())
             return new MenuFaseDeColocacion(juego, escenario);
-        else if(fase.esDeReagrupacion())
-            return new MenuFaseDeReagrupación(juego, escenario);
         else
             throw new ExcepcionFaseInvalida("Fase Inválida");
     }

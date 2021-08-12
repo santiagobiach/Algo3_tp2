@@ -19,12 +19,7 @@ public class FaseColocacionInicial extends Fase{
     }
 
     @Override
-    public boolean esDeAtaque() {
-        return false;
-    }
-
-    @Override
-    public boolean esDeReagrupacion() {
+    public boolean esDeAtaqueYReagrupacion() {
         return false;
     }
 

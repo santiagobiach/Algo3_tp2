@@ -5,16 +5,11 @@ import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasDisponibles;
 
 import java.util.ArrayList;
 
-public class FaseDeAtaque extends Fase{
+public class FaseDeAtaqueYReagrupacion extends Fase{
     private ArrayList<CalculadorTropasDisponibles> calculador;
-    public FaseDeAtaque(ArrayList<Jugador> jugadores, ArrayList<CalculadorTropasDisponibles> calculador) {
+    public FaseDeAtaqueYReagrupacion(ArrayList<Jugador> jugadores, ArrayList<CalculadorTropasDisponibles> calculador) {
         super(jugadores);
         this.calculador = calculador;
-    }
-
-    @Override
-    public boolean esDeReagrupacion() {
-        return false;
     }
 
     @Override
@@ -23,7 +18,7 @@ public class FaseDeAtaque extends Fase{
     }
 
     @Override
-    public boolean esDeAtaque() {
+    public boolean esDeAtaqueYReagrupacion() {
         return true;
     }
 

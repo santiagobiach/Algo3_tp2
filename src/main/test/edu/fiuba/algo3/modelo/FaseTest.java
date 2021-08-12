@@ -6,7 +6,6 @@ import edu.fiuba.algo3.modelo.calculadores.CalculadorTropasPorPaisesConquistados
 import edu.fiuba.algo3.modelo.fases.*;
 import org.junit.jupiter.api.Test;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
 
 public class FaseTest {
@@ -54,8 +53,8 @@ public class FaseTest {
 
     @Test
     public void laFaseDeAtaqueEsDeAtaque(){
-        Fase ataque = new FaseDeAtaque(jugadores, calculadores);
-        assert(ataque.esDeAtaque());
+        Fase ataque = new FaseDeAtaqueYReagrupacion(jugadores, calculadores);
+        assert(ataque.esDeAtaqueYReagrupacion());
     }
 
 }

@@ -22,7 +22,7 @@ public class FaseDeColocacion extends Fase{
     }
 
     @Override
-    public boolean esDeAtaque() {
+    public boolean esDeAtaqueYReagrupacion() {
         return false;
     }
 
@@ -32,15 +32,10 @@ public class FaseDeColocacion extends Fase{
     }
 
     @Override
-    public boolean esDeReagrupacion() {
-        return false;
-    }
-
-    @Override
     public Fase proximoTurno() {
         int indiceTurno = jugadores.indexOf(jugadorActual);
         if(indiceTurno == (jugadores.size() - 1)){
-            return new FaseDeAtaque(jugadores, calculador);
+            return new FaseDeAtaqueYReagrupacion(jugadores, calculador);
         }else{
             jugadorActual = jugadores.get(indiceTurno + 1);
             this.jugadorActual.agregarTropasDisponibles(numeroDeTropasAOtorgar());
